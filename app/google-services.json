@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "212461777995",
+    "firebase_url": "https://fattening-cattle-test.firebaseio.com",
+    "project_id": "fattening-cattle-test",
+    "storage_bucket": "fattening-cattle-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212461777995:android:1e805852c5945546",
+        "android_client_info": {
+          "package_name": "com.ngadep.fatteningcattle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212461777995-jlj9peaq1j75o46g2beirmhlit89bv6g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ngadep.fatteningcattle",
+            "certificate_hash": "18a3ed8fc678c245f3037491647c9207620da6b4"
+          }
+        },
+        {
+          "client_id": "212461777995-09vfc665nlf0puj4psjf0eiu2o76581r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOvU0tyt9S1rG1hMinEcYS5eZIFjqbm0A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212461777995-09vfc665nlf0puj4psjf0eiu2o76581r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
