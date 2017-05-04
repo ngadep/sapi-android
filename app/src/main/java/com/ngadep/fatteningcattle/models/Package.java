@@ -4,9 +4,17 @@ class Package {
     private String name;
     private String location;
     private int type;
+    private boolean active;
 
     public Package() {
         // Default constructor required for calls to DataSnapshot.getValue(Package.class)
+    }
+
+    public Package(String name, String location, int type, boolean active) {
+        this.name = name;
+        this.location = location;
+        this.type = type;
+        this.active = active;
     }
 
     public Package(String name, String location, int type) {
@@ -37,5 +45,13 @@ class Package {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
