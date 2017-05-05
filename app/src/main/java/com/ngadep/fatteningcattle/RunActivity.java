@@ -20,9 +20,9 @@ import com.ngadep.fatteningcattle.models.User;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class RunActivity extends BaseActivity implements View.OnClickListener {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "RunActivity";
 
     // [START declare_database_ref]
     private DatabaseReference mDatabase;
@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_run);
 
         mText = (TextView) findViewById(R.id.tx_hello);
 
@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         if (user == null) {
                             // User is null, error out
                             Log.e(TAG, "User " + userId + " is unexpectedly null");
-                            Toast.makeText(MainActivity.this,
+                            Toast.makeText(RunActivity.this,
                                     "Error: could not fetch user.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
