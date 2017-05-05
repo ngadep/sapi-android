@@ -108,7 +108,7 @@ public class RunActivity extends BaseActivity implements View.OnClickListener {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
         String key = mDatabase.child("packages").push().getKey();
-        Package aPackage = new Package("paket S001", "sumur", 5, true);
+        Package aPackage = new Package(userId,"paket S001", "sumur", 5, true);
         Map<String, Object> postValues = aPackage.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();

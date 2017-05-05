@@ -8,6 +8,7 @@ import java.util.Map;
 
 @IgnoreExtraProperties
 public class Package {
+    private String uid;
     private String name;
     private String location;
     private int type;
@@ -17,17 +18,20 @@ public class Package {
         // Default constructor required for calls to DataSnapshot.getValue(Package.class)
     }
 
-    public Package(String name, String location, int type, boolean active) {
+    public Package(String uid, String name, String location, int type, boolean active) {
+        this.uid = uid;
         this.name = name;
         this.location = location;
         this.type = type;
         this.active = active;
     }
 
-    public Package(String name, String location, int type) {
-        this.name = name;
-        this.location = location;
-        this.type = type;
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getName() {
@@ -65,6 +69,7 @@ public class Package {
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
+        result.put("uid", this.uid);
         result.put("name", this.name);
         result.put("location", this.location);
         result.put("type", this.type);
