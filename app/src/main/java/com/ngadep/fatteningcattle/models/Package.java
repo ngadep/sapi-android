@@ -1,5 +1,12 @@
 package com.ngadep.fatteningcattle.models;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@IgnoreExtraProperties
 public class Package {
     private String name;
     private String location;
@@ -53,5 +60,16 @@ public class Package {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("name", this.name);
+        result.put("location", this.location);
+        result.put("type", this.type);
+        result.put("active", this.active);
+
+        return result;
     }
 }
