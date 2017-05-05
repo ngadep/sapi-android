@@ -1,6 +1,6 @@
 package com.ngadep.fatteningcattle.models;
 
-class Package {
+public class Package {
     private String name;
     private String location;
     private int type;

@@ -1,12 +1,18 @@
 package com.ngadep.fatteningcattle.models;
 
-class User {
+public class User {
     private String userName;
     private String email;
     private String displayName;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
+    }
+
+    public User(String userName, String email) {
+        this.userName = userName;
+        this.email = email;
+        this.displayName = userName;
     }
 
     public User(String userName, String email, String displayName) {

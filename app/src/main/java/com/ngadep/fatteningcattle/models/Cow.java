@@ -1,6 +1,6 @@
 package com.ngadep.fatteningcattle.models;
 
-class Cow {
+public class Cow {
     private String earTag;
     private String sex;
     private int weight;
