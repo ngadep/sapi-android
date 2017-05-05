@@ -17,4 +17,6 @@
     <string name="heading_my_posts">My Posts</string>
     <string name="heading_my_top_posts">My Top Posts</string>
     <string name="sign_out">Sign Out</string>
+    <string name="heading_main_package">Package</string>
+    <string name="heading_main_news">News</string>
 </resources>
