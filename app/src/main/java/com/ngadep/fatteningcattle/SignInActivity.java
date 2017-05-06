@@ -2,8 +2,10 @@ package com.ngadep.fatteningcattle;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
@@ -18,20 +20,38 @@ public class SignInActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+    private TextView mText;
+    private Button mButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_signin);
+
+        mText = (TextView) findViewById(R.id.tx_message);
+        mButton = (Button) findViewById(R.id.btn_sign_in);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                trySignin();
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
         // Check auth on Activity start
         if (mAuth.getCurrentUser() != null) {
             startActivity(new Intent(SignInActivity.this, MainActivity.class));
             finish();
         } else {
-            startActivityForResult(AuthUI.getInstance()
-                    .createSignInIntentBuilder()
-                    .setAllowNewEmailAccounts(false)
-                    .build(), RC_SIGN_IN);
+            trySignin();
         }
+    }
+
+    private void trySignin() {
+        startActivityForResult(AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAllowNewEmailAccounts(false)
+                .build(), RC_SIGN_IN);
     }
 
     @Override
@@ -44,17 +64,17 @@ public class SignInActivity extends AppCompatActivity {
                 finish();
             } else {
                 if (response == null) {
-                    Snackbar.make(null, R.string.sign_in_cancelled, 100).show();
+                    mText.setText(R.string.sign_in_cancelled);
                     return;
                 }
 
-                if (response.getErrorCode() == ErrorCodes.NO_NETWORK){
-                    Snackbar.make(null, R.string.sign_in_no_network, 100).show();
+                if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
+                    mText.setText(R.string.sign_in_no_network);
                     return;
                 }
 
-                if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR){
-                    Snackbar.make(null, R.string.sign_in_unknown_error, 100).show();
+                if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
+                    mText.setText(R.string.sign_in_unknown_error);
                     return;
                 }
             }
