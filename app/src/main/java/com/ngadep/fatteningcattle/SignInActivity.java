@@ -2,126 +2,63 @@ package com.ngadep.fatteningcattle;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.ErrorCodes;
+import com.firebase.ui.auth.IdpResponse;
+import com.firebase.ui.auth.ResultCodes;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.ngadep.fatteningcattle.models.User;
 
-public class SignInActivity extends BaseActivity implements View.OnClickListener {
+public class SignInActivity extends AppCompatActivity {
 
     private static final String TAG = "SignInActivity";
+    private static final int RC_SIGN_IN = 69;
 
-    private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-
-    private EditText mEmailField;
-    private EditText mPasswordField;
-    private Button mSignInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-
-        // Views
-        mEmailField = (EditText) findViewById(R.id.field_email);
-        mPasswordField = (EditText) findViewById(R.id.field_password);
-        mSignInButton = (Button) findViewById(R.id.button_sign_in);
-
-        // Click listeners
-        mSignInButton.setOnClickListener(this);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
         // Check auth on Activity start
         if (mAuth.getCurrentUser() != null) {
-            onAuthSuccess();
-        }
-    }
-
-    private void signIn() {
-        Log.d(TAG, "signIn");
-        if (!validateForm()) {
-            return;
-        }
-
-        showProgressDialog();
-        String email = mEmailField.getText().toString();
-        String password = mPasswordField.getText().toString();
-
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signIn:onComplete:" + task.isSuccessful());
-                        hideProgressDialog();
-
-                        if (task.isSuccessful()) {
-                            onAuthSuccess();
-                        } else {
-                            Toast.makeText(SignInActivity.this, "Sign In Failed",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
-    private void onAuthSuccess() {
-        // Go to MainActivity
-        startActivity(new Intent(SignInActivity.this, MainActivity.class));
-        finish();
-    }
-
-    private String usernameFromEmail(String email) {
-        if (email.contains("@")) {
-            return email.split("@")[0];
+            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+            finish();
         } else {
-            return email;
+            startActivityForResult(AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setAllowNewEmailAccounts(false)
+                    .build(), RC_SIGN_IN);
         }
-    }
-
-    private boolean validateForm() {
-        boolean result = true;
-        if (TextUtils.isEmpty(mEmailField.getText().toString())) {
-            mEmailField.setError("Required");
-            result = false;
-        } else {
-            mEmailField.setError(null);
-        }
-
-        if (TextUtils.isEmpty(mPasswordField.getText().toString())) {
-            mPasswordField.setError("Required");
-            result = false;
-        } else {
-            mPasswordField.setError(null);
-        }
-
-        return result;
     }
 
     @Override
-    public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.button_sign_in) {
-            signIn();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            IdpResponse response = IdpResponse.fromResultIntent(data);
+            if (resultCode == ResultCodes.OK) {
+                startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                finish();
+            } else {
+                if (response == null) {
+                    Snackbar.make(null, R.string.sign_in_cancelled, 100).show();
+                    return;
+                }
+
+                if (response.getErrorCode() == ErrorCodes.NO_NETWORK){
+                    Snackbar.make(null, R.string.sign_in_no_network, 100).show();
+                    return;
+                }
+
+                if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR){
+                    Snackbar.make(null, R.string.sign_in_unknown_error, 100).show();
+                    return;
+                }
+            }
         }
     }
+
 }
