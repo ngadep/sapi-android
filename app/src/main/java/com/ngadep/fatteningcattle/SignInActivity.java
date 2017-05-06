@@ -19,10 +19,7 @@ public class SignInActivity extends AppCompatActivity {
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 69;
 
-    private FirebaseAuth mAuth;
-
     private TextView mText;
-    private Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,25 +27,25 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
 
         mText = (TextView) findViewById(R.id.tx_message);
-        mButton = (Button) findViewById(R.id.btn_sign_in);
+        Button mButton = (Button) findViewById(R.id.btn_sign_in);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trySignin();
+                trySignIn();
             }
         });
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         // Check auth on Activity start
         if (mAuth.getCurrentUser() != null) {
             startActivity(new Intent(SignInActivity.this, MainActivity.class));
             finish();
         } else {
-            trySignin();
+            trySignIn();
         }
     }
 
-    private void trySignin() {
+    private void trySignIn() {
         startActivityForResult(AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAllowNewEmailAccounts(false)
@@ -79,7 +76,6 @@ public class SignInActivity extends AppCompatActivity {
                 if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
                     Log.w(TAG, "sign in Unknown error");
                     mText.setText(R.string.sign_in_unknown_error);
-                    return;
                 }
             }
         }
