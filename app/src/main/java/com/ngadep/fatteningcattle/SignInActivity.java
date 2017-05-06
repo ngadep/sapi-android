@@ -3,6 +3,7 @@ package com.ngadep.fatteningcattle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -64,16 +65,19 @@ public class SignInActivity extends AppCompatActivity {
                 finish();
             } else {
                 if (response == null) {
+                    Log.i(TAG, "sign in cancelled");
                     mText.setText(R.string.sign_in_cancelled);
                     return;
                 }
 
                 if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
+                    Log.w(TAG, "sign in no network");
                     mText.setText(R.string.sign_in_no_network);
                     return;
                 }
 
                 if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
+                    Log.w(TAG, "sign in Unknown error");
                     mText.setText(R.string.sign_in_unknown_error);
                     return;
                 }
