@@ -1,6 +1,5 @@
 package com.ngadep.fatteningcattle.fragment.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,7 +26,6 @@ public class PackageFragment extends Fragment {
 
     private FirebaseRecyclerAdapter<Package, PackageViewHolder> mAdapter;
     private RecyclerView mRecycler;
-    private LinearLayoutManager mManager;
 
     public PackageFragment() {}
 
@@ -50,7 +48,7 @@ public class PackageFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // Set up Layout Manager, reverse layout
-        mManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
