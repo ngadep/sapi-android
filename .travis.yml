@@ -1,4 +1,8 @@
 language: android
+
+jdk:
+  - oraclejdk8
+
 android:
   components:
     # Uncomment the lines below if you want to
@@ -23,7 +27,7 @@ android:
     # if you need to run emulator(s) during your tests
     # - sys-img-armeabi-v7a-android-16
     - sys-img-armeabi-v7a-android-22
-    
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
