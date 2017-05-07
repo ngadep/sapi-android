@@ -1,7 +1,6 @@
 package com.ngadep.fatteningcattle.fragment.main;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,15 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.R;
+import com.ngadep.fatteningcattle.fragment.BaseFragment;
 import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.viewholder.PackageViewHolder;
 
-public class PackageFragment extends Fragment {
+public class PackageFragment extends BaseFragment {
 
     private static final String TAG = "PackageFragment";
     // [START define_database_reference]
@@ -85,10 +84,6 @@ public class PackageFragment extends Fragment {
         Log.i(TAG, "querying user-packages");
         return databaseReference.child("user-packages")
                 .child(getUid());
-    }
-
-    public String getUid() {
-        return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     @Override

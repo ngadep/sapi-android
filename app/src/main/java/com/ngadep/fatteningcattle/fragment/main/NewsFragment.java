@@ -3,15 +3,15 @@ package com.ngadep.fatteningcattle.fragment.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ngadep.fatteningcattle.R;
+import com.ngadep.fatteningcattle.fragment.BaseFragment;
 
-public class NewsFragment extends Fragment {
+public class NewsFragment extends BaseFragment {
 
     private static final String TAG = "NewsFragment";
 
