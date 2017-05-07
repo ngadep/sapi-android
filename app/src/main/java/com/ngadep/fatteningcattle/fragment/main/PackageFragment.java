@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,10 +60,10 @@ public class PackageFragment extends Fragment {
                 R.layout.item_package, PackageViewHolder.class, Packages) {
             @Override
             protected void populateViewHolder(final PackageViewHolder viewHolder, final Package model, final int position) {
-                final DatabaseReference packagesRef = getRef(position);
+                // final DatabaseReference packagesRef = getRef(position);
 
                 // Set click listener for the whole package view
-                final String packageKey = packagesRef.getKey();
+                // final String packageKey = packagesRef.getKey();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -81,6 +82,7 @@ public class PackageFragment extends Fragment {
     }
 
     private Query getQuery(DatabaseReference databaseReference) {
+        Log.i(TAG, "querying user-packages");
         return databaseReference.child("user-packages")
                 .child(getUid());
     }
@@ -88,6 +90,7 @@ public class PackageFragment extends Fragment {
     public String getUid() {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
