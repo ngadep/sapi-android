@@ -10,10 +10,10 @@ import com.ngadep.fatteningcattle.models.Package;
 
 public class PackageViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView mPackageName;
-    public TextView mPackageType;
-    public TextView mPackageLocation;
-    public ImageView mPackageActive;
+    private final TextView mPackageName;
+    private final TextView mPackageType;
+    private final TextView mPackageLocation;
+    private final ImageView mPackageActive;
 
     public PackageViewHolder(View itemView) {
         super(itemView);
