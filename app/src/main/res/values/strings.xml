@@ -9,5 +9,4 @@
     <string name="sign_in_no_network">Not Connected To Network</string>
     <string name="sign_in_unknown_error">Something Wrong While Sign in</string>
     <string name="star_package_active_or_not">Star to know if package active or not</string>
-    <string name="author_photo">Author Photo</string>
 </resources>

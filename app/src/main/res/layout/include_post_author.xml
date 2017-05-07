@@ -6,14 +6,10 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/author_photo"
-        android:src="@drawable/ic_action_account_circle_40" />
-
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Small"
+        android:drawableStart="@drawable/ic_action_account_circle_40"
+        android:drawableLeft="@drawable/ic_action_account_circle_40"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
