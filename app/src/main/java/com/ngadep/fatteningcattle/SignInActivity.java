@@ -48,6 +48,7 @@ public class SignInActivity extends AppCompatActivity {
     private void trySignIn() {
         startActivityForResult(AuthUI.getInstance()
                 .createSignInIntentBuilder()
+                .setIsSmartLockEnabled(!BuildConfig.DEBUG)
                 .setAllowNewEmailAccounts(false)
                 .build(), RC_SIGN_IN);
     }
