@@ -23,6 +23,7 @@ public class LogInActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 69;
 
     private TextView mText;
+    private Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class LogInActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         mText = (TextView) findViewById(R.id.tx_message);
-        Button mButton = (Button) findViewById(R.id.btn_sign_in);
+        mButton = (Button) findViewById(R.id.btn_sign_in);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,11 +64,16 @@ public class LogInActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
+            mButton.setVisibility(View.GONE);
+            mText.setVisibility(View.GONE);
             IdpResponse response = IdpResponse.fromResultIntent(data);
             if (resultCode == ResultCodes.OK) {
                 startActivity(new Intent(LogInActivity.this, MainActivity.class));
                 finish();
             } else {
+                mText.setVisibility(View.VISIBLE);
+                mButton.setVisibility(View.VISIBLE);
+
                 if (response == null) {
                     Log.i(TAG, "sign in cancelled");
                     mText.setText(R.string.sign_in_cancelled);
