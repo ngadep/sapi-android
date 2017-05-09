@@ -47,4 +47,4 @@ notifications:
   # turn off notifications
   email: false
 
-script: ./gradlew clean assembleDebug check
+script: ./gradlew test
