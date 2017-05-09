@@ -13,6 +13,7 @@ import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.ResultCodes;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -25,6 +26,9 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+
+        // for caching on local storage
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         mText = (TextView) findViewById(R.id.tx_message);
         Button mButton = (Button) findViewById(R.id.btn_sign_in);
