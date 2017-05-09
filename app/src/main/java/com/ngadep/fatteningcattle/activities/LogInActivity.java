@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle;
+package com.ngadep.fatteningcattle.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,10 +14,12 @@ import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.ResultCodes;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.ngadep.fatteningcattle.BuildConfig;
+import com.ngadep.fatteningcattle.R;
 
-public class SignInActivity extends AppCompatActivity {
+public class LogInActivity extends AppCompatActivity {
 
-    private static final String TAG = "SignInActivity";
+    private static final String TAG = "LogInActivity";
     private static final int RC_SIGN_IN = 69;
 
     private TextView mText;
@@ -42,7 +44,7 @@ public class SignInActivity extends AppCompatActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         // Check auth on Activity start
         if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+            startActivity(new Intent(LogInActivity.this, MainActivity.class));
             finish();
         } else {
             trySignIn();
@@ -63,7 +65,7 @@ public class SignInActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN) {
             IdpResponse response = IdpResponse.fromResultIntent(data);
             if (resultCode == ResultCodes.OK) {
-                startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                startActivity(new Intent(LogInActivity.this, MainActivity.class));
                 finish();
             } else {
                 if (response == null) {

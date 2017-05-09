@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle;
+package com.ngadep.fatteningcattle.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,8 +17,9 @@ import android.view.MenuItem;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.ngadep.fatteningcattle.fragment.main.NewsFragment;
-import com.ngadep.fatteningcattle.fragment.main.PackageFragment;
+import com.ngadep.fatteningcattle.R;
+import com.ngadep.fatteningcattle.fragments.main.NewsFragment;
+import com.ngadep.fatteningcattle.fragments.main.PackageFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            startActivity(new Intent(MainActivity.this, SignInActivity.class));
+                            startActivity(new Intent(MainActivity.this, LogInActivity.class));
                             finish();
                         }
                     });

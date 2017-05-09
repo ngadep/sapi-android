@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.fragment.main;
+package com.ngadep.fatteningcattle.fragments.main;
 
 
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.fragment.BaseFragment;
+import com.ngadep.fatteningcattle.fragments.BaseFragment;
 
 public class NewsFragment extends BaseFragment {
 

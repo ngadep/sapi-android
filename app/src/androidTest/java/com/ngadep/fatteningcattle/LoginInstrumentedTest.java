@@ -3,6 +3,8 @@ package com.ngadep.fatteningcattle;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.ngadep.fatteningcattle.activities.LogInActivity;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -20,7 +22,7 @@ public class LoginInstrumentedTest {
     private String mEmail;
 
     @Rule
-    public ActivityTestRule<SignInActivity> mRule = new ActivityTestRule<>(SignInActivity.class);
+    public ActivityTestRule<LogInActivity> mRule = new ActivityTestRule<>(LogInActivity.class);
 
     @Before
     public void initTest() {

@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.fragment.main;
+package com.ngadep.fatteningcattle.fragments.main;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,9 +13,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.fragment.BaseFragment;
+import com.ngadep.fatteningcattle.fragments.BaseFragment;
 import com.ngadep.fatteningcattle.models.Package;
-import com.ngadep.fatteningcattle.viewholder.PackageViewHolder;
+import com.ngadep.fatteningcattle.viewholders.PackageViewHolder;
 
 public class PackageFragment extends BaseFragment {
 

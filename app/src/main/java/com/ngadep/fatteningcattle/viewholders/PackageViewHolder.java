@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.viewholder;
+package com.ngadep.fatteningcattle.viewholders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
