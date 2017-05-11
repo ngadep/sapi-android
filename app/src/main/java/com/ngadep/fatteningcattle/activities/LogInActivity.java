@@ -9,21 +9,24 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.ResultCodes;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ngadep.fatteningcattle.BuildConfig;
 import com.ngadep.fatteningcattle.R;
+import com.ngadep.fatteningcattle.contracts.LoginContract;
+import com.ngadep.fatteningcattle.presenter.LoginPresenter;
+import com.ngadep.fatteningcattle.repositories.LoginRepository;
 
-public class LogInActivity extends AppCompatActivity {
+public class LogInActivity extends AppCompatActivity
+        implements LoginContract.View {
 
     private static final String TAG = "LogInActivity";
     private static final int RC_SIGN_IN = 69;
 
     private TextView mText;
     private Button mButton;
+    LoginContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +45,10 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        // Check auth on Activity start
-        if (mAuth.getCurrentUser() != null) {
+        LoginContract.Repository mRepository = LoginRepository.getInstance();
+        mPresenter = new LoginPresenter(this, mRepository);
+
+        if (mPresenter.isLogin()) {
             startActivity(new Intent(LogInActivity.this, MainActivity.class));
             finish();
         } else {
@@ -52,12 +56,33 @@ public class LogInActivity extends AppCompatActivity {
         }
     }
 
-    private void trySignIn() {
+    @Override
+    public void trySignIn() {
         startActivityForResult(AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setIsSmartLockEnabled(!BuildConfig.DEBUG)
                 .setAllowNewEmailAccounts(false)
                 .build(), RC_SIGN_IN);
+    }
+
+    @Override
+    public void showLoginFailed(int code) {
+        if (code == LogInError.CANCELLED) {
+            Log.i(TAG, "sign in cancelled");
+            mText.setText(R.string.sign_in_cancelled);
+            return;
+        }
+
+        if (code == LogInError.NO_NETWORK) {
+            Log.w(TAG, "sign in no network");
+            mText.setText(R.string.sign_in_no_network);
+            return;
+        }
+
+        if (code == LogInError.UNKNOWN_ERROR) {
+            Log.w(TAG, "sign in Unknown error");
+            mText.setText(R.string.sign_in_unknown_error);
+        }
     }
 
     @Override
@@ -74,24 +99,37 @@ public class LogInActivity extends AppCompatActivity {
                 mText.setVisibility(View.VISIBLE);
                 mButton.setVisibility(View.VISIBLE);
 
+                int mCode;
                 if (response == null) {
-                    Log.i(TAG, "sign in cancelled");
-                    mText.setText(R.string.sign_in_cancelled);
-                    return;
+                    mCode = LogInError.CANCELLED;
+                } else {
+                    mCode = response.getErrorCode();
                 }
 
-                if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
-                    Log.w(TAG, "sign in no network");
-                    mText.setText(R.string.sign_in_no_network);
-                    return;
-                }
-
-                if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
-                    Log.w(TAG, "sign in Unknown error");
-                    mText.setText(R.string.sign_in_unknown_error);
-                }
+                mPresenter.onLogInFailed(mCode);
             }
         }
     }
+    private final class LogInError {
+
+        /**
+         * Sign in failed, user cancelled
+         **/
+        static final int CANCELLED = 0;
+        /**
+         * Sign in failed due to lack of network connection
+         **/
+        static final int NO_NETWORK = 10;
+
+        /**
+         * An unknown error has occurred
+         **/
+        static final int UNKNOWN_ERROR = 20;
+
+        private LogInError() {
+            // no instance
+        }
+    }
+
 
 }
