@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.ResultCodes;
 import com.google.firebase.database.FirebaseDatabase;
@@ -26,7 +27,7 @@ public class LogInActivity extends AppCompatActivity
 
     private TextView mText;
     private Button mButton;
-    LoginContract.Presenter mPresenter;
+    LoginPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,26 +39,32 @@ public class LogInActivity extends AppCompatActivity
 
         mText = (TextView) findViewById(R.id.tx_message);
         mButton = (Button) findViewById(R.id.btn_sign_in);
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                trySignIn();
-            }
-        });
 
         LoginContract.Repository mRepository = LoginRepository.getInstance();
         mPresenter = new LoginPresenter(this, mRepository);
+        mPresenter.start();
 
-        if (mPresenter.isLogin()) {
-            startActivity(new Intent(LogInActivity.this, MainActivity.class));
-            finish();
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.tryToLogIn();
+            }
+        });
+    }
+
+    @Override
+    public void showTextAndButton(Boolean visible) {
+        if (visible) {
+            mButton.setVisibility(View.VISIBLE);
+            mText.setVisibility(View.VISIBLE);
         } else {
-            trySignIn();
+            mButton.setVisibility(View.GONE);
+            mText.setVisibility(View.GONE);
         }
     }
 
     @Override
-    public void trySignIn() {
+    public void tryLogIn() {
         startActivityForResult(AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setIsSmartLockEnabled(!BuildConfig.DEBUG)
@@ -86,30 +93,34 @@ public class LogInActivity extends AppCompatActivity
     }
 
     @Override
+    public void startMainActivity() {
+        startActivity(new Intent(LogInActivity.this, MainActivity.class));
+        finish();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == RC_SIGN_IN) {
-            mButton.setVisibility(View.GONE);
-            mText.setVisibility(View.GONE);
+            int result = LogInError.CANCELLED;
+
             IdpResponse response = IdpResponse.fromResultIntent(data);
             if (resultCode == ResultCodes.OK) {
-                startActivity(new Intent(LogInActivity.this, MainActivity.class));
-                finish();
+                result = resultCode;
             } else {
-                mText.setVisibility(View.VISIBLE);
-                mButton.setVisibility(View.VISIBLE);
-
-                int mCode;
                 if (response == null) {
-                    mCode = LogInError.CANCELLED;
-                } else {
-                    mCode = response.getErrorCode();
+                    result = LogInError.CANCELLED;
+                } else if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
+                    result = LogInError.NO_NETWORK;
+                } else if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
+                    result = LogInError.UNKNOWN_ERROR;
                 }
-
-                mPresenter.onLogInFailed(mCode);
             }
+            mPresenter.onLoginResult(result);
         }
     }
+
     private final class LogInError {
 
         /**
@@ -130,6 +141,5 @@ public class LogInActivity extends AppCompatActivity
             // no instance
         }
     }
-
 
 }
