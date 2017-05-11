@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.fragments.main;
+package com.ngadep.fatteningcattle.fragments;
 
 
 import android.os.Bundle;

@@ -18,8 +18,8 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.fragments.main.NewsFragment;
-import com.ngadep.fatteningcattle.fragments.main.PackageFragment;
+import com.ngadep.fatteningcattle.fragments.NewsFragment;
+import com.ngadep.fatteningcattle.fragments.PackageFragment;
 
 public class MainActivity extends AppCompatActivity {
 
