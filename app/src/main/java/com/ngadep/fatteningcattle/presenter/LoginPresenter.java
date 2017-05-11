@@ -1,7 +1,5 @@
 package com.ngadep.fatteningcattle.presenter;
 
-import android.util.Log;
-
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.contracts.LoginContract;
 
