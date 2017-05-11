@@ -2,16 +2,14 @@ package com.ngadep.fatteningcattle.contracts;
 
 public class LoginContract {
     public interface View {
-        void trySignIn();
 
-        void showLoginFailed(int code);
-    }
+        void showTextAndButton(Boolean visible);
 
-    public interface Presenter {
+        void tryLogIn();
 
-        boolean isLogin();
+        void showLoginFailed(int resultCode);
 
-        void onLogInFailed(int code);
+        void startMainActivity();
     }
 
     public interface Repository{
