@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
-import com.firebase.ui.auth.ResultCodes;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ngadep.fatteningcattle.BuildConfig;
 import com.ngadep.fatteningcattle.R;
@@ -73,29 +72,15 @@ public class LogInActivity extends AppCompatActivity
     }
 
     @Override
-    public void showLoginFailed(int code) {
-        if (code == LogInError.CANCELLED) {
-            Log.i(TAG, "sign in cancelled");
-            mText.setText(R.string.sign_in_cancelled);
-            return;
-        }
-
-        if (code == LogInError.NO_NETWORK) {
-            Log.w(TAG, "sign in no network");
-            mText.setText(R.string.sign_in_no_network);
-            return;
-        }
-
-        if (code == LogInError.UNKNOWN_ERROR) {
-            Log.w(TAG, "sign in Unknown error");
-            mText.setText(R.string.sign_in_unknown_error);
-        }
-    }
-
-    @Override
     public void startMainActivity() {
         startActivity(new Intent(LogInActivity.this, MainActivity.class));
         finish();
+    }
+
+    @Override
+    public void showErrorText(int resId) {
+        Log.i(TAG, getResources().getString(resId));
+        mText.setText(resId);
     }
 
     @Override
@@ -103,43 +88,21 @@ public class LogInActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
-            int result = LogInError.CANCELLED;
+            int result = LoginPresenter.LogInStatus.CANCELLED;
 
             IdpResponse response = IdpResponse.fromResultIntent(data);
-            if (resultCode == ResultCodes.OK) {
+            if (resultCode == LoginPresenter.LogInStatus.SUCCESS) {
                 result = resultCode;
             } else {
                 if (response == null) {
-                    result = LogInError.CANCELLED;
+                    result = LoginPresenter.LogInStatus.CANCELLED;
                 } else if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
-                    result = LogInError.NO_NETWORK;
+                    result = LoginPresenter.LogInStatus.NO_NETWORK;
                 } else if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
-                    result = LogInError.UNKNOWN_ERROR;
+                    result = LoginPresenter.LogInStatus.UNKNOWN_ERROR;
                 }
             }
             mPresenter.onLoginResult(result);
         }
     }
-
-    private final class LogInError {
-
-        /**
-         * Sign in failed, user cancelled
-         **/
-        static final int CANCELLED = 0;
-        /**
-         * Sign in failed due to lack of network connection
-         **/
-        static final int NO_NETWORK = 10;
-
-        /**
-         * An unknown error has occurred
-         **/
-        static final int UNKNOWN_ERROR = 20;
-
-        private LogInError() {
-            // no instance
-        }
-    }
-
 }

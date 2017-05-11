@@ -7,9 +7,9 @@ public class LoginContract {
 
         void tryLogIn();
 
-        void showLoginFailed(int resultCode);
-
         void startMainActivity();
+
+        void showErrorText(int resId);
     }
 
     public interface Repository{

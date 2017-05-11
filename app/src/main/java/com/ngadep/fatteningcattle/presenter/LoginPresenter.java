@@ -1,5 +1,8 @@
 package com.ngadep.fatteningcattle.presenter;
 
+import android.util.Log;
+
+import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.contracts.LoginContract;
 
 public class LoginPresenter {
@@ -29,13 +32,53 @@ public class LoginPresenter {
     }
 
     public void onLoginResult(int resultCode) {
-        int LOGIN_OK = -1;
-        if (resultCode == LOGIN_OK) {
+        if (resultCode == LogInStatus.SUCCESS) {
             mLogInView.showTextAndButton(false);
             mLogInView.startMainActivity();
         } else {
             mLogInView.showTextAndButton(true);
-            mLogInView.showLoginFailed(resultCode);
+            changeErrorText(resultCode);
+        }
+    }
+
+    private void changeErrorText(int code) {
+        if (code == LogInStatus.CANCELLED) {
+            mLogInView.showErrorText(R.string.sign_in_cancelled);
+            return;
+        }
+
+        if (code == LogInStatus.NO_NETWORK) {
+            mLogInView.showErrorText(R.string.sign_in_no_network);
+            return;
+        }
+
+        if (code == LogInStatus.UNKNOWN_ERROR) {
+            mLogInView.showErrorText(R.string.sign_in_unknown_error);
+        }
+    }
+
+    public final class LogInStatus {
+
+        /**
+         * Sign in failed, user cancelled
+         **/
+        public static final int SUCCESS = -1;
+        /**
+         * Sign in failed, user cancelled
+         **/
+        public static final int CANCELLED = 0;
+        /**
+         * Sign in failed due to lack of network connection
+         **/
+        public static final int NO_NETWORK = 10;
+
+        /**
+         * An unknown error has occurred
+         **/
+        public static final int UNKNOWN_ERROR = 20;
+
+        private LogInStatus() {
+            // no instance
         }
     }
 

@@ -1,5 +1,6 @@
 package com.ngadep.fatteningcattle.presenter;
 
+import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.contracts.LoginContract;
 
 import org.junit.Before;
@@ -60,22 +61,22 @@ public class LoginPresenterTest {
 
     @Test
     public void testOnLoginResult_Cancelled() {
-        mPresenter.onLoginResult(0);
+        mPresenter.onLoginResult(LoginPresenter.LogInStatus.CANCELLED);
         verify(mView).showTextAndButton(true);
-        verify(mView).showLoginFailed(0);
+        verify(mView).showErrorText(R.string.sign_in_cancelled);
     }
 
     @Test
     public void testOnLoginResult_NoNetwork() {
-        mPresenter.onLoginResult(10);
+        mPresenter.onLoginResult(LoginPresenter.LogInStatus.NO_NETWORK);
         verify(mView).showTextAndButton(true);
-        verify(mView).showLoginFailed(10);
+        verify(mView).showErrorText(R.string.sign_in_no_network);
     }
 
     @Test
     public void testOnLoginResult_UnKnownError() {
-        mPresenter.onLoginResult(20);
+        mPresenter.onLoginResult(LoginPresenter.LogInStatus.UNKNOWN_ERROR);
         verify(mView).showTextAndButton(true);
-        verify(mView).showLoginFailed(20);
+        verify(mView).showErrorText(R.string.sign_in_unknown_error);
     }
 }
