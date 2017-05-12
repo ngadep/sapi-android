@@ -1,11 +1,14 @@
 package com.ngadep.fatteningcattle.models;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Cow {
     private String package_id;
-    private String earTag;
+    private String ear_tag;
     private String sex;
     private int weight;
     private Double price;
@@ -15,17 +18,17 @@ public class Cow {
         // Default constructor required for calls to DataSnapshot.getValue(Cow.class)
     }
 
-    public Cow(String package_id, String earTag, String sex, int weight, Double price, Long date) {
+    public Cow(String package_id, String ear_tag, String sex, int weight, Double price, Long date) {
         this.package_id = package_id;
-        this.earTag = earTag;
+        this.ear_tag = ear_tag;
         this.sex = sex;
         this.weight = weight;
         this.price = price;
         this.date = date;
     }
 
-    public String getEarTag() {
-        return earTag;
+    public String getEar_tag() {
+        return ear_tag;
     }
 
     public String getPackage_id() {
@@ -36,8 +39,8 @@ public class Cow {
         this.package_id = package_id;
     }
 
-    public void setEarTag(String earTag) {
-        this.earTag = earTag;
+    public void setEar_tag(String ear_tag) {
+        this.ear_tag = ear_tag;
     }
 
     public String getSex() {
@@ -68,7 +71,7 @@ public class Cow {
         return SimpleDateFormat.getDateInstance().format(new Date(date));
     }
 
-    public void setDate(Date date) {
-        this.date = date.getTime();
+    public void setDate(Long date) {
+        this.date = date;
     }
 }
