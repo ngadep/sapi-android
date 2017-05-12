@@ -5,4 +5,12 @@
     android:layout_height="match_parent"
     tools:context="com.ngadep.fatteningcattle.activities.CowActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/cow_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/item_cow" />
 </LinearLayout>
