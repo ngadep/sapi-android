@@ -3,17 +3,19 @@ package com.ngadep.fatteningcattle.models;
 import java.util.Date;
 
 public class Cow {
+    private String package_id;
     private String earTag;
     private String sex;
     private int weight;
-    private Long price;
-    private Date date;
+    private Double price;
+    private Long date;
 
     public Cow() {
         // Default constructor required for calls to DataSnapshot.getValue(Cow.class)
     }
 
-    public Cow(String earTag, String sex, int weight, Long price, Date date) {
+    public Cow(String package_id, String earTag, String sex, int weight, Double price, Long date) {
+        this.package_id = package_id;
         this.earTag = earTag;
         this.sex = sex;
         this.weight = weight;
@@ -23,6 +25,14 @@ public class Cow {
 
     public String getEarTag() {
         return earTag;
+    }
+
+    public String getPackage_id() {
+        return package_id;
+    }
+
+    public void setPackage_id(String package_id) {
+        this.package_id = package_id;
     }
 
     public void setEarTag(String earTag) {
@@ -45,19 +55,19 @@ public class Cow {
         this.weight = weight;
     }
 
-    public Long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
     public Date getDate() {
-        return date;
+        return new Date(date);
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.date = date.getTime();
     }
 }
