@@ -16,4 +16,8 @@ public class PackagePresenter {
     public void getUserPackages() {
         mView.getPackages(mRepository.getPackagesFromCurrentUser());
     }
+
+    public void startCowActivity(String packageKey) {
+        mView.startCowActivity(packageKey);
+    }
 }

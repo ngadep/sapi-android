@@ -34,6 +34,5 @@ public class PackageViewHolder extends RecyclerView.ViewHolder {
         } else {
             mPackageActive.setImageResource(R.drawable.ic_toggle_star_outline_24);
         }
-
     }
 }

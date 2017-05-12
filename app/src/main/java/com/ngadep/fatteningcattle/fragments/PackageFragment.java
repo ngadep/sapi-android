@@ -1,5 +1,6 @@
 package com.ngadep.fatteningcattle.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.R;
+import com.ngadep.fatteningcattle.activities.CowActivity;
 import com.ngadep.fatteningcattle.contracts.PackageContract;
 import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.presenter.PackagePresenter;
@@ -47,7 +49,6 @@ public class PackageFragment extends Fragment implements PackageContract.View {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mPresenter.getUserPackages();
-
     }
 
     @Override
@@ -72,18 +73,12 @@ public class PackageFragment extends Fragment implements PackageContract.View {
                 R.layout.item_package, PackageViewHolder.class, packages) {
             @Override
             protected void populateViewHolder(final PackageViewHolder viewHolder, final Package model, final int position) {
-                // final DatabaseReference packagesRef = getRef(position);
-
                 // Set click listener for the whole package view
-                // final String packageKey = packagesRef.getKey();
+                final String packageKey = getRef(position).getKey();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // TODO: Package Details Activity
-                        // Launch Package Details Activity
-                        // Intent intent = new Intent(getActivity(), PackageDetailActivity.class);
-                        // intent.putExtra(PackageDetailActivity.EXTRA_POST_KEY, packageKey);
-                        // startActivity(intent);
+                        mPresenter.startCowActivity(packageKey);
                     }
                 });
 
@@ -91,5 +86,13 @@ public class PackageFragment extends Fragment implements PackageContract.View {
             }
         };
         mRecycler.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void startCowActivity(String packageKey) {
+        // Launch Cow Activity
+         Intent intent = new Intent(getActivity(), CowActivity.class);
+         intent.putExtra(CowActivity.EXTRA_PACKAGE_ID, packageKey);
+         startActivity(intent);
     }
 }

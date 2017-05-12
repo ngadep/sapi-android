@@ -6,6 +6,8 @@ public interface PackageContract {
     interface View{
 
         void getPackages(Query packages);
+
+        void startCowActivity(String packageKey);
     }
 
     interface Repository {
