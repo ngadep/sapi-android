@@ -1,7 +1,7 @@
 package com.ngadep.fatteningcattle.contracts;
 
-public class LoginContract {
-    public interface View {
+public interface LoginContract {
+    interface View {
 
         void showTextAndButton(Boolean visible);
 
@@ -12,7 +12,7 @@ public class LoginContract {
         void showErrorText(int resId);
     }
 
-    public interface Repository{
+    interface Repository{
 
         boolean isLogin();
     }
