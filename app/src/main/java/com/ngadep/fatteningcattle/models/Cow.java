@@ -1,5 +1,6 @@
 package com.ngadep.fatteningcattle.models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Cow {
@@ -63,8 +64,8 @@ public class Cow {
         this.price = price;
     }
 
-    public Date getDate() {
-        return new Date(date);
+    public String getDate() {
+        return SimpleDateFormat.getDateInstance().format(new Date(date));
     }
 
     public void setDate(Date date) {
