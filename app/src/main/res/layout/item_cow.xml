@@ -31,14 +31,14 @@
                     android:id="@+id/cow_ear_tag"
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textStyle="bold"
                     tools:text="09886" />
 
                 <TextView
                     android:id="@+id/cow_date"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="end"
                     tools:text="23.05.2017" />
             </LinearLayout>
@@ -50,9 +50,11 @@
                 <ImageButton
                     android:id="@+id/cow_sex"
                     android:layout_width="22dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_height="22dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
                     android:background="@color/cardview_light_background"
                     android:contentDescription="@string/image_cow_sex"
                     app:srcCompat="@drawable/ic_toggle_star_24" />
@@ -60,15 +62,13 @@
                     android:id="@+id/cow_wight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="200 Kg"
-                    android:padding="5dp"/>
+                    tools:text="200 Kg"/>
                 <TextView
                     android:id="@+id/cow_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    tools:text="Rp. 15.890.000"
-                    android:padding="5dp"/>
+                    tools:text="Rp. 15.890.000"/>
             </LinearLayout>
 
         </LinearLayout>
