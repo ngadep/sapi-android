@@ -35,13 +35,6 @@
                     android:textStyle="bold"
                     tools:text="09886" />
 
-                <ImageButton
-                    android:id="@+id/cow_sex"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    app:srcCompat="@drawable/ic_action_account_circle_40"
-                    android:contentDescription="@string/image_cow_sex" />
-
                 <TextView
                     android:id="@+id/cow_date"
                     android:layout_width="match_parent"
@@ -52,7 +45,17 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/cow_sex"
+                    android:layout_width="22dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@color/cardview_light_background"
+                    android:contentDescription="@string/image_cow_sex"
+                    app:srcCompat="@drawable/ic_toggle_star_24" />
                 <TextView
                     android:id="@+id/cow_wight"
                     android:layout_width="wrap_content"
@@ -61,8 +64,9 @@
                     android:padding="5dp"/>
                 <TextView
                     android:id="@+id/cow_price"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="end"
                     tools:text="Rp. 15.890.000"
                     android:padding="5dp"/>
             </LinearLayout>

@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.models.Cow;
 
+import java.util.Locale;
+
 public class CowViewHolder extends RecyclerView.ViewHolder {
 
     private final ImageView mCowImage;
@@ -29,10 +31,10 @@ public class CowViewHolder extends RecyclerView.ViewHolder {
     }
     public void bindToCow(Cow model) {
         mCowImage.setImageResource(R.drawable.ic_action_account_circle_40);
-        mCowEarTag.setText(model.getEarTag());
+        mCowEarTag.setText(model.getEar_tag());
         mCowSex.setImageResource(R.drawable.ic_toggle_star_24);
         mCowDate.setText(model.getDate());
-        mCowWeight.setText(String.valueOf(model.getWeight()));
-        mCowPrice.setText(String.valueOf(model.getPrice()));
+        mCowWeight.setText(String.format(Locale.ENGLISH,"%d Kg", model.getWeight()));
+        mCowPrice.setText(String.format(Locale.ENGLISH, "Rp. %1$,.2f", model.getPrice()));
     }
 }
