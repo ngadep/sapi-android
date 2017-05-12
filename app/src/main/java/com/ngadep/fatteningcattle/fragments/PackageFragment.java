@@ -45,7 +45,7 @@ public class PackageFragment extends BaseFragment implements PackageContract.Vie
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mPresenter.getPackages();
+        mPresenter.getUserPackages();
 
     }
 

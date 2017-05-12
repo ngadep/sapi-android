@@ -13,7 +13,7 @@ public class PackagePresenter {
         mRepository = repository;
     }
 
-    public void getPackages() {
+    public void getUserPackages() {
         mView.getPackages(mRepository.getPackagesFromCurrentUser());
     }
 }
