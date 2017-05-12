@@ -10,4 +10,5 @@
     <string name="sign_in_unknown_error">Something Wrong While Sign in</string>
     <string name="star_package_active_or_not">Star to know if package active or not</string>
     <string name="image_for_cow">image for cow</string>
+    <string name="image_cow_sex">Image Cow Sex</string>
 </resources>
