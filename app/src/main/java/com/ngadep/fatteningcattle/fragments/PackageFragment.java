@@ -1,6 +1,7 @@
 package com.ngadep.fatteningcattle.fragments;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,7 +18,7 @@ import com.ngadep.fatteningcattle.presenter.PackagePresenter;
 import com.ngadep.fatteningcattle.repositories.PackageRepository;
 import com.ngadep.fatteningcattle.viewholders.PackageViewHolder;
 
-public class PackageFragment extends BaseFragment implements PackageContract.View {
+public class PackageFragment extends Fragment implements PackageContract.View {
 
     private static final String TAG = "PackageFragment";
 
