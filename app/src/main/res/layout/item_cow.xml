@@ -12,7 +12,7 @@
         android:background="?android:attr/selectableItemBackground">
 
         <ImageButton
-            android:id="@+id/image_cow"
+            android:id="@+id/cow_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_action_account_circle_40"
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp">
                 <TextView
-                    android:id="@+id/tx_ear_tag"
+                    android:id="@+id/cow_ear_tag"
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -36,13 +36,14 @@
                     tools:text="09886" />
 
                 <ImageButton
-                    android:id="@+id/image_sex"
+                    android:id="@+id/cow_sex"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     app:srcCompat="@drawable/ic_action_account_circle_40"
                     android:contentDescription="@string/image_cow_sex" />
 
                 <TextView
+                    android:id="@+id/cow_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
@@ -53,13 +54,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/tx_cow_wight"
+                    android:id="@+id/cow_wight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="200 Kg"
                     android:padding="5dp"/>
                 <TextView
-                    android:id="@+id/tx_cow_price"
+                    android:id="@+id/cow_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Rp. 15.890.000"
