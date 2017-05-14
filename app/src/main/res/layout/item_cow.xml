@@ -8,30 +8,33 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground">
+        android:layout_height="wrap_content">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/cow_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_action_account_circle_40"
-            android:contentDescription="@string/image_for_cow" />
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_account_circle_black_24dp"
+            android:contentDescription="@string/image_for_cow"
+            android:background="?android:attr/selectableItemBackground"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="?android:attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:layout_margin="5dp">
+
                 <TextView
                     android:id="@+id/cow_ear_tag"
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:textColor="@android:color/black"
                     android:textStyle="bold"
                     tools:text="09886" />
 
@@ -47,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/cow_sex"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
@@ -57,7 +60,7 @@
                     android:layout_marginEnd="5dp"
                     android:background="@color/cardview_light_background"
                     android:contentDescription="@string/image_cow_sex"
-                    app:srcCompat="@drawable/ic_toggle_star_24" />
+                    android:src="@drawable/ic_sex_female_24dp" />
                 <TextView
                     android:id="@+id/cow_wight"
                     android:layout_width="wrap_content"
