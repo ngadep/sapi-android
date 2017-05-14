@@ -67,6 +67,8 @@
                     android:id="@+id/cow_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
                     android:gravity="end"
                     tools:text="Rp. 15.890.000"/>
             </LinearLayout>
