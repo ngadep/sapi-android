@@ -1,8 +1,5 @@
 package com.ngadep.fatteningcattle.models;
 
-import com.google.firebase.database.Exclude;
-import com.google.firebase.database.IgnoreExtraProperties;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
