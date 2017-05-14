@@ -30,9 +30,13 @@ public class CowViewHolder extends RecyclerView.ViewHolder {
         mCowPrice =(TextView) itemView.findViewById(R.id.cow_price);
     }
     public void bindToCow(Cow model) {
-        mCowImage.setImageResource(R.drawable.ic_action_account_circle_40);
+        mCowImage.setImageResource(R.drawable.ic_account_circle_black_24dp);
         mCowEarTag.setText(model.getEar_tag());
-        mCowSex.setImageResource(R.drawable.ic_toggle_star_24);
+        if (model.getSex().equals("male")) {
+            mCowSex.setImageResource(R.drawable.ic_sex_male_24dp);
+        } else {
+            mCowSex.setImageResource(R.drawable.ic_sex_female_24dp);
+        }
         mCowDate.setText(model.getDate());
         mCowWeight.setText(String.format(Locale.ENGLISH,"%d Kg", model.getWeight()));
         mCowPrice.setText(String.format(Locale.ENGLISH, "Rp. %1$,.2f", model.getPrice()));

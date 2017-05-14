@@ -30,9 +30,9 @@ public class PackageViewHolder extends RecyclerView.ViewHolder {
         mPackageLocation.setText(model.getLocation());
         // Determine if the current package is active
         if (model.isActive()) {
-            mPackageActive.setImageResource(R.drawable.ic_toggle_star_24);
+            mPackageActive.setImageResource(R.drawable.ic_package_active_24dp);
         } else {
-            mPackageActive.setImageResource(R.drawable.ic_toggle_star_outline_24);
+            mPackageActive.setImageResource(R.drawable.ic_package_inactive_24dp);
         }
     }
 }
