@@ -18,6 +18,7 @@ import com.ngadep.fatteningcattle.viewholders.CowViewHolder;
 public class CowActivity extends AppCompatActivity implements CowContract.View {
 
     public static final String EXTRA_PACKAGE_ID = "PACKAGE_ID";
+    public static final String EXTRA_PACKAGE_NAME = "PACKAGE_NAME";
 
     private CowPresenter mPresenter;
 
@@ -31,6 +32,9 @@ public class CowActivity extends AppCompatActivity implements CowContract.View {
         setContentView(R.layout.activity_cow);
         // Get the requested package id
         String packageId = getIntent().getStringExtra(EXTRA_PACKAGE_ID);
+        String packageName = getIntent().getStringExtra(EXTRA_PACKAGE_NAME);
+
+        setTitle(packageName);
 
         CowContract.Repository mRepository = CowRepository.getInstance();
         mPresenter = new CowPresenter(this, mRepository, packageId);

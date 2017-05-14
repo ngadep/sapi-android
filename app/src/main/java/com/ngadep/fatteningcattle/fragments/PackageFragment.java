@@ -75,10 +75,11 @@ public class PackageFragment extends Fragment implements PackageContract.View {
             protected void populateViewHolder(final PackageViewHolder viewHolder, final Package model, final int position) {
                 // Set click listener for the whole package view
                 final String packageKey = getRef(position).getKey();
+                final String packageName = getItem(position).getName();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mPresenter.startCowActivity(packageKey);
+                        mPresenter.startCowActivity(packageKey, packageName);
                     }
                 });
 
@@ -89,10 +90,11 @@ public class PackageFragment extends Fragment implements PackageContract.View {
     }
 
     @Override
-    public void startCowActivity(String packageKey) {
+    public void startCowActivity(String packageKey, String packageName) {
         // Launch Cow Activity
-         Intent intent = new Intent(getActivity(), CowActivity.class);
-         intent.putExtra(CowActivity.EXTRA_PACKAGE_ID, packageKey);
-         startActivity(intent);
+        Intent intent = new Intent(getActivity(), CowActivity.class);
+        intent.putExtra(CowActivity.EXTRA_PACKAGE_ID, packageKey);
+        intent.putExtra(CowActivity.EXTRA_PACKAGE_NAME, packageName);
+        startActivity(intent);
     }
 }

@@ -7,7 +7,7 @@ public interface PackageContract {
 
         void getPackages(Query packages);
 
-        void startCowActivity(String packageKey);
+        void startCowActivity(String packageKey, String packageName);
     }
 
     interface Repository {
