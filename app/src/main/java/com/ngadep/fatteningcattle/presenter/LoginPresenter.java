@@ -24,7 +24,6 @@ public class LoginPresenter {
     }
 
     public void start() {
-        mLogInRepository.checkLogin();
         if (mLogInRepository.isLogin()) {
             mLogInView.startMainActivity();
         }

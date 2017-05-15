@@ -37,7 +37,6 @@ public class LoginPresenterTest {
     public void testStart_LoginSuccess() {
         when(mRepository.isLogin()).thenReturn(true);
         mPresenter.start();
-        verify(mRepository).checkLogin();
         verify(mRepository).isLogin();
         verify(mView).startMainActivity();
     }
@@ -46,7 +45,6 @@ public class LoginPresenterTest {
     public void testStart_LoginFailed() {
         when(mRepository.isLogin()).thenReturn(false);
         mPresenter.start();
-        verify(mRepository).checkLogin();
         verify(mRepository).isLogin();
         verify(mView, never()).startMainActivity();
     }

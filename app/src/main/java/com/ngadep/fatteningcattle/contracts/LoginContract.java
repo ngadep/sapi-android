@@ -18,6 +18,5 @@ public interface LoginContract {
 
         boolean tryLogIn(String email, String password);
 
-        void checkLogin();
     }
 }
