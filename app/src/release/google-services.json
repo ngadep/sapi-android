@@ -8,14 +8,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:212461777995:android:1e805852c5945546",
+        "mobilesdk_app_id": "1:212461777995:android:706f8605a0805b25",
         "android_client_info": {
           "package_name": "com.ngadep.fatteningcattle.user"
         }
       },
       "oauth_client": [
         {
-          "client_id": "212461777995-jlj9peaq1j75o46g2beirmhlit89bv6g.apps.googleusercontent.com",
+          "client_id": "212461777995-mts1a3mt00sndq67tcpentbd2e5h3i04.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.ngadep.fatteningcattle.user",
@@ -52,14 +52,14 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:212461777995:android:1e805852c5945546",
+        "mobilesdk_app_id": "1:212461777995:android:8e144893fde9fa38",
         "android_client_info": {
           "package_name": "com.ngadep.fatteningcattle.admin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "212461777995-jlj9peaq1j75o46g2beirmhlit89bv6g.apps.googleusercontent.com",
+          "client_id": "212461777995-g6nd9lbatp9s54dq1cih55unng8ku1iu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.ngadep.fatteningcattle.admin",
