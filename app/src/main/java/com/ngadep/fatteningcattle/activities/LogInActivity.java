@@ -1,108 +1,112 @@
 package com.ngadep.fatteningcattle.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.ErrorCodes;
-import com.firebase.ui.auth.IdpResponse;
-import com.google.firebase.database.FirebaseDatabase;
-import com.ngadep.fatteningcattle.BuildConfig;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.contracts.LoginContract;
 import com.ngadep.fatteningcattle.presenter.LoginPresenter;
 import com.ngadep.fatteningcattle.repositories.LoginRepository;
 
-public class LogInActivity extends AppCompatActivity
-        implements LoginContract.View {
+public class LogInActivity extends AppCompatActivity implements LoginContract.View {
 
-    private static final String TAG = "LogInActivity";
-    private static final int RC_SIGN_IN = 69;
+    private static final String TAG = "SignInActivity";
 
-    private TextView mText;
-    private Button mButton;
     LoginPresenter mPresenter;
+    private EditText mEmailField;
+    private EditText mPasswordField;
+
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signin);
-
-        // for caching on local storage
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
-        mText = (TextView) findViewById(R.id.tx_message);
-        mButton = (Button) findViewById(R.id.btn_sign_in);
+        setContentView(R.layout.activity_login);
 
         LoginContract.Repository mRepository = LoginRepository.getInstance();
         mPresenter = new LoginPresenter(this, mRepository);
-        mPresenter.start();
 
-        mButton.setOnClickListener(new View.OnClickListener() {
+        // Views
+        mEmailField = (EditText) findViewById(R.id.field_email);
+        mPasswordField = (EditText) findViewById(R.id.field_password);
+        Button mSignInButton = (Button) findViewById(R.id.button_sign_in);
+
+        // Click listeners
+        mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.tryToLogIn();
+                tryToLogIn();
             }
         });
+        mPresenter.start();
     }
 
-    @Override
-    public void showTextAndButton(Boolean visible) {
-        if (visible) {
-            mButton.setVisibility(View.VISIBLE);
-            mText.setVisibility(View.VISIBLE);
-        } else {
-            mButton.setVisibility(View.GONE);
-            mText.setVisibility(View.GONE);
+    private void tryToLogIn() {
+        Log.d(TAG, "signIn");
+        if (!validateForm()) {
+            return;
         }
+
+        String email = mEmailField.getText().toString();
+        String password = mPasswordField.getText().toString();
+        mPresenter.tryToLogIn(email, password);
     }
 
-    @Override
-    public void tryLogIn() {
-        startActivityForResult(AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setIsSmartLockEnabled(!BuildConfig.DEBUG)
-                .setAllowNewEmailAccounts(false)
-                .build(), RC_SIGN_IN);
+    private boolean validateForm() {
+        boolean result = true;
+        if (TextUtils.isEmpty(mEmailField.getText().toString())) {
+            mEmailField.setError("Required");
+            result = false;
+        } else {
+            mEmailField.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mPasswordField.getText().toString())) {
+            mPasswordField.setError("Required");
+            result = false;
+        } else {
+            mPasswordField.setError(null);
+        }
+
+        return result;
     }
 
     @Override
     public void startMainActivity() {
+        // Go to MainActivity
         startActivity(new Intent(LogInActivity.this, MainActivity.class));
         finish();
     }
 
     @Override
-    public void showErrorText(int resId) {
-        Log.i(TAG, getResources().getString(resId));
-        mText.setText(resId);
+    public void showErrorText() {
+        Toast.makeText(LogInActivity.this, "Login Failed",
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.setMessage("Loading...");
+        }
 
-        if (requestCode == RC_SIGN_IN) {
-            int result = LoginPresenter.LogInStatus.CANCELLED;
+        mProgressDialog.show();
+    }
 
-            IdpResponse response = IdpResponse.fromResultIntent(data);
-            if (resultCode == LoginPresenter.LogInStatus.SUCCESS) {
-                result = resultCode;
-            } else {
-                if (response == null) {
-                    result = LoginPresenter.LogInStatus.CANCELLED;
-                } else if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
-                    result = LoginPresenter.LogInStatus.NO_NETWORK;
-                } else if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
-                    result = LoginPresenter.LogInStatus.UNKNOWN_ERROR;
-                }
-            }
-            mPresenter.onLoginResult(result);
+    @Override
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
         }
     }
 }

@@ -4,11 +4,10 @@
     <string name="lorem">Lorem ipsum dolor sit nec ante, mi. ut libero, ac .</string>
     <string name="sign_in">Sign In</string>
     <string name="heading_main_package">Package</string>
-    <string name="heading_main_news">News</string>
-    <string name="sign_in_cancelled">Sign In Cancelled</string>
-    <string name="sign_in_no_network">Not Connected To Network</string>
-    <string name="sign_in_unknown_error">Something Wrong While Sign in</string>
+    <string name="heading_main_news">News</string>@
     <string name="star_package_active_or_not">Star to know if package active or not</string>
     <string name="image_for_cow">image for cow</string>
     <string name="image_cow_sex">Image Cow Sex</string>
+    <string name="hint_password">password</string>
+    <string name="hint_email">email</string>
 </resources>

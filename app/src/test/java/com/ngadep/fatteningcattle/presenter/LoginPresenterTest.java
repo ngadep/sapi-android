@@ -1,18 +1,23 @@
 package com.ngadep.fatteningcattle.presenter;
 
-import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.contracts.LoginContract;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-
 public class LoginPresenterTest {
+    private static final String USER_EMAIL = "testing@gmail.com";
+    private static final String USER_PASSWORD = "password";
+    private static final String WRONG_USER_PASSWORD = "123456";
+
     @Mock
     LoginContract.View mView;
 
@@ -29,54 +34,54 @@ public class LoginPresenterTest {
     }
 
     @Test
-    public void testTryToLogIn() {
-        mPresenter.tryToLogIn();
-        verify(mView).tryLogIn();
+    public void testStart_LoginSuccess() {
+        when(mRepository.isLogin()).thenReturn(true);
+        mPresenter.start();
+        verify(mRepository).checkLogin();
+        verify(mRepository).isLogin();
+        verify(mView).startMainActivity();
+    }
+
+    @Test
+    public void testStart_LoginFailed() {
+        when(mRepository.isLogin()).thenReturn(false);
+        mPresenter.start();
+        verify(mRepository).checkLogin();
+        verify(mRepository).isLogin();
+        verify(mView, never()).startMainActivity();
     }
 
     @Test
     public void testTryLogIn_Success() {
-        when(mRepository.isLogin()).thenReturn(true);
+        when(mRepository.tryLogIn(USER_EMAIL, USER_PASSWORD)).thenReturn(true);
 
-        mPresenter.start();
+        mPresenter.tryToLogIn(USER_EMAIL, USER_PASSWORD);
 
-        verify(mView).startMainActivity();
+        //create an inOrder verifier for a single mock
+        InOrder iOrder = inOrder(mView);
+
+        iOrder.verify(mView).showProgressDialog();
+
+        verify(mRepository).tryLogIn(USER_EMAIL, USER_PASSWORD);
+
+        iOrder.verify(mView).hideProgressDialog();
+        iOrder.verify(mView).startMainActivity();
     }
 
     @Test
     public void testTryLogIn_Failed() {
-        when(mRepository.isLogin()).thenReturn(false);
+        when(mRepository.tryLogIn(USER_EMAIL, WRONG_USER_PASSWORD)).thenReturn(false);
 
-        mPresenter.start();
+        mPresenter.tryToLogIn(USER_EMAIL, WRONG_USER_PASSWORD);
 
-        verify(mView).tryLogIn();
-    }
+        //create an inOrder verifier for a single mock
+        InOrder iOrder = inOrder(mView);
 
-    @Test
-    public void testOnLoginResult_Success() {
-        mPresenter.onLoginResult(-1);
-        verify(mView).showTextAndButton(false);
-        verify(mView).startMainActivity();
-    }
+        iOrder.verify(mView).showProgressDialog();
 
-    @Test
-    public void testOnLoginResult_Cancelled() {
-        mPresenter.onLoginResult(LoginPresenter.LogInStatus.CANCELLED);
-        verify(mView).showTextAndButton(true);
-        verify(mView).showErrorText(R.string.sign_in_cancelled);
-    }
+        verify(mRepository).tryLogIn(USER_EMAIL, WRONG_USER_PASSWORD);
 
-    @Test
-    public void testOnLoginResult_NoNetwork() {
-        mPresenter.onLoginResult(LoginPresenter.LogInStatus.NO_NETWORK);
-        verify(mView).showTextAndButton(true);
-        verify(mView).showErrorText(R.string.sign_in_no_network);
-    }
-
-    @Test
-    public void testOnLoginResult_UnKnownError() {
-        mPresenter.onLoginResult(LoginPresenter.LogInStatus.UNKNOWN_ERROR);
-        verify(mView).showTextAndButton(true);
-        verify(mView).showErrorText(R.string.sign_in_unknown_error);
+        iOrder.verify(mView).hideProgressDialog();
+        iOrder.verify(mView).showErrorText();
     }
 }

@@ -1,7 +1,10 @@
 package com.ngadep.fatteningcattle.repositories;
 
-import android.content.Intent;
+import android.support.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.ngadep.fatteningcattle.contracts.LoginContract;
 
@@ -9,6 +12,7 @@ public class LoginRepository implements LoginContract.Repository {
 
     private static LoginRepository INSTANCE = null;
     private FirebaseAuth mAuth;
+    private boolean login;
 
     private LoginRepository() {
         mAuth = FirebaseAuth.getInstance();
@@ -23,6 +27,23 @@ public class LoginRepository implements LoginContract.Repository {
 
     @Override
     public boolean isLogin() {
-        return (mAuth.getCurrentUser() != null);
+        return login;
+    }
+
+    @Override
+    public boolean tryLogIn(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        LoginRepository.this.login = task.isSuccessful();
+                    }
+                });
+        return this.login;
+    }
+
+    @Override
+    public void checkLogin() {
+        this.login = mAuth.getCurrentUser() != null;
     }
 }
