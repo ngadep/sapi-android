@@ -27,7 +27,7 @@ public class LoginRepository implements LoginContract.Repository {
 
     @Override
     public boolean isLogin() {
-        return login;
+        return this.login = mAuth.getCurrentUser() != null;
     }
 
     @Override
@@ -40,10 +40,5 @@ public class LoginRepository implements LoginContract.Repository {
                     }
                 });
         return this.login;
-    }
-
-    @Override
-    public void checkLogin() {
-        this.login = mAuth.getCurrentUser() != null;
     }
 }
