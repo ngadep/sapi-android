@@ -5,8 +5,8 @@ import com.ngadep.fatteningcattle.contracts.PackageContract.Repository;
 
 public class PackagePresenter {
 
-    private View mView;
-    private Repository mRepository;
+    private final View mView;
+    private final Repository mRepository;
 
     public PackagePresenter(View view, Repository repository) {
         mView = view;

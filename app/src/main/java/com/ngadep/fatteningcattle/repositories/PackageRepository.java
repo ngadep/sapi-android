@@ -7,7 +7,7 @@ import com.ngadep.fatteningcattle.contracts.PackageContract;
 public class PackageRepository extends BaseRepository implements PackageContract.Repository {
 
     private static PackageRepository INSTANCE = null;
-    private DatabaseReference mRef;
+    private final DatabaseReference mRef;
 
     private PackageRepository() {
         super();

@@ -24,7 +24,7 @@ public class PackageFragment extends Fragment implements PackageContract.View {
 
     private static final String TAG = "PackageFragment";
 
-    private PackagePresenter mPresenter;
+    private final PackagePresenter mPresenter;
 
     private FirebaseRecyclerAdapter<Package, PackageViewHolder> mAdapter;
     private RecyclerView mRecycler;

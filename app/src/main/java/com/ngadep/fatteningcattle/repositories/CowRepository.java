@@ -6,7 +6,7 @@ import com.ngadep.fatteningcattle.contracts.CowContract;
 
 public class CowRepository extends BaseRepository implements CowContract.Repository {
     private static CowRepository INSTANCE = null;
-    private DatabaseReference mRef;
+    private final DatabaseReference mRef;
 
     private CowRepository() {
         super();

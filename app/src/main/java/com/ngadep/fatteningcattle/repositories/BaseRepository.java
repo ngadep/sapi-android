@@ -6,7 +6,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 class BaseRepository {
 
-    private FirebaseDatabase mDatabase;
+    private final FirebaseDatabase mDatabase;
 
     BaseRepository() {
         mDatabase = FirebaseDatabase.getInstance();

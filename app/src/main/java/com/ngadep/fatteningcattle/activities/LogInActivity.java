@@ -20,7 +20,7 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
 
     private static final String TAG = "SignInActivity";
 
-    LoginPresenter mPresenter;
+    private LoginPresenter mPresenter;
     private EditText mEmailField;
     private EditText mPasswordField;
 

@@ -4,8 +4,8 @@ import com.ngadep.fatteningcattle.contracts.LoginContract;
 
 public class LoginPresenter {
 
-    private LoginContract.View mLogInView;
-    private LoginContract.Repository mLogInRepository;
+    private final LoginContract.View mLogInView;
+    private final LoginContract.Repository mLogInRepository;
 
     public LoginPresenter(LoginContract.View logInView, LoginContract.Repository logInRepository) {
         mLogInView = logInView;

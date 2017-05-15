@@ -11,7 +11,7 @@ import com.ngadep.fatteningcattle.contracts.LoginContract;
 public class LoginRepository implements LoginContract.Repository {
 
     private static LoginRepository INSTANCE = null;
-    private FirebaseAuth mAuth;
+    private final FirebaseAuth mAuth;
     private boolean login;
 
     private LoginRepository() {

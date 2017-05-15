@@ -2,7 +2,6 @@ package com.ngadep.fatteningcattle.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,9 +13,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.fragments.NewsFragment;
 import com.ngadep.fatteningcattle.fragments.PackageFragment;
@@ -58,15 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_logout) {
             Log.i(TAG, "User Logged Out");
-            AuthUI.getInstance()
-                    .signOut(this)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            startActivity(new Intent(MainActivity.this, LogInActivity.class));
-                            finish();
-                        }
-                    });
+            startActivity(new Intent(this, LogInActivity.class));
+            finish();
             return true;
         }
 
