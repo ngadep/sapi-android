@@ -30,11 +30,6 @@ public class LoginInstrumentedTest {
     }
     @Test
     public void tryLogin() throws Exception {
-        onView(withId(R.id.email))
-                .perform(typeText(mEmail), closeSoftKeyboard());
-        onView(withId(R.id.button_next))
-                .perform(click());
-
 
     }
 }
