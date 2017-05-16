@@ -1,6 +1,6 @@
 package com.ngadep.fatteningcattle.contracts;
 
-public interface BasePresenter {
+interface BasePresenter {
 
     void start();
 
