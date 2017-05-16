@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.contracts.LoginContract;
+import com.ngadep.fatteningcattle.datasources.AuthDataSource;
 import com.ngadep.fatteningcattle.presenter.LoginPresenter;
 import com.ngadep.fatteningcattle.repositories.LoginRepository;
 
@@ -20,7 +21,7 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
 
     private static final String TAG = "SignInActivity";
 
-    private LoginPresenter mPresenter;
+    private LoginContract.Presenter mPresenter;
     private EditText mEmailField;
     private EditText mPasswordField;
 
@@ -31,7 +32,7 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        LoginContract.Repository mRepository = LoginRepository.getInstance();
+        AuthDataSource mRepository = LoginRepository.getInstance();
         mPresenter = new LoginPresenter(this, mRepository);
 
         // Views
@@ -108,5 +109,10 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
+    }
+
+    @Override
+    public void setPresenter(LoginContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 }

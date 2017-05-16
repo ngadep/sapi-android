@@ -1,13 +1,18 @@
 package com.ngadep.fatteningcattle.presenter;
 
 import com.ngadep.fatteningcattle.contracts.LoginContract;
+import com.ngadep.fatteningcattle.datasources.AuthDataSource;
+import com.ngadep.fatteningcattle.repositories.LoginRepository;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -22,7 +27,14 @@ public class LoginPresenterTest {
     LoginContract.View mView;
 
     @Mock
-    LoginContract.Repository mRepository;
+    LoginRepository mRepository;
+
+    /**
+     * {@link ArgumentCaptor} is a powerful Mockito API to capture argument values and use them to
+     * perform further actions or assertions on them.
+     */
+    @Captor
+    private ArgumentCaptor<AuthDataSource.LogInListener> mLogInListenerCaptor;
 
     private LoginPresenter mPresenter;
 
@@ -51,8 +63,6 @@ public class LoginPresenterTest {
 
     @Test
     public void testTryLogIn_Success() {
-        when(mRepository.tryLogIn(USER_EMAIL, USER_PASSWORD)).thenReturn(true);
-
         mPresenter.tryToLogIn(USER_EMAIL, USER_PASSWORD);
 
         //create an inOrder verifier for a single mock
@@ -60,7 +70,8 @@ public class LoginPresenterTest {
 
         iOrder.verify(mView).showProgressDialog();
 
-        verify(mRepository).tryLogIn(USER_EMAIL, USER_PASSWORD);
+        verify(mRepository).tryLogIn(eq(USER_EMAIL), eq(USER_PASSWORD), mLogInListenerCaptor.capture());
+        mLogInListenerCaptor.getValue().onLogIn(true);
 
         iOrder.verify(mView).hideProgressDialog();
         iOrder.verify(mView).startMainActivity();
@@ -68,8 +79,6 @@ public class LoginPresenterTest {
 
     @Test
     public void testTryLogIn_Failed() {
-        when(mRepository.tryLogIn(USER_EMAIL, WRONG_USER_PASSWORD)).thenReturn(false);
-
         mPresenter.tryToLogIn(USER_EMAIL, WRONG_USER_PASSWORD);
 
         //create an inOrder verifier for a single mock
@@ -77,7 +86,8 @@ public class LoginPresenterTest {
 
         iOrder.verify(mView).showProgressDialog();
 
-        verify(mRepository).tryLogIn(USER_EMAIL, WRONG_USER_PASSWORD);
+        verify(mRepository).tryLogIn(eq(USER_EMAIL), eq(WRONG_USER_PASSWORD), mLogInListenerCaptor.capture());
+        mLogInListenerCaptor.getValue().onLogIn(false);
 
         iOrder.verify(mView).hideProgressDialog();
         iOrder.verify(mView).showErrorText();

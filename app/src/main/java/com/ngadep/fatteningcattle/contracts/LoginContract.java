@@ -1,7 +1,8 @@
 package com.ngadep.fatteningcattle.contracts;
 
 public interface LoginContract {
-    interface View {
+
+    interface View extends BaseView<Presenter> {
 
         void startMainActivity();
 
@@ -12,11 +13,9 @@ public interface LoginContract {
         void hideProgressDialog();
     }
 
-    interface Repository {
+    interface Presenter extends BasePresenter {
 
-        boolean isLogin();
-
-        boolean tryLogIn(String email, String password);
+        void tryToLogIn(String email, String password);
 
     }
 }

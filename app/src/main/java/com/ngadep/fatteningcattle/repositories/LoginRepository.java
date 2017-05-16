@@ -6,16 +6,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.ngadep.fatteningcattle.contracts.LoginContract;
+import com.google.firebase.auth.FirebaseUser;
+import com.ngadep.fatteningcattle.datasources.AuthDataSource;
 
-public class LoginRepository implements LoginContract.Repository {
+public class LoginRepository implements AuthDataSource {
 
     private static LoginRepository INSTANCE = null;
     private final FirebaseAuth mAuth;
-    private boolean login;
+    private FirebaseUser mUser;
 
     private LoginRepository() {
         mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
     }
 
     public static LoginRepository getInstance() {
@@ -27,18 +29,21 @@ public class LoginRepository implements LoginContract.Repository {
 
     @Override
     public boolean isLogin() {
-        return this.login = mAuth.getCurrentUser() != null;
+        return mUser != null;
     }
 
     @Override
-    public boolean tryLogIn(String email, String password) {
+    public void tryLogIn(String email, String password, final LogInListener callback) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        LoginRepository.this.login = task.isSuccessful();
+                        callback.onLogIn(task.isSuccessful());
+
+                        if (task.isSuccessful()) {
+                            mUser = task.getResult().getUser();
+                        }
                     }
                 });
-        return this.login;
     }
 }
