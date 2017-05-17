@@ -1,7 +1,8 @@
 language: android
 
-jdk:
-  - oraclejdk8
+jdk: oraclejdk8
+
+sudo: required
 
 android:
   components:
@@ -47,4 +48,8 @@ notifications:
   # turn off notifications
   email: false
 
-script: ./gradlew build
+script:
+  # create license acception
+  - sudo mkdir /usr/local/android-sdk/licenses
+  - echo -e '\n8933bad161af4178b1185d1a37fbf41ea5269c55' | sudo tee /usr/local/android-sdk/licenses/android-sdk-license
+  - ./gradlew build
