@@ -17,7 +17,6 @@ public class LoginRepository implements AuthDataSource {
 
     private LoginRepository() {
         mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
     }
 
     public static LoginRepository getInstance() {
@@ -29,6 +28,7 @@ public class LoginRepository implements AuthDataSource {
 
     @Override
     public boolean isLogin() {
+        mUser = mAuth.getCurrentUser();
         return mUser != null;
     }
 

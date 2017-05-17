@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.fragments.NewsFragment;
 import com.ngadep.fatteningcattle.fragments.PackageFragment;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_logout) {
             Log.i(TAG, "User Logged Out");
+            FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(this, LogInActivity.class));
             finish();
             return true;

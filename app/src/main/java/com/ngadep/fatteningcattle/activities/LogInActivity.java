@@ -47,6 +47,12 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
                 tryToLogIn();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "on start");
         mPresenter.start();
     }
 
