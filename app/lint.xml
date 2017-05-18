@@ -2,4 +2,9 @@
 <lint>
     <!-- Disable this given check in this project -->
     <issue id="InvalidPackage" severity="ignore" />
+
+    <!-- Ignore the Unused resources google_crash_reporting_api_key -->
+    <issue id="UnusedResources">
+        <ignore regexp="google_crash_reporting_api_key" />
+    </issue>
 </lint>
