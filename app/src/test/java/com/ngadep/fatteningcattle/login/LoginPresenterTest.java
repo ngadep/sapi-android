@@ -5,12 +5,13 @@ import com.ngadep.fatteningcattle.data.datasources.AuthDataSource;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Captor;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
+import static org.mockito.ArgumentMatchers.eq;
 
 public class LoginPresenterTest {
     private static final String USER_EMAIL = "testing@gmail.com";
@@ -64,7 +65,7 @@ public class LoginPresenterTest {
 
         iOrder.verify(mView).showProgressDialog();
 
-        Mockito.verify(mRepository).tryLogIn(ArgumentMatchers.eq(USER_EMAIL), ArgumentMatchers.eq(USER_PASSWORD), mLogInListenerCaptor.capture());
+        Mockito.verify(mRepository).tryLogIn(eq(USER_EMAIL), eq(USER_PASSWORD), mLogInListenerCaptor.capture());
         mLogInListenerCaptor.getValue().onLogIn(true);
 
         iOrder.verify(mView).hideProgressDialog();
@@ -80,7 +81,7 @@ public class LoginPresenterTest {
 
         iOrder.verify(mView).showProgressDialog();
 
-        Mockito.verify(mRepository).tryLogIn(ArgumentMatchers.eq(USER_EMAIL), ArgumentMatchers.eq(WRONG_USER_PASSWORD), mLogInListenerCaptor.capture());
+        Mockito.verify(mRepository).tryLogIn(eq(USER_EMAIL), eq(WRONG_USER_PASSWORD), mLogInListenerCaptor.capture());
         mLogInListenerCaptor.getValue().onLogIn(false);
 
         iOrder.verify(mView).hideProgressDialog();
