@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Fattle Admin</string>
     <string name="app_display_name">Fattening Cattle Admin</string>
+    <string name="heading_main_user">User</string>
 </resources>
