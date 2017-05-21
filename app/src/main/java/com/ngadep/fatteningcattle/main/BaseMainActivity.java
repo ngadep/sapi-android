@@ -2,6 +2,7 @@ package com.ngadep.fatteningcattle.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +21,8 @@ import java.util.List;
 
 public abstract class BaseMainActivity extends AppCompatActivity {
 
+    protected FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,9 @@ public abstract class BaseMainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        setFabVisibility(fab);
     }
 
 
@@ -70,6 +76,8 @@ public abstract class BaseMainActivity extends AppCompatActivity {
             this.fragment = fragment;
         }
     }
+
+    public abstract void setFabVisibility(FloatingActionButton fab);
 
     public abstract List<MainFragment> getFragments();
 
