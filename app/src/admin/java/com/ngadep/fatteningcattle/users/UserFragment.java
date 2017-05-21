@@ -57,7 +57,8 @@ public class UserFragment extends Fragment implements UserView {
         }
     }
 
-    public void getPackages(Query users) {
+    @Override
+    public void showAllUser(Query users) {
         Log.i(TAG, "querying user-packages");
         // Set up Layout Manager, reverse layout
         LinearLayoutManager mManager = new LinearLayoutManager(getActivity());

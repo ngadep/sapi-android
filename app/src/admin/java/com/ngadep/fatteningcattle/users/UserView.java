@@ -1,5 +1,8 @@
 package com.ngadep.fatteningcattle.users;
 
-public interface UserView {
+import com.google.firebase.database.Query;
 
+interface UserView {
+
+    void showAllUser(Query users);
 }
