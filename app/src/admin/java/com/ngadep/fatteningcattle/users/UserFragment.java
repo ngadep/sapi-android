@@ -1,6 +1,7 @@
 package com.ngadep.fatteningcattle.users;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
@@ -76,7 +76,9 @@ public class UserFragment extends Fragment implements UserView {
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(), userKey, Toast.LENGTH_SHORT).show();
+                        if (getView() != null) {
+                            Snackbar.make(getView(), userKey, Snackbar.LENGTH_LONG).show();
+                        }
                     }
                 });
 

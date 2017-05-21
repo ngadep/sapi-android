@@ -3,17 +3,17 @@ package com.ngadep.fatteningcattle.login;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.main.MainActivity;
 import com.ngadep.fatteningcattle.data.datasources.AuthDataSource;
+import com.ngadep.fatteningcattle.main.MainActivity;
 
 public class LogInActivity extends AppCompatActivity implements LoginContract.View {
 
@@ -22,7 +22,7 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
     private LoginContract.Presenter mPresenter;
     private EditText mEmailField;
     private EditText mPasswordField;
-
+    private Button mSignInButton;
     private ProgressDialog mProgressDialog;
 
     @Override
@@ -36,7 +36,7 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
         // Views
         mEmailField = (EditText) findViewById(R.id.field_email);
         mPasswordField = (EditText) findViewById(R.id.field_password);
-        Button mSignInButton = (Button) findViewById(R.id.button_sign_in);
+        mSignInButton = (Button) findViewById(R.id.button_sign_in);
 
         // Click listeners
         mSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -93,8 +93,7 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void showErrorText() {
-        Toast.makeText(LogInActivity.this, "Login Failed",
-                Toast.LENGTH_SHORT).show();
+        Snackbar.make(mSignInButton, "Login Failed", Snackbar.LENGTH_LONG).show();
     }
 
     @Override
