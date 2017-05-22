@@ -44,7 +44,7 @@ public class PackageFragment extends Fragment implements PackageContract.View {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mPresenter.getUserPackages();
+        mPresenter.getCurrentUserPackages();
     }
 
     @Override
