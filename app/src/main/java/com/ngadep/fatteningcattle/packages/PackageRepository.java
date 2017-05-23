@@ -3,8 +3,9 @@ package com.ngadep.fatteningcattle.packages;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BaseRepository;
+import com.ngadep.fatteningcattle.data.models.Package;
 
-public class PackageRepository extends BaseRepository implements PackageContract.Repository {
+class PackageRepository extends BaseRepository implements PackageContract.Repository {
 
     private static PackageRepository INSTANCE = null;
     private final DatabaseReference mRef;
@@ -25,5 +26,20 @@ public class PackageRepository extends BaseRepository implements PackageContract
     @Override
     public Query getPackagesFromCurrentUser() {
         return mRef.child(getUid());
+    }
+
+    @Override
+    public Query getPackagesFromUserId(String uid) {
+        return mRef.child(uid);
+    }
+
+    @Override
+    public void addNewPackage(Package pkg) {
+        // TODO : add new package
+    }
+
+    @Override
+    public void updatePackage(String packageId, Package pkg) {
+        // TODO: update Package From Package Id
     }
 }
