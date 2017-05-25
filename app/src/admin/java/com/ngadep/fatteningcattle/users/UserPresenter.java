@@ -13,4 +13,8 @@ class UserPresenter {
     void start() {
         mView.showAllUser(mRepository.getUsersQuery());
     }
+
+    public void startUserPackageActivity(String userKey) {
+        mView.startPackageActivity(userKey);
+    }
 }

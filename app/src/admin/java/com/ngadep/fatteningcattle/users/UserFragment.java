@@ -1,7 +1,7 @@
 package com.ngadep.fatteningcattle.users;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +14,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.data.models.User;
+import com.ngadep.fatteningcattle.packages.PackageActivity;
 
 public class UserFragment extends Fragment implements UserView {
 
@@ -77,7 +78,7 @@ public class UserFragment extends Fragment implements UserView {
                     @Override
                     public void onClick(View v) {
                         if (getView() != null) {
-                            Snackbar.make(getView(), userKey, Snackbar.LENGTH_LONG).show();
+                            mPresenter.startUserPackageActivity(userKey);
                         }
                     }
                 });
@@ -86,5 +87,12 @@ public class UserFragment extends Fragment implements UserView {
             }
         };
         mRecycler.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void startPackageActivity(String userKey) {
+        Intent intent = new Intent(getActivity(), PackageActivity.class);
+        intent.putExtra(PackageActivity.EXTRA_USER_ID, userKey);
+        startActivity(intent);
     }
 }
