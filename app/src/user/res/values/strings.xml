@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Fattle</string>
     <string name="app_display_name">Fattening Cattle</string>
+    <string name="heading_main_package">Package</string>
 </resources>
