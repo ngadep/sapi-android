@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.ngadep.fatteningcattle.R;
+import com.ngadep.fatteningcattle.data.models.User;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
 public class PackageActivity extends AppCompatActivity {
@@ -16,9 +17,9 @@ public class PackageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_package);
 
         // Get the requested user id
-        String userId = getIntent().getStringExtra(EXTRA_USER_ID);
+        User user = getIntent().getParcelableExtra(EXTRA_USER_ID);
 
-        setTitle(userId);
+        setTitle(user.getDisplayName());
         PackageFragment packageFragment = (PackageFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.content_frame);
 
