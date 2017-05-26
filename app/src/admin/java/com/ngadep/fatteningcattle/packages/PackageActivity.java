@@ -16,8 +16,9 @@ public class PackageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_package);
 
         // Get the requested user id
-        String taskId = getIntent().getStringExtra(EXTRA_USER_ID);
+        String userId = getIntent().getStringExtra(EXTRA_USER_ID);
 
+        setTitle(userId);
         PackageFragment packageFragment = (PackageFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.content_frame);
 
