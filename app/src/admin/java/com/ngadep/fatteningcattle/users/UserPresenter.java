@@ -1,5 +1,7 @@
 package com.ngadep.fatteningcattle.users;
 
+import com.ngadep.fatteningcattle.data.models.User;
+
 class UserPresenter {
 
     private final UserView mView;
@@ -14,7 +16,7 @@ class UserPresenter {
         mView.showAllUser(mRepository.getUsersQuery());
     }
 
-    public void startUserPackageActivity(String userKey) {
-        mView.startPackageActivity(userKey);
+    public void startUserPackageActivity(User user) {
+        mView.startPackageActivity(user);
     }
 }
