@@ -9,15 +9,15 @@ import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
 public class PackageActivity extends AppCompatActivity {
 
-    public static final String EXTRA_USER_ID = "extra user id";
+    public static final String EXTRA_USER_MODEL = "extra user id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package);
 
-        // Get the requested user id
-        User user = getIntent().getParcelableExtra(EXTRA_USER_ID);
+        // Get the requested user model
+        User user = getIntent().getParcelableExtra(EXTRA_USER_MODEL);
 
         setTitle(user.getDisplayName());
         PackageFragment packageFragment = (PackageFragment) getSupportFragmentManager()

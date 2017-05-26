@@ -92,7 +92,7 @@ public class UserFragment extends Fragment implements UserView {
     @Override
     public void startPackageActivity(User user) {
         Intent intent = new Intent(getActivity(), PackageActivity.class);
-        intent.putExtra(PackageActivity.EXTRA_USER_ID, user);
+        intent.putExtra(PackageActivity.EXTRA_USER_MODEL, user);
         startActivity(intent);
     }
 }
