@@ -24,14 +24,6 @@
             android:name=".main.MainActivity"
             android:label="@string/app_display_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".cattle.CowActivity"
-            android:parentActivityName=".main.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity" />
-        </activity>
-        <activity android:name=".packages.PackageActivity"></activity>
     </application>
 
 </manifest>
