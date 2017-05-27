@@ -1,24 +1,21 @@
 package com.ngadep.fatteningcattle.packages;
 
 import com.google.firebase.database.Query;
-import com.ngadep.fatteningcattle.data.models.Package;
+import com.ngadep.fatteningcattle.BasePresenter;
+import com.ngadep.fatteningcattle.BaseView;
 
 interface PackageContract {
-    interface View{
+    interface View extends BaseView<Presenter> {
 
         void getPackages(Query packages);
 
         void startCowActivity(String packageKey, String packageName);
     }
 
-    interface Repository {
+    interface Presenter extends BasePresenter {
 
-        Query getPackagesFromCurrentUser();
+        void getCurrentUserPackages();
 
-        Query getPackagesFromUserId(String uid);
-
-        void addNewPackage(Package pkg);
-
-        void updatePackage(String packageId, Package pkg);
+        void startCowActivity(String packageKey, String packageName) ;
     }
 }
