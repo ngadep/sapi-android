@@ -9,7 +9,8 @@ import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
 public class PackageActivity extends AppCompatActivity {
 
-    public static final String EXTRA_USER_MODEL = "extra user id";
+    public static final String EXTRA_USER_MODEL = "extra user model";
+    public static final String EXTRA_USER_ID = "extra user id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,7 @@ public class PackageActivity extends AppCompatActivity {
 
         // Get the requested user model
         User user = getIntent().getParcelableExtra(EXTRA_USER_MODEL);
+        String userId = getIntent().getStringExtra(EXTRA_USER_ID);
 
         setTitle(user.getDisplayName());
         PackageFragment packageFragment = (PackageFragment) getSupportFragmentManager()
@@ -25,10 +27,11 @@ public class PackageActivity extends AppCompatActivity {
 
         if (packageFragment == null) {
             // Create the fragment
-            packageFragment = new PackageFragment();
+            packageFragment = PackageFragment.newInstance();
             ActivityUtils.addFragmentToActivity(
                     getSupportFragmentManager(), packageFragment, R.id.content_frame);
         }
 
+        new PackagePresenter(userId, packageFragment);
     }
 }
