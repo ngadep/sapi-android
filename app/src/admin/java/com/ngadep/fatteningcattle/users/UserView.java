@@ -7,5 +7,5 @@ interface UserView {
 
     void showAllUser(Query users);
 
-    void startPackageActivity(User userKey);
+    void startPackageActivity(String userId, User user);
 }

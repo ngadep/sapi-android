@@ -16,7 +16,7 @@ class UserPresenter {
         mView.showAllUser(mRepository.getUsersQuery());
     }
 
-    public void startUserPackageActivity(User user) {
-        mView.startPackageActivity(user);
+    void startUserPackageActivity(String userId, User user) {
+        mView.startPackageActivity(userId, user);
     }
 }
