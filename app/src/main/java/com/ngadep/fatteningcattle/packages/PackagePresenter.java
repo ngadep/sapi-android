@@ -4,13 +4,13 @@ import android.support.annotation.Nullable;
 
 import com.ngadep.fatteningcattle.packages.PackageContract.View;
 
-class PackagePresenter implements PackageContract.Presenter {
+public class PackagePresenter implements PackageContract.Presenter {
 
     private String mUserId;
     private final View mView;
     private final PackageRepository mRepository;
 
-    PackagePresenter(@Nullable String userId, View view) {
+    public PackagePresenter(@Nullable String userId, View view) {
         mUserId = userId;
         mView = view;
         mRepository = PackageRepository.getInstance();
