@@ -7,20 +7,8 @@
         android:allowBackup="false"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity
-            android:name=".packages.PackageActivity"
-            android:parentActivityName=".main.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity" />
-        </activity>
-        <activity
-            android:name=".cattle.CowActivity"
-            android:parentActivityName=".packages.PackageActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity" />
-        </activity>
+        <activity android:name=".packages.PackageActivity" />
+        <activity android:name=".cattle.CowActivity" />
 
     </application>
 </manifest>
