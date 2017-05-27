@@ -20,14 +20,16 @@ public class PackageFragment extends Fragment implements PackageContract.View {
 
     private static final String TAG = "PackageFragment";
 
-    private final PackagePresenter mPresenter;
+    private PackageContract.Presenter mPresenter;
 
     private FirebaseRecyclerAdapter<Package, PackageViewHolder> mAdapter;
     private RecyclerView mRecycler;
 
     public PackageFragment() {
-        PackageContract.Repository mRepository = PackageRepository.getInstance();
-        mPresenter = new PackagePresenter(this, mRepository);
+    }
+
+    public static PackageFragment newInstance() {
+        return new PackageFragment();
     }
 
     @Override
@@ -42,9 +44,9 @@ public class PackageFragment extends Fragment implements PackageContract.View {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mPresenter.getCurrentUserPackages();
+    public void onResume() {
+        super.onResume();
+        mPresenter.start();
     }
 
     @Override
@@ -92,5 +94,10 @@ public class PackageFragment extends Fragment implements PackageContract.View {
         intent.putExtra(CowActivity.EXTRA_PACKAGE_ID, packageKey);
         intent.putExtra(CowActivity.EXTRA_PACKAGE_NAME, packageName);
         startActivity(intent);
+    }
+
+    @Override
+    public void setPresenter(PackageContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 }
