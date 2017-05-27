@@ -16,7 +16,7 @@ public class BaseRepository {
         return mDatabase.getReference();
     }
 
-    protected String getUid() {
+    public String getUid() {
         String result = "";
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
