@@ -1,6 +1,7 @@
 package com.ngadep.fatteningcattle.cattle;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +27,12 @@ public class CowActivity extends AppCompatActivity implements CowContract.View {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cow);
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+
         // Get the requested package id
         String packageId = getIntent().getStringExtra(EXTRA_PACKAGE_ID);
         String packageName = getIntent().getStringExtra(EXTRA_PACKAGE_NAME);
@@ -71,5 +78,12 @@ public class CowActivity extends AppCompatActivity implements CowContract.View {
             }
         };
         mRecycler.setAdapter(mAdapter);
+    }
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
