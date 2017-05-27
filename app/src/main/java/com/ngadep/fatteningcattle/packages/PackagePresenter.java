@@ -1,23 +1,39 @@
 package com.ngadep.fatteningcattle.packages;
 
+import android.support.annotation.Nullable;
+
 import com.ngadep.fatteningcattle.packages.PackageContract.View;
-import com.ngadep.fatteningcattle.packages.PackageContract.Repository;
 
-class PackagePresenter {
+class PackagePresenter implements PackageContract.Presenter {
 
+    private String mUserId;
     private final View mView;
-    private final Repository mRepository;
+    private final PackageRepository mRepository;
 
-    PackagePresenter(View view, Repository repository) {
+    PackagePresenter(@Nullable String userId, View view) {
+        mUserId = userId;
         mView = view;
-        mRepository = repository;
+        mRepository = PackageRepository.getInstance();
+
+        mView.setPresenter(this);
     }
 
-    void getCurrentUserPackages() {
-        mView.getPackages(mRepository.getPackagesFromCurrentUser());
+    @Override
+    public void getCurrentUserPackages() {
+        if (mUserId == null) {
+            mUserId = mRepository.getUid();
+        }
+
+        mView.getPackages(mRepository.getPackagesFromUserId(mUserId));
     }
 
-    void startCowActivity(String packageKey, String packageName) {
+    @Override
+    public void startCowActivity(String packageKey, String packageName) {
         mView.startCowActivity(packageKey, packageName);
+    }
+
+    @Override
+    public void start() {
+        getCurrentUserPackages();
     }
 }
