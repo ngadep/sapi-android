@@ -6,9 +6,9 @@
     <application
         android:allowBackup="false"
         tools:ignore="GoogleAppIndexingWarning">
-
         <activity android:name=".packages.PackageActivity" />
         <activity android:name=".cattle.CowActivity" />
-
+        <activity android:name=".users.edit.EditUserActivity"></activity>
     </application>
+
 </manifest>
