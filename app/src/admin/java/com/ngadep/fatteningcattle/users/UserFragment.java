@@ -16,7 +16,6 @@ import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.data.models.User;
 import com.ngadep.fatteningcattle.packages.PackageActivity;
-import com.ngadep.fatteningcattle.users.edit.EditUserActivity;
 
 public class UserFragment extends Fragment implements UserView {
 
@@ -43,13 +42,6 @@ public class UserFragment extends Fragment implements UserView {
 
         mRecycler = (RecyclerView) rootView.findViewById(R.id.user_list);
         mRecycler.setHasFixedSize(true);
-        fab = (FloatingActionButton) getActivity().findViewById(R.id.fab_main);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.addNewUser();
-            }
-        });
 
         return rootView;
     }
@@ -107,9 +99,4 @@ public class UserFragment extends Fragment implements UserView {
         startActivity(intent);
     }
 
-    @Override
-    public void startAddUserUi() {
-        Intent intent = new Intent(getActivity(), EditUserActivity.class);
-        startActivity(intent);
-    }
 }

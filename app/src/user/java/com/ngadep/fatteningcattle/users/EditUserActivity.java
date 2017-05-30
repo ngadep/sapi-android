@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.users.edit;
+package com.ngadep.fatteningcattle.users;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.data.models.User;
-import com.ngadep.fatteningcattle.packages.PackageFragment;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
 public class EditUserActivity extends AppCompatActivity {

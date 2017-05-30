@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.users.edit;
+package com.ngadep.fatteningcattle.users;
 
 
 import com.ngadep.fatteningcattle.BasePresenter;

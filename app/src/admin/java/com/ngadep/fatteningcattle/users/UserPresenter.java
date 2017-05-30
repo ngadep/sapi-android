@@ -19,8 +19,4 @@ class UserPresenter {
     void startUserPackageActivity(String userId, User user) {
         mView.startPackageActivity(userId, user);
     }
-
-    public void addNewUser() {
-        mView.startAddUserUi();
-    }
 }
