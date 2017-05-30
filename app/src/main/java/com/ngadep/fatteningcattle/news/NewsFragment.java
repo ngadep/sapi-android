@@ -18,6 +18,7 @@ public class NewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_news, container, false);
 
         Log.i(TAG, "inflate fragment news");
         return inflater.inflate(R.layout.fragment_news, container, false);

@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.ngadep.fatteningcattle.R;
@@ -22,6 +23,7 @@ import java.util.List;
 public abstract class BaseMainActivity extends AppCompatActivity {
 
     protected FloatingActionButton fab;
+    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +32,38 @@ public abstract class BaseMainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        fab = (FloatingActionButton) findViewById(R.id.fab_main);
+        setFabVisibility(fab);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         SectionsPagerAdapter mSectionsPagerAdapter = getSectionPagerAdapter();
 
         // Set up the ViewPager with the sections adapter.
-        ViewPager mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-        fab = (FloatingActionButton) findViewById(R.id.fab_main);
-        setFabVisibility(fab);
+        if (fab.getVisibility() != View.GONE) {
+            fab.hide();
+            mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+                @Override
+                public void onPageSelected(int position) {
+                    switch (position) {
+                        case 0: fab.hide(); break;
+                        default: fab.show(); break;
+                    }
+                }
+            });
+        }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mViewPager.clearOnPageChangeListeners();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
