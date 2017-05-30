@@ -2,7 +2,6 @@ package com.ngadep.fatteningcattle.users;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,7 +24,6 @@ public class UserFragment extends Fragment implements UserView {
 
     private FirebaseRecyclerAdapter<User, UserViewHolder> mAdapter;
     private RecyclerView mRecycler;
-    private FloatingActionButton fab;
 
     public UserFragment() {
         mPresenter = new UserPresenter(this);
