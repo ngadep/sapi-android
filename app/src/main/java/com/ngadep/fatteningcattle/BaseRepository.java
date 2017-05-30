@@ -7,9 +7,11 @@ import com.google.firebase.database.FirebaseDatabase;
 public class BaseRepository {
 
     private final FirebaseDatabase mDatabase;
+    protected final FirebaseAuth mAuth;
 
     protected BaseRepository() {
         mDatabase = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
     }
 
     protected DatabaseReference getRef() {
@@ -18,7 +20,6 @@ public class BaseRepository {
 
     public String getUid() {
         String result = "";
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
             result = mAuth.getCurrentUser().getUid();
         }
