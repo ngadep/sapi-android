@@ -1,8 +1,18 @@
 package com.ngadep.fatteningcattle.users.edit;
 
-/**
- * Created by cahya on 29/05/17.
- */
+
+import com.ngadep.fatteningcattle.BasePresenter;
+import com.ngadep.fatteningcattle.BaseView;
+import com.ngadep.fatteningcattle.data.models.User;
 
 public interface EditUserContract {
+    interface Presenter extends BasePresenter{
+
+        void saveUser(User user, String password);
+    }
+
+    interface View extends BaseView<Presenter> {
+
+        void showUser(User user);
+    }
 }
