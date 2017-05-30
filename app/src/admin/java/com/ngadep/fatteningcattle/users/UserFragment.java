@@ -108,9 +108,8 @@ public class UserFragment extends Fragment implements UserView {
     }
 
     @Override
-    public void startAddEditUserUi() {
+    public void startAddUserUi() {
         Intent intent = new Intent(getActivity(), EditUserActivity.class);
         startActivity(intent);
-        // TODO: start AddEditUserActivity
     }
 }

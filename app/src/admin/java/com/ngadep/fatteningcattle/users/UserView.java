@@ -9,5 +9,5 @@ interface UserView {
 
     void startPackageActivity(String userId, User user);
 
-    void startAddEditUserUi();
+    void startAddUserUi();
 }

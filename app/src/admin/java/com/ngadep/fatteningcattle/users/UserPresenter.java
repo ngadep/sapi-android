@@ -21,6 +21,6 @@ class UserPresenter {
     }
 
     public void addNewUser() {
-        mView.startAddEditUserUi();
+        mView.startAddUserUi();
     }
 }
