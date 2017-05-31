@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.login;
+package com.ngadep.fatteningcattle.users.login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;

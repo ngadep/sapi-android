@@ -3,7 +3,7 @@ package com.ngadep.fatteningcattle;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.ngadep.fatteningcattle.login.LogInActivity;
+import com.ngadep.fatteningcattle.users.login.LogInActivity;
 
 import org.junit.Before;
 import org.junit.Rule;

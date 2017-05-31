@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.login;
+package com.ngadep.fatteningcattle.users.login;
 
 import com.ngadep.fatteningcattle.BasePresenter;
 import com.ngadep.fatteningcattle.BaseView;

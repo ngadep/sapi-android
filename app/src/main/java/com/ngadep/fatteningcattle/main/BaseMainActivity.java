@@ -16,7 +16,7 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.login.LogInActivity;
+import com.ngadep.fatteningcattle.users.login.LogInActivity;
 
 import java.util.List;
 
