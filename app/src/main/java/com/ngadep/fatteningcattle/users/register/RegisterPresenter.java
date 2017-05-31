@@ -9,9 +9,12 @@ class RegisterPresenter implements RegisterContract.Presenter {
     private final UserRepository mRepository;
 
     RegisterPresenter(RegisterContract.View view) {
-        mRepository = UserRepository.getInstance();
-        mView = view;
+        this(view, UserRepository.getInstance());
+    }
 
+    RegisterPresenter(RegisterContract.View view, UserRepository repository) {
+        mView = view;
+        mRepository = repository;
         mView.setPresenter(this);
     }
 
