@@ -8,6 +8,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.data.models.User;
 
@@ -27,6 +28,10 @@ public class UserRepository extends BaseRepository {
             INSTANCE = new UserRepository();
         }
         return INSTANCE;
+    }
+
+    Query getUsersQuery() {
+        return mRef;
     }
 
     public void saveUser(final User user, String password) {
