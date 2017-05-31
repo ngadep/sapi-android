@@ -9,4 +9,6 @@
     <string name="hint_password">password</string>
     <string name="hint_email">email</string>
     <string name="hint_user_name">User Name</string>
+    <string name="message_register_failed">Register Failed</string>
+    <string name="title_register">Register</string>
 </resources>
