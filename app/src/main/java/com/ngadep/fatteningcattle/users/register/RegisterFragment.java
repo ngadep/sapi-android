@@ -1,8 +1,10 @@
 package com.ngadep.fatteningcattle.users.register;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +16,6 @@ import com.ngadep.fatteningcattle.models.User;
 
 public class RegisterFragment extends Fragment implements RegisterContract.View{
 
-    public static final String EXTRA_USER_MODEL = "USER_MODEL";
-    public static final String EXTRA_USER_ID = "USER_ID";
     RegisterContract.Presenter mPresenter;
 
     EditText mUserName;
@@ -27,8 +27,7 @@ public class RegisterFragment extends Fragment implements RegisterContract.View{
     }
 
     public static RegisterFragment newInstance() {
-        RegisterFragment fragment = new RegisterFragment();
-        return fragment;
+        return new RegisterFragment();
     }
 
     @Override
@@ -74,8 +73,13 @@ public class RegisterFragment extends Fragment implements RegisterContract.View{
     }
 
     @Override
-    public void showUser(User user) {
-        mUserName.setText(user.getUserName());
-        mEmail.setText(user.getEmail());
+    public void registerSuccess() {
+        getActivity().setResult(Activity.RESULT_OK);
+        getActivity().finish();
+    }
+
+    @Override
+    public void showRegisterFailed() {
+        Snackbar.make(mUserName, getString(R.string.message_register_failed), Snackbar.LENGTH_LONG).show();
     }
 }
