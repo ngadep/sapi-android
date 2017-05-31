@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.data.models;
+package com.ngadep.fatteningcattle.models;
 
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;

@@ -10,7 +10,7 @@ import android.view.View;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.data.models.Cow;
+import com.ngadep.fatteningcattle.models.Cow;
 
 public class CowActivity extends AppCompatActivity implements CowContract.View {
 

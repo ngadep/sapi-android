@@ -14,7 +14,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.cattle.CowActivity;
-import com.ngadep.fatteningcattle.data.models.Package;
+import com.ngadep.fatteningcattle.models.Package;
 
 public class PackageFragment extends Fragment implements PackageContract.View {
 

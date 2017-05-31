@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.data.models;
+package com.ngadep.fatteningcattle.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

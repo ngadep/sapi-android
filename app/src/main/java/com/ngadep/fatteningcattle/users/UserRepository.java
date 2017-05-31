@@ -10,7 +10,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BaseRepository;
-import com.ngadep.fatteningcattle.data.models.User;
+import com.ngadep.fatteningcattle.models.User;
 
 public class UserRepository extends BaseRepository {
 

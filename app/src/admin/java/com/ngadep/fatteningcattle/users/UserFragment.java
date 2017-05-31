@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.data.models.User;
+import com.ngadep.fatteningcattle.models.User;
 import com.ngadep.fatteningcattle.packages.PackageActivity;
 
 public class UserFragment extends Fragment implements UserView {

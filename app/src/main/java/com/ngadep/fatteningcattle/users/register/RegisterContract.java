@@ -3,7 +3,7 @@ package com.ngadep.fatteningcattle.users.register;
 
 import com.ngadep.fatteningcattle.BasePresenter;
 import com.ngadep.fatteningcattle.BaseView;
-import com.ngadep.fatteningcattle.data.models.User;
+import com.ngadep.fatteningcattle.models.User;
 
 public interface RegisterContract {
     interface Presenter extends BasePresenter{

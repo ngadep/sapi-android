@@ -3,7 +3,7 @@ package com.ngadep.fatteningcattle.packages;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BaseRepository;
-import com.ngadep.fatteningcattle.data.models.Package;
+import com.ngadep.fatteningcattle.models.Package;
 
 class PackageRepository extends BaseRepository {
 

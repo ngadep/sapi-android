@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.data.models.User;
+import com.ngadep.fatteningcattle.models.User;
 
 class UserViewHolder extends RecyclerView.ViewHolder{
 

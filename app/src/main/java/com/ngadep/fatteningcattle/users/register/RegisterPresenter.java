@@ -2,7 +2,7 @@ package com.ngadep.fatteningcattle.users.register;
 
 import android.support.annotation.Nullable;
 
-import com.ngadep.fatteningcattle.data.models.User;
+import com.ngadep.fatteningcattle.models.User;
 import com.ngadep.fatteningcattle.users.UserRepository;
 
 public class RegisterPresenter implements RegisterContract.Presenter {

@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.data.models.Cow;
+import com.ngadep.fatteningcattle.models.Cow;
 
 import java.util.Locale;
 

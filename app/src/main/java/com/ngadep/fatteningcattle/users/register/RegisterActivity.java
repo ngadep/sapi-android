@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.data.models.User;
+import com.ngadep.fatteningcattle.models.User;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
 public class RegisterActivity extends AppCompatActivity {

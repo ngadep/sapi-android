@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.data.models.Package;
+import com.ngadep.fatteningcattle.models.Package;
 
 public class PackageViewHolder extends RecyclerView.ViewHolder {
 

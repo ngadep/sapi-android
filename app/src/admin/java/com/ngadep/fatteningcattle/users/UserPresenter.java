@@ -1,6 +1,6 @@
 package com.ngadep.fatteningcattle.users;
 
-import com.ngadep.fatteningcattle.data.models.User;
+import com.ngadep.fatteningcattle.models.User;
 
 class UserPresenter {
 

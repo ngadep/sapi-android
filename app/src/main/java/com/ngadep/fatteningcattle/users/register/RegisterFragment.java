@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.data.models.User;
+import com.ngadep.fatteningcattle.models.User;
 
 public class RegisterFragment extends Fragment implements RegisterContract.View{
 
