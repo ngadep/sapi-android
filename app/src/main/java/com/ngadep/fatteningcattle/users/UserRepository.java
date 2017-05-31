@@ -35,7 +35,7 @@ public class UserRepository extends BaseRepository {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            saveToDatabase(task.getResult().getUser().getUid(), user);
+                            saveUserToDatabase(task.getResult().getUser().getUid(), user);
                         } else {
                             Log.e(TAG, "error on create user");
                         }
@@ -49,7 +49,7 @@ public class UserRepository extends BaseRepository {
                 });
     }
 
-    private void saveToDatabase(String uid, User user) {
+    private void saveUserToDatabase(String uid, User user) {
         mRef.child(uid).setValue(user);
     }
 
