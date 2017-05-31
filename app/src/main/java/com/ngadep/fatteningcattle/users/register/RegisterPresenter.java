@@ -1,21 +1,15 @@
 package com.ngadep.fatteningcattle.users.register;
 
-import android.support.annotation.Nullable;
-
 import com.ngadep.fatteningcattle.models.User;
 import com.ngadep.fatteningcattle.users.UserRepository;
 
-public class RegisterPresenter implements RegisterContract.Presenter {
+class RegisterPresenter implements RegisterContract.Presenter {
 
-    private final String mUserId;
-    private final User mUser;
     private final RegisterContract.View mView;
     private final UserRepository mRepository;
 
-    public RegisterPresenter(@Nullable String userId, @Nullable User user, RegisterContract.View view) {
+    RegisterPresenter(RegisterContract.View view) {
         mRepository = UserRepository.getInstance();
-        mUserId = userId;
-        mUser = user;
         mView = view;
 
         mView.setPresenter(this);
@@ -23,37 +17,24 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
     @Override
     public void start() {
-        if (!newUser()) {
-            mView.showUser(mUser);
-        }
-    }
 
-    private boolean newUser() {
-        return mUserId == null;
     }
 
     @Override
     public void saveUser(User user, String password) {
-        if (newUser()) {
-            createUser(user, password);
-        } else {
-            if (password.isEmpty()) {
-                updateUser(user);
-            } else {
-                updateUserAndPassword(user, password);
+        createUserCallback(user, password);
+    }
+
+    private void createUserCallback(User user, String password) {
+        mRepository.registerUser(user, password, new UserRepository.RegisterListener() {
+            @Override
+            public void onRegister(boolean success) {
+                if (success) {
+                    mView.loginSuccess();
+                } else {
+                    mView.showLoginFailed();
+                }
             }
-        }
-    }
-
-    private void updateUserAndPassword(User user, String password) {
-
-    }
-
-    private void updateUser(User user) {
-
-    }
-
-    private void createUser(User user, String password) {
-        mRepository.saveUser(user, password);
+        });
     }
 }
