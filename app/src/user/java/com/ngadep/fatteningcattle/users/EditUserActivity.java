@@ -25,7 +25,7 @@ public class EditUserActivity extends AppCompatActivity {
         String userId = getIntent().getStringExtra(EditUserFragment.EXTRA_USER_ID);
 
         if (user != null) {
-            setTitle(user.getDisplayName());
+            setTitle(user.getUserName());
         }
 
         EditUserFragment editUserFragment = (EditUserFragment) getSupportFragmentManager()
