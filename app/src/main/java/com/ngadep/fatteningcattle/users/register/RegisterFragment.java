@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.users;
+package com.ngadep.fatteningcattle.users.register;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

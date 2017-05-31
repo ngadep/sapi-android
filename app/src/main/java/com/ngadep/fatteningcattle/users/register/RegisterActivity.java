@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.users;
+package com.ngadep.fatteningcattle.users.register;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
