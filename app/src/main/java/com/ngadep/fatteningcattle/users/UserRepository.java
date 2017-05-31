@@ -34,16 +34,16 @@ public class UserRepository extends BaseRepository {
         return mRef;
     }
 
-    public void saveUser(final User user, String password) {
+    public void registerUser(final User user, String password, final RegisterListener callback) {
         mAuth.createUserWithEmailAndPassword(user.getEmail(), password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             saveUserToDatabase(task.getResult().getUser().getUid(), user);
-                        } else {
-                            Log.e(TAG, "error on create user");
                         }
+
+                        callback.onRegister(task.isSuccessful());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -58,4 +58,7 @@ public class UserRepository extends BaseRepository {
         mRef.child(uid).setValue(user);
     }
 
+    public interface RegisterListener {
+        void onRegister(boolean success);
+    }
 }
