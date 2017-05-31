@@ -30,9 +30,9 @@ class RegisterPresenter implements RegisterContract.Presenter {
             @Override
             public void onRegister(boolean success) {
                 if (success) {
-                    mView.loginSuccess();
+                    mView.registerSuccess();
                 } else {
-                    mView.showLoginFailed();
+                    mView.showRegisterFailed();
                 }
             }
         });

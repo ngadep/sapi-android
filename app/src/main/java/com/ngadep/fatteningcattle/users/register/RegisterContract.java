@@ -13,8 +13,8 @@ interface RegisterContract {
 
     interface View extends BaseView<Presenter> {
 
-        void loginSuccess();
+        void registerSuccess();
 
-        void showLoginFailed();
+        void showRegisterFailed();
     }
 }
