@@ -12,22 +12,22 @@ import android.widget.EditText;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.data.models.User;
 
-public class EditUserFragment extends Fragment implements EditUserContract.View{
+public class RegisterFragment extends Fragment implements RegisterContract.View{
 
     public static final String EXTRA_USER_MODEL = "USER_MODEL";
     public static final String EXTRA_USER_ID = "USER_ID";
-    EditUserContract.Presenter mPresenter;
+    RegisterContract.Presenter mPresenter;
 
     EditText mUserName;
     EditText mEmail;
     EditText mPassword;
 
-    public EditUserFragment() {
+    public RegisterFragment() {
         // Required empty public constructor
     }
 
-    public static EditUserFragment newInstance() {
-        EditUserFragment fragment = new EditUserFragment();
+    public static RegisterFragment newInstance() {
+        RegisterFragment fragment = new RegisterFragment();
         return fragment;
     }
 
@@ -35,7 +35,7 @@ public class EditUserFragment extends Fragment implements EditUserContract.View{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_edit_user, container, false);
+        View view = inflater.inflate(R.layout.fragment_register, container, false);
         mUserName = (EditText) view.findViewById(R.id.ed_user_name);
         mEmail = (EditText) view.findViewById(R.id.ed_email);
         mPassword = (EditText) view.findViewById(R.id.ed_password);
@@ -69,7 +69,7 @@ public class EditUserFragment extends Fragment implements EditUserContract.View{
     }
 
     @Override
-    public void setPresenter(EditUserContract.Presenter presenter) {
+    public void setPresenter(RegisterContract.Presenter presenter) {
         mPresenter = presenter;
     }
 

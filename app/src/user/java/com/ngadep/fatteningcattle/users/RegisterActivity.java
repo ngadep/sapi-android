@@ -8,12 +8,12 @@ import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.data.models.User;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
-public class EditUserActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_user);
+        setContentView(R.layout.activity_register);
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -21,24 +21,24 @@ public class EditUserActivity extends AppCompatActivity {
         }
 
         // Get the requested user model
-        User user = getIntent().getParcelableExtra(EditUserFragment.EXTRA_USER_MODEL);
-        String userId = getIntent().getStringExtra(EditUserFragment.EXTRA_USER_ID);
+        User user = getIntent().getParcelableExtra(RegisterFragment.EXTRA_USER_MODEL);
+        String userId = getIntent().getStringExtra(RegisterFragment.EXTRA_USER_ID);
 
         if (user != null) {
             setTitle(user.getUserName());
         }
 
-        EditUserFragment editUserFragment = (EditUserFragment) getSupportFragmentManager()
+        RegisterFragment registerFragment = (RegisterFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.content_frame);
 
-        if (editUserFragment == null) {
+        if (registerFragment == null) {
             // Create the fragment
-            editUserFragment = EditUserFragment.newInstance();
+            registerFragment = RegisterFragment.newInstance();
             ActivityUtils.addFragmentToActivity(
-                    getSupportFragmentManager(), editUserFragment, R.id.content_frame);
+                    getSupportFragmentManager(), registerFragment, R.id.content_frame);
         }
 
-        new EditUserPresenter(userId, user, editUserFragment);
+        new RegisterPresenter(userId, user, registerFragment);
     }
 
     @Override

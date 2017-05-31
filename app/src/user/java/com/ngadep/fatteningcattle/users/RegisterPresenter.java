@@ -3,16 +3,15 @@ package com.ngadep.fatteningcattle.users;
 import android.support.annotation.Nullable;
 
 import com.ngadep.fatteningcattle.data.models.User;
-import com.ngadep.fatteningcattle.users.UserRepository;
 
-public class EditUserPresenter implements EditUserContract.Presenter {
+public class RegisterPresenter implements RegisterContract.Presenter {
 
     private final String mUserId;
     private final User mUser;
-    private final EditUserContract.View mView;
+    private final RegisterContract.View mView;
     private final UserRepository mRepository;
 
-    public EditUserPresenter(@Nullable String userId, @Nullable User user, EditUserContract.View view) {
+    public RegisterPresenter(@Nullable String userId, @Nullable User user, RegisterContract.View view) {
         mRepository = UserRepository.getInstance();
         mUserId = userId;
         mUser = user;

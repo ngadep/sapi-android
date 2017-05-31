@@ -5,7 +5,7 @@ import com.ngadep.fatteningcattle.BasePresenter;
 import com.ngadep.fatteningcattle.BaseView;
 import com.ngadep.fatteningcattle.data.models.User;
 
-public interface EditUserContract {
+public interface RegisterContract {
     interface Presenter extends BasePresenter{
 
         void saveUser(User user, String password);
