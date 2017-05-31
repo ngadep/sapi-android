@@ -5,7 +5,7 @@ import com.ngadep.fatteningcattle.BasePresenter;
 import com.ngadep.fatteningcattle.BaseView;
 import com.ngadep.fatteningcattle.models.User;
 
-public interface RegisterContract {
+interface RegisterContract {
     interface Presenter extends BasePresenter{
 
         void saveUser(User user, String password);
@@ -13,6 +13,8 @@ public interface RegisterContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showUser(User user);
+        void loginSuccess();
+
+        void showLoginFailed();
     }
 }
