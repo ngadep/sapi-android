@@ -5,20 +5,16 @@ import android.support.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 import com.ngadep.fatteningcattle.BaseRepository;
 
 public class LoginRepository extends BaseRepository {
 
     private static LoginRepository INSTANCE = null;
-    private final FirebaseAuth mAuth;
     private FirebaseUser mUser;
 
     private LoginRepository() {
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        mDatabase.setPersistenceEnabled(true);
     }
 
     public static LoginRepository getInstance() {

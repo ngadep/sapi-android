@@ -6,7 +6,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class BaseRepository {
 
-    private final FirebaseDatabase mDatabase;
+    protected final FirebaseDatabase mDatabase;
     protected final FirebaseAuth mAuth;
 
     protected BaseRepository() {
