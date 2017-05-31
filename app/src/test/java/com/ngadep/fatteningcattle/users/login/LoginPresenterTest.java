@@ -1,7 +1,5 @@
 package com.ngadep.fatteningcattle.users.login;
 
-import com.ngadep.fatteningcattle.data.datasources.AuthDataSource;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -29,7 +27,7 @@ public class LoginPresenterTest {
      * perform further actions or assertions on them.
      */
     @Captor
-    private ArgumentCaptor<AuthDataSource.LogInListener> mLogInListenerCaptor;
+    private ArgumentCaptor<LoginRepository.LogInListener> mLogInListenerCaptor;
 
     private LoginPresenter mPresenter;
 

@@ -8,9 +8,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
-import com.ngadep.fatteningcattle.data.datasources.AuthDataSource;
+import com.ngadep.fatteningcattle.BaseRepository;
 
-public class LoginRepository implements AuthDataSource {
+public class LoginRepository extends BaseRepository {
 
     private static LoginRepository INSTANCE = null;
     private final FirebaseAuth mAuth;
@@ -28,13 +28,11 @@ public class LoginRepository implements AuthDataSource {
         return INSTANCE;
     }
 
-    @Override
     public boolean isLogin() {
         mUser = mAuth.getCurrentUser();
         return mUser != null;
     }
 
-    @Override
     public void tryLogIn(String email, String password, final LogInListener callback) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -48,4 +46,9 @@ public class LoginRepository implements AuthDataSource {
                     }
                 });
     }
+
+    interface LogInListener {
+        void onLogIn(boolean success);
+    }
+
 }

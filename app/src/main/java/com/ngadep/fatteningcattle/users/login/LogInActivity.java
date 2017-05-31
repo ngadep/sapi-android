@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.data.datasources.AuthDataSource;
 import com.ngadep.fatteningcattle.main.MainActivity;
 
 public class LogInActivity extends AppCompatActivity implements LoginContract.View {
@@ -30,7 +29,7 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        AuthDataSource mRepository = LoginRepository.getInstance();
+        LoginRepository mRepository = LoginRepository.getInstance();
         mPresenter = new LoginPresenter(this, mRepository);
 
         // Views
