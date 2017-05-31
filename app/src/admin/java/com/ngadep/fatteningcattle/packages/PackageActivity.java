@@ -27,7 +27,7 @@ public class PackageActivity extends AppCompatActivity {
         User user = getIntent().getParcelableExtra(EXTRA_USER_MODEL);
         String userId = getIntent().getStringExtra(EXTRA_USER_ID);
 
-        setTitle(user.getDisplayName());
+        setTitle(user.getUserName());
         PackageFragment packageFragment = (PackageFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.content_frame);
 

@@ -19,7 +19,7 @@ class UserViewHolder extends RecyclerView.ViewHolder{
     }
 
     public void bindToPackage(User model) {
-        mUserName.setText(model.getDisplayName());
+        mUserName.setText(model.getUserName());
         mEmail.setText(model.getEmail());
     }
 }
