@@ -6,6 +6,7 @@ import android.os.Parcelable;
 public class User implements Parcelable {
     private String userName;
     private String email;
+    private boolean admin;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -16,9 +17,10 @@ public class User implements Parcelable {
         this.email = email;
     }
 
-    public User(String userName, String email, String displayName) {
+    public User(String userName, String email, boolean admin) {
         this.userName = userName;
         this.email = email;
+        this.admin = admin;
     }
 
     public String getUserName() {
@@ -37,9 +39,18 @@ public class User implements Parcelable {
         this.email = email;
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     protected User(Parcel in) {
         userName = in.readString();
         email = in.readString();
+        admin = in.readByte() != 0x00;
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -63,5 +74,6 @@ public class User implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(userName);
         dest.writeString(email);
+        dest.writeByte((byte) (admin ? 0x01 : 0x00));
     }
 }
