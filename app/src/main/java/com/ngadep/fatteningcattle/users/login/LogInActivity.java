@@ -1,5 +1,6 @@
 package com.ngadep.fatteningcattle.users.login;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,15 +14,18 @@ import android.widget.EditText;
 
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.main.MainActivity;
+import com.ngadep.fatteningcattle.users.register.RegisterActivity;
 
 public class LogInActivity extends AppCompatActivity implements LoginContract.View {
 
     private static final String TAG = "SignInActivity";
+    private static final int REQUEST_REGISTER = 1;
 
     private LoginContract.Presenter mPresenter;
     private EditText mEmailField;
     private EditText mPasswordField;
     private Button mSignInButton;
+    private Button mLogIn;
     private ProgressDialog mProgressDialog;
 
     @Override
@@ -35,7 +39,8 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
         // Views
         mEmailField = (EditText) findViewById(R.id.field_email);
         mPasswordField = (EditText) findViewById(R.id.field_password);
-        mSignInButton = (Button) findViewById(R.id.button_sign_in);
+        mSignInButton = (Button) findViewById(R.id.btn_sign_in);
+        mLogIn = (Button) findViewById(R.id.btn_login);
 
         // Click listeners
         mSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +49,23 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
                 tryToLogIn();
             }
         });
+
+        mLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogInActivity.this, RegisterActivity.class);
+                startActivityForResult(intent, REQUEST_REGISTER);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (REQUEST_REGISTER== requestCode && Activity.RESULT_OK == resultCode) {
+            startMainActivity();
+        }
+
     }
 
     @Override
