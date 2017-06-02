@@ -1,7 +1,7 @@
 <resources>
     <string name="menu_logout">Log out</string>
     <string name="lorem">Lorem ipsum dolor sit nec ante, mi. ut libero, ac .</string>
-    <string name="sign_in">Sign In</string>
+    <string name="log_in">Login</string>
     <string name="heading_main_news">News</string>
     <string name="star_package_active_or_not">Star to know if package active or not</string>
     <string name="image_for_cow">image for cow</string>
@@ -11,4 +11,5 @@
     <string name="hint_user_name">User Name</string>
     <string name="message_register_failed">Register Failed</string>
     <string name="title_register">Register</string>
+    <string name="sign_up">Sign Up</string>
 </resources>
