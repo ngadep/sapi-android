@@ -35,7 +35,7 @@ public class PackageFragment extends Fragment implements PackageContract.View {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View rootView = inflater.inflate(R.layout.fragment_package, container, false);
+        View rootView = inflater.inflate(R.layout.package_frag, container, false);
 
         mRecycler = (RecyclerView) rootView.findViewById(R.id.package_list);
         mRecycler.setHasFixedSize(true);
@@ -68,7 +68,7 @@ public class PackageFragment extends Fragment implements PackageContract.View {
 
         // Set up FirebaseRecyclerAdapter with the Query
         mAdapter = new FirebaseRecyclerAdapter<Package, PackageViewHolder>(Package.class,
-                R.layout.item_package, PackageViewHolder.class, packages) {
+                R.layout.package_item, PackageViewHolder.class, packages) {
             @Override
             protected void populateViewHolder(final PackageViewHolder viewHolder, final Package model, final int position) {
                 // Set click listener for the whole package view

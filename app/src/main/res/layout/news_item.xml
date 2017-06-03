@@ -11,13 +11,13 @@
 
         <include
             android:id="@+id/post_author_layout"
-            layout="@layout/include_post_author"
+            layout="@layout/post_author_inc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true" />
 
-        <include layout="@layout/include_post_text"
+        <include layout="@layout/post_text_inc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"

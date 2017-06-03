@@ -34,7 +34,7 @@ public class RegisterFragment extends Fragment implements RegisterContract.View{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_register, container, false);
+        View view = inflater.inflate(R.layout.register_frag, container, false);
         mUserName = (EditText) view.findViewById(R.id.ed_user_name);
         mEmail = (EditText) view.findViewById(R.id.ed_email);
         mPassword = (EditText) view.findViewById(R.id.ed_password);

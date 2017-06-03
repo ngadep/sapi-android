@@ -31,7 +31,7 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login_act);
 
         UserRepository mRepository = UserRepository.getInstance();
         mPresenter = new LoginPresenter(this, mRepository);

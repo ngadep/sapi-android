@@ -26,7 +26,7 @@ public class CowActivity extends AppCompatActivity implements CowContract.View {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cow);
+        setContentView(R.layout.cow_act);
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -64,7 +64,7 @@ public class CowActivity extends AppCompatActivity implements CowContract.View {
 
         // Set up FirebaseRecyclerAdapter with the Query
         mAdapter = new FirebaseRecyclerAdapter<Cow, CowViewHolder>(Cow.class,
-                R.layout.item_cow, CowViewHolder.class, cows) {
+                R.layout.cow_item, CowViewHolder.class, cows) {
             @Override
             protected void populateViewHolder(final CowViewHolder viewHolder, final Cow model, final int position) {
                 final String cowId = getRef(position).getKey();
