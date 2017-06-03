@@ -14,6 +14,7 @@ import android.widget.EditText;
 
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.main.MainActivity;
+import com.ngadep.fatteningcattle.users.UserRepository;
 import com.ngadep.fatteningcattle.users.register.RegisterActivity;
 
 public class LogInActivity extends AppCompatActivity implements LoginContract.View {
@@ -25,7 +26,6 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
     private EditText mEmailField;
     private EditText mPasswordField;
     private Button mSignInButton;
-    private Button mLogIn;
     private ProgressDialog mProgressDialog;
 
     @Override
@@ -33,14 +33,14 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        LoginRepository mRepository = LoginRepository.getInstance();
+        UserRepository mRepository = UserRepository.getInstance();
         mPresenter = new LoginPresenter(this, mRepository);
 
         // Views
         mEmailField = (EditText) findViewById(R.id.field_email);
         mPasswordField = (EditText) findViewById(R.id.field_password);
         mSignInButton = (Button) findViewById(R.id.btn_sign_in);
-        mLogIn = (Button) findViewById(R.id.btn_login);
+        Button mRegister = (Button) findViewById(R.id.btn_login);
 
         // Click listeners
         mSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +50,7 @@ public class LogInActivity extends AppCompatActivity implements LoginContract.Vi
             }
         });
 
-        mLogIn.setOnClickListener(new View.OnClickListener() {
+        mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LogInActivity.this, RegisterActivity.class);

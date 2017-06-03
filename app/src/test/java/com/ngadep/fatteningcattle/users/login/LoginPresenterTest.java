@@ -1,5 +1,7 @@
 package com.ngadep.fatteningcattle.users.login;
 
+import com.ngadep.fatteningcattle.users.UserRepository;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -20,14 +22,14 @@ public class LoginPresenterTest {
     LoginContract.View mView;
 
     @Mock
-    LoginRepository mRepository;
+    UserRepository mRepository;
 
     /**
      * {@link ArgumentCaptor} is a powerful Mockito API to capture argument values and use them to
      * perform further actions or assertions on them.
      */
     @Captor
-    private ArgumentCaptor<LoginRepository.LogInListener> mLogInListenerCaptor;
+    private ArgumentCaptor<UserRepository.LogInListener> mLogInListenerCaptor;
 
     private LoginPresenter mPresenter;
 

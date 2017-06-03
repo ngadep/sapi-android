@@ -1,11 +1,13 @@
 package com.ngadep.fatteningcattle.users.login;
 
+import com.ngadep.fatteningcattle.users.UserRepository;
+
 public class LoginPresenter implements LoginContract.Presenter {
 
     private final LoginContract.View mLogInView;
-    private final LoginRepository mLogInRepository;
+    private final UserRepository mLogInRepository;
 
-    public LoginPresenter(LoginContract.View logInView, LoginRepository logInRepository) {
+    public LoginPresenter(LoginContract.View logInView, UserRepository logInRepository) {
         mLogInView = logInView;
         mLogInRepository = logInRepository;
         logInView.setPresenter(this);
@@ -14,7 +16,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     @Override
     public void tryToLogIn(String email, String password) {
         mLogInView.showProgressDialog();
-        mLogInRepository.tryLogIn(email, password, new LoginRepository.LogInListener() {
+        mLogInRepository.tryLogIn(email, password, new UserRepository.LogInListener() {
             @Override
             public void onLogIn(boolean success) {
                 if (success) {

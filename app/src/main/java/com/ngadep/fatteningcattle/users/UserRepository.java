@@ -7,6 +7,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BaseRepository;
@@ -18,6 +19,7 @@ public class UserRepository extends BaseRepository {
     private static final String TAG = "UserRepository";
     private static UserRepository INSTANCE = null;
     private final DatabaseReference mRef;
+    private FirebaseUser mUser;
 
     private UserRepository() {
         mRef = getRef().child(USERS_REF);
@@ -56,6 +58,29 @@ public class UserRepository extends BaseRepository {
 
     private void saveUserToDatabase(String uid, User user) {
         mRef.child(uid).setValue(user);
+    }
+
+    public boolean isLogin() {
+        mUser = mAuth.getCurrentUser();
+        return mUser != null;
+    }
+
+    public void tryLogIn(String email, String password, final LogInListener callback) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        callback.onLogIn(task.isSuccessful());
+
+                        if (task.isSuccessful()) {
+                            mUser = task.getResult().getUser();
+                        }
+                    }
+                });
+    }
+
+    public interface LogInListener {
+        void onLogIn(boolean success);
     }
 
     public interface RegisterListener {
