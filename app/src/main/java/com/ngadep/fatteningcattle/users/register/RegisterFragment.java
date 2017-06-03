@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,12 @@ public class RegisterFragment extends Fragment implements RegisterContract.View{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.saveUser(getUser(), mPassword.getText().toString());
+                if (!validateForm()) {
+                    return;
+                }
+
+                String password = mPassword.getText().toString();
+                mPresenter.saveUser(getUser(), password);
             }
         });
 
@@ -82,4 +88,31 @@ public class RegisterFragment extends Fragment implements RegisterContract.View{
     public void showRegisterFailed() {
         Snackbar.make(mUserName, getString(R.string.message_register_failed), Snackbar.LENGTH_LONG).show();
     }
+
+    private boolean validateForm() {
+        boolean result = true;
+        if (TextUtils.isEmpty(mUserName.getText().toString())) {
+            mUserName.setError("Required");
+            result = false;
+        } else {
+            mUserName.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mEmail.getText().toString())) {
+            mEmail.setError("Required");
+            result = false;
+        } else {
+            mEmail.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mPassword.getText().toString())) {
+            mPassword.setError("Required");
+            result = false;
+        } else {
+            mPassword.setError(null);
+        }
+
+        return result;
+    }
+
 }
