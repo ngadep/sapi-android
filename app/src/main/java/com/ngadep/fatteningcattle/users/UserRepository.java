@@ -33,7 +33,7 @@ public class UserRepository extends BaseRepository {
     }
 
     Query getUsersQuery() {
-        return mRef;
+        return mRef.orderByChild("admin").equalTo(false);
     }
 
     public void registerUser(final User user, String password, final RegisterListener callback) {
