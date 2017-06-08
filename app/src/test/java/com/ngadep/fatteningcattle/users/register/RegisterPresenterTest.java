@@ -28,8 +28,4 @@ public class RegisterPresenterTest {
         mPresenter = new RegisterPresenter(mView, mRepository);
     }
 
-    @Test
-    public void testIfRegisterSuccess() throws Exception {
-        assertTrue(true);
-    }
 }
