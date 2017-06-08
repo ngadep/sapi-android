@@ -7,7 +7,7 @@ import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.users.UserRepository;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
-public class LogInActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

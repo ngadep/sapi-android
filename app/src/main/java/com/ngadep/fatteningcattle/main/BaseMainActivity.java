@@ -16,7 +16,7 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.users.login.LogInActivity;
+import com.ngadep.fatteningcattle.users.login.LoginActivity;
 
 import java.util.List;
 
@@ -78,7 +78,7 @@ public abstract class BaseMainActivity extends AppCompatActivity {
 
         if (id == R.id.action_logout) {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(this, LogInActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
             return true;
         }
