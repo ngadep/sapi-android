@@ -2,12 +2,12 @@ package com.ngadep.fatteningcattle.users.login;
 
 import com.ngadep.fatteningcattle.users.UserRepository;
 
-public class LoginPresenter implements LoginContract.Presenter {
+class LoginPresenter implements LoginContract.Presenter {
 
     private final LoginContract.View mLogInView;
     private final UserRepository mLogInRepository;
 
-    public LoginPresenter(LoginContract.View logInView, UserRepository logInRepository) {
+    LoginPresenter(LoginContract.View logInView, UserRepository logInRepository) {
         mLogInView = logInView;
         mLogInRepository = logInRepository;
         logInView.setPresenter(this);
