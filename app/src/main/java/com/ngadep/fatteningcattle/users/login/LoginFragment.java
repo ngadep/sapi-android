@@ -69,7 +69,7 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (REQUEST_REGISTER== requestCode && Activity.RESULT_OK == resultCode) {
-            startMainActivity();
+            mPresenter.start();
         }
     }
 
