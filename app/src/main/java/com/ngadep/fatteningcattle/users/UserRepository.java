@@ -107,7 +107,7 @@ public class UserRepository extends BaseRepository {
     }
 
     private void userIsAdminCallback(String uid, final LoginIsAdminListener callback) {
-        DatabaseReference mUserInfo = getRef().child("users").child("uid");
+        DatabaseReference mUserInfo = getRef().child("users").child(uid);
         mUserInfo.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
