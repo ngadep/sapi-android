@@ -8,9 +8,13 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.ngadep.fatteningcattle.BaseRepository;
+import com.ngadep.fatteningcattle.BuildConfig;
 import com.ngadep.fatteningcattle.models.User;
 
 public class UserRepository extends BaseRepository {
@@ -60,9 +64,22 @@ public class UserRepository extends BaseRepository {
         mRef.child(uid).setValue(user);
     }
 
-    public boolean isLogin() {
+    public void userIsLogin(final LogInListener callback) {
         mUser = mAuth.getCurrentUser();
-        return mUser != null;
+        if (mUser != null) {
+            if (BuildConfig.FLAVOR.equals("admin")) {
+                userIsAdminCallback(mUser.getUid(), new LoginIsAdminListener() {
+                    @Override
+                    public void onLoginIsAdmin(boolean isAdmin) {
+                        callback.onLogIn(isAdmin);
+                    }
+                });
+            } else {
+                callback.onLogIn(mUser != null);
+            }
+        } else {
+            callback.onLogIn(false);
+        }
     }
 
     public void tryLogIn(String email, String password, final LogInListener callback) {
@@ -70,17 +87,46 @@ public class UserRepository extends BaseRepository {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        callback.onLogIn(task.isSuccessful());
-
                         if (task.isSuccessful()) {
                             mUser = task.getResult().getUser();
+                            if (BuildConfig.FLAVOR.equals("admin")) {
+                                userIsAdminCallback(mUser.getUid(), new LoginIsAdminListener() {
+                                    @Override
+                                    public void onLoginIsAdmin(boolean isAdmin) {
+                                        callback.onLogIn(isAdmin);
+                                    }
+                                });
+                            } else {
+                                callback.onLogIn(mUser != null);
+                            }
+                        } else {
+                            callback.onLogIn(false);
                         }
                     }
                 });
     }
 
+    private void userIsAdminCallback(String uid, final LoginIsAdminListener callback) {
+        DatabaseReference mUserInfo = getRef().child("users").child("uid");
+        mUserInfo.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                callback.onLoginIsAdmin(dataSnapshot.getValue(User.class).isAdmin());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callback.onLoginIsAdmin(false);
+            }
+        });
+    }
+
     public interface LogInListener {
         void onLogIn(boolean success);
+    }
+
+    interface LoginIsAdminListener {
+        void onLoginIsAdmin(boolean isAdmin);
     }
 
     public interface RegisterListener {
