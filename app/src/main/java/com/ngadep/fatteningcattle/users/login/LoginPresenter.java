@@ -32,8 +32,13 @@ class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void start() {
-        if (mLogInRepository.isLogin()) {
-            mLogInView.startMainActivity();
-        }
+        mLogInRepository.userIsLogin(new UserRepository.LogInListener() {
+            @Override
+            public void onLogIn(boolean success) {
+                if (success) {
+                    mLogInView.startMainActivity();
+                }
+            }
+        });
     }
 }
