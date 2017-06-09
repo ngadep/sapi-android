@@ -42,17 +42,17 @@ public class LoginPresenterTest {
 
     @Test
     public void testStart_LoginSuccess() {
-        Mockito.when(mRepository.isLogin()).thenReturn(true);
         mPresenter.start();
-        Mockito.verify(mRepository).isLogin();
+        Mockito.verify(mRepository).userIsLogin(mLogInListenerCaptor.capture());
+        mLogInListenerCaptor.getValue().onLogIn(true);
         Mockito.verify(mView).startMainActivity();
     }
 
     @Test
     public void testStart_LoginFailed() {
-        Mockito.when(mRepository.isLogin()).thenReturn(false);
         mPresenter.start();
-        Mockito.verify(mRepository).isLogin();
+        Mockito.verify(mRepository).userIsLogin(mLogInListenerCaptor.capture());
+        mLogInListenerCaptor.getValue().onLogIn(false);
         Mockito.verify(mView, Mockito.never()).startMainActivity();
     }
 
