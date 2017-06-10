@@ -36,7 +36,7 @@ public class UserFragment extends Fragment implements UserView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View rootView = inflater.inflate(R.layout.fragment_user, container, false);
+        View rootView = inflater.inflate(R.layout.user_frag, container, false);
 
         mRecycler = (RecyclerView) rootView.findViewById(R.id.user_list);
         mRecycler.setHasFixedSize(true);
