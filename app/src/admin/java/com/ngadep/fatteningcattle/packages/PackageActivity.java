@@ -16,7 +16,7 @@ public class PackageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_package);
+        setContentView(R.layout.package_act);
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
