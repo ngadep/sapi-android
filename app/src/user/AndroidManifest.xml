@@ -8,7 +8,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".cattle.CowActivity"
+            android:name=".cows.CowActivity"
             android:parentActivityName=".main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -7,7 +7,7 @@
         android:allowBackup="false"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".packages.PackageActivity" />
-        <activity android:name=".cattle.CowActivity" />
+        <activity android:name=".cows.CowActivity" />
     </application>
 
 </manifest>

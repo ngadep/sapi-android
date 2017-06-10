@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.cattle.CowActivity;
+import com.ngadep.fatteningcattle.cows.CowActivity;
 import com.ngadep.fatteningcattle.models.Package;
 
 public class PackageFragment extends Fragment implements PackageContract.View {

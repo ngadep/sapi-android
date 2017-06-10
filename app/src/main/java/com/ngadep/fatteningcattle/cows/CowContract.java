@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.cattle;
+package com.ngadep.fatteningcattle.cows;
 
 import com.google.firebase.database.Query;
 

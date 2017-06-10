@@ -1,4 +1,4 @@
-package com.ngadep.fatteningcattle.cattle;
+package com.ngadep.fatteningcattle.cows;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
