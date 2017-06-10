@@ -1,6 +1,6 @@
 package com.ngadep.fatteningcattle.cows;
 
-public class CowPresenter {
+public class CowPresenter implements CowContract.Presenter {
     private final CowContract.View mView;
     private final CowContract.Repository mRepository;
     private final String mCowId;
@@ -9,6 +9,7 @@ public class CowPresenter {
         mView = view;
         mRepository = repository;
         mCowId = packageId;
+        mView.setPresenter(this);
     }
 
     public void getPackageCows() {
@@ -17,5 +18,10 @@ public class CowPresenter {
 
     public void startCowDetailActivity(String cowId) {
         /* TODO: Add Cow Detail Activity */
+    }
+
+    @Override
+    public void start() {
+        getPackageCows();
     }
 }
