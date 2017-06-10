@@ -69,7 +69,7 @@ public class UserFragment extends Fragment implements UserView {
 
         // Set up FirebaseRecyclerAdapter with the Query
         mAdapter = new FirebaseRecyclerAdapter<User, UserViewHolder>(User.class,
-                R.layout.item_user, UserViewHolder.class, users) {
+                R.layout.user_item, UserViewHolder.class, users) {
             @Override
             protected void populateViewHolder(final UserViewHolder viewHolder, final User model, final int position) {
                 // Set click listener for the whole package view
