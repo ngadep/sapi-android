@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,10 @@ public class EditPackageFragment extends Fragment implements EditPackageContract
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!validateForm()) {
+                    return;
+                }
+
                 mPresenter.savePackage(
                         mName.getText().toString(),
                         mLocation.getText().toString(),
@@ -101,5 +106,31 @@ public class EditPackageFragment extends Fragment implements EditPackageContract
     public void showPackageList() {
         getActivity().setResult(Activity.RESULT_OK);
         getActivity().finish();
+    }
+
+    private boolean validateForm() {
+        boolean result = true;
+        if (TextUtils.isEmpty(mName.getText().toString())) {
+            mName.setError("Required");
+            result = false;
+        } else {
+            mName.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mLocation.getText().toString())) {
+            mLocation.setError("Required");
+            result = false;
+        } else {
+            mLocation.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mType.getText().toString())) {
+            mType.setError("Required");
+            result = false;
+        } else {
+            mType.setError(null);
+        }
+
+        return result;
     }
 }
