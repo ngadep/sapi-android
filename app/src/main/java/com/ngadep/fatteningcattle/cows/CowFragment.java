@@ -90,6 +90,7 @@ public class CowFragment extends Fragment implements CowContract.View {
                 R.layout.cow_item, CowViewHolder.class, cows) {
             @Override
             protected void populateViewHolder(final CowViewHolder viewHolder, final Cow model, final int position) {
+                model.setPrice(mPresenter.getPricePerKg());
                 final String cowId = getRef(position).getKey();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
