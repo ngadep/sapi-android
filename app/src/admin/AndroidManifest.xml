@@ -6,7 +6,9 @@
     <application
         android:allowBackup="false"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".packages.PackageActivity" />
+        <activity
+            android:name=".packages.PackageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".packages.edit.EditPackageActivity" />
     </application>
 
