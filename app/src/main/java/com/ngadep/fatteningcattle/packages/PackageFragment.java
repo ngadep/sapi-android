@@ -1,10 +1,7 @@
 package com.ngadep.fatteningcattle.packages;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,19 +13,15 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
-import com.ngadep.fatteningcattle.BuildConfig;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.cows.CowActivity;
 import com.ngadep.fatteningcattle.models.Package;
-import com.ngadep.fatteningcattle.packages.edit.EditPackageActivity;
-import com.ngadep.fatteningcattle.packages.edit.EditPackageFragment;
 
 public class PackageFragment extends Fragment implements PackageContract.View {
 
     private static final String TAG = "PackageFragment";
-    private static final int REQUEST_ADD_PACKAGE = 1;
 
-    private PackageContract.Presenter mPresenter;
+    protected PackageContract.Presenter mPresenter;
 
     private FirebaseRecyclerAdapter<Package, PackageViewHolder> mAdapter;
     private RecyclerView mRecycler;
@@ -49,30 +42,6 @@ public class PackageFragment extends Fragment implements PackageContract.View {
         mRecycler.setHasFixedSize(true);
 
         return rootView;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (REQUEST_ADD_PACKAGE == requestCode && Activity.RESULT_OK == resultCode) {
-            showMessage(getString(R.string.package_message_successfully_saved));
-        }
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        if (BuildConfig.FLAVOR.equals("admin")) {
-            FloatingActionButton fab =
-                    (FloatingActionButton) getActivity().findViewById(R.id.fab_package);
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mPresenter.showAddPackage();
-                }
-            });
-        }
     }
 
     @Override
@@ -130,13 +99,11 @@ public class PackageFragment extends Fragment implements PackageContract.View {
 
     @Override
     public void showAddPackageUi(String userId) {
-        Intent intent = new Intent(getContext(), EditPackageActivity.class);
-        intent.putExtra(EditPackageFragment.ARGUMENT_EDIT_USER_ID, userId);
-        startActivityForResult(intent, REQUEST_ADD_PACKAGE);
+
     }
 
-    private void showMessage(String message) {
-        Snackbar.make(getView(), message, Snackbar.LENGTH_LONG).show();
+    protected void showMessage(String message) {
+        Snackbar.make(mRecycler, message, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
