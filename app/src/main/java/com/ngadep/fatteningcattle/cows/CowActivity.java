@@ -5,12 +5,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ngadep.fatteningcattle.R;
+import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
 public class CowActivity extends AppCompatActivity {
 
     public static final String EXTRA_PACKAGE_ID = "PACKAGE_ID";
-    public static final String EXTRA_PACKAGE_NAME = "PACKAGE_NAME";
+    public static final String EXTRA_PACKAGE_MODEL = "PACKAGE_MODEL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +25,9 @@ public class CowActivity extends AppCompatActivity {
 
         // Get the requested package id
         String packageId = getIntent().getStringExtra(EXTRA_PACKAGE_ID);
-        String packageName = getIntent().getStringExtra(EXTRA_PACKAGE_NAME);
+        Package pkg = getIntent().getParcelableExtra(EXTRA_PACKAGE_MODEL);
 
-        setTitle(packageName);
+        setTitle(pkg.getName());
 
         CowFragment cowFragment = (CowFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.content_frame);

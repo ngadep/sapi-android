@@ -2,6 +2,7 @@ package com.ngadep.fatteningcattle.packages;
 
 import android.support.annotation.Nullable;
 
+import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.packages.PackageContract.View;
 
 public class PackagePresenter implements PackageContract.Presenter {
@@ -28,8 +29,8 @@ public class PackagePresenter implements PackageContract.Presenter {
     }
 
     @Override
-    public void startCowActivity(String packageKey, String packageName) {
-        mView.startCowActivity(packageKey, packageName);
+    public void startCowActivity(String packageKey, Package pkg) {
+        mView.startCowActivity(packageKey, pkg);
     }
 
     @Override
