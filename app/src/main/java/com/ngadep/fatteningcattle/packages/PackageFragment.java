@@ -1,7 +1,11 @@
 package com.ngadep.fatteningcattle.packages;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,10 +19,12 @@ import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.cows.CowActivity;
 import com.ngadep.fatteningcattle.models.Package;
+import com.ngadep.fatteningcattle.packages.edit.EditPackageActivity;
 
 public class PackageFragment extends Fragment implements PackageContract.View {
 
     private static final String TAG = "PackageFragment";
+    private static final int REQUEST_ADD_PACKAGE = 1;
 
     private PackageContract.Presenter mPresenter;
 
@@ -41,6 +47,28 @@ public class PackageFragment extends Fragment implements PackageContract.View {
         mRecycler.setHasFixedSize(true);
 
         return rootView;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (REQUEST_ADD_PACKAGE == requestCode && Activity.RESULT_OK == resultCode) {
+            showMessage(getString(R.string.package_message_successfully_saved));
+        }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        FloatingActionButton fab =
+                (FloatingActionButton) getActivity().findViewById(R.id.fab_package);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.showAddPackage();
+            }
+        });
     }
 
     @Override
@@ -94,6 +122,16 @@ public class PackageFragment extends Fragment implements PackageContract.View {
         intent.putExtra(CowActivity.EXTRA_PACKAGE_ID, packageKey);
         intent.putExtra(CowActivity.EXTRA_PACKAGE_NAME, packageName);
         startActivity(intent);
+    }
+
+    @Override
+    public void showAddPackageUi() {
+        Intent intent = new Intent(getContext(), EditPackageActivity.class);
+        startActivityForResult(intent, REQUEST_ADD_PACKAGE);
+    }
+
+    private void showMessage(String message) {
+        Snackbar.make(getView(), message, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

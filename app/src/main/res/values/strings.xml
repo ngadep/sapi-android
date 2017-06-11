@@ -13,7 +13,4 @@
     <string name="title_register">Register</string>
     <string name="sign_up">Sign Up</string>
     <string name="switch_active">Active</string>
-    <string name="package_name">Package Name</string>
-    <string name="package_location">Package Location</string>
-    <string name="package_type">Package Type</string>
 </resources>

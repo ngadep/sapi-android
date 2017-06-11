@@ -3,4 +3,8 @@
     <string name="app_name">Fattle Admin</string>
     <string name="app_display_name">Fattening Cattle Admin</string>
     <string name="heading_main_user">User</string>
+    <string name="package_name">Package Name</string>
+    <string name="package_location">Package Location</string>
+    <string name="package_type">Package Type</string>
+    <string name="package_message_successfully_saved">Package Saved Successfully</string>
 </resources>

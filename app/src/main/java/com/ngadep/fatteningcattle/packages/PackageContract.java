@@ -10,6 +10,8 @@ interface PackageContract {
         void getPackages(Query packages);
 
         void startCowActivity(String packageKey, String packageName);
+
+        void showAddPackageUi();
     }
 
     interface Presenter extends BasePresenter {
@@ -17,5 +19,7 @@ interface PackageContract {
         void getCurrentUserPackages();
 
         void startCowActivity(String packageKey, String packageName) ;
+
+        void showAddPackage();
     }
 }

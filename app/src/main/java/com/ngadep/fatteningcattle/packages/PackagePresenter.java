@@ -33,6 +33,11 @@ public class PackagePresenter implements PackageContract.Presenter {
     }
 
     @Override
+    public void showAddPackage() {
+        mView.showAddPackageUi();
+    }
+
+    @Override
     public void start() {
         getCurrentUserPackages();
     }
