@@ -25,7 +25,7 @@ public class EditPackageActivity extends AppCompatActivity {
         String packageId = getIntent().getStringExtra(EditPackageFragment.ARGUMENT_EDIT_PACKAGE_ID);
         Package packageModel = getIntent().getParcelableExtra(EditPackageFragment.ARGUMENT_EDIT_PACKAGE_MODEL);
 
-        setTitle(R.string.title_register);
+        setToolBarTitle(packageId);
 
         EditPackageFragment editPackageFragment = (EditPackageFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.content_frame);
@@ -59,5 +59,13 @@ public class EditPackageActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    public void setToolBarTitle(@Nullable String packageId) {
+        if(packageId == null) {
+            setTitle(R.string.package_add);
+        } else {
+            setTitle(R.string.package_edit);
+        }
     }
 }
