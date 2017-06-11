@@ -11,7 +11,7 @@ interface PackageContract {
 
         void startCowActivity(String packageKey, String packageName);
 
-        void showAddPackageUi();
+        void showAddPackageUi(String userId);
     }
 
     interface Presenter extends BasePresenter {

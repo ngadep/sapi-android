@@ -16,10 +16,12 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
+import com.ngadep.fatteningcattle.BuildConfig;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.cows.CowActivity;
 import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.packages.edit.EditPackageActivity;
+import com.ngadep.fatteningcattle.packages.edit.EditPackageFragment;
 
 public class PackageFragment extends Fragment implements PackageContract.View {
 
@@ -61,14 +63,16 @@ public class PackageFragment extends Fragment implements PackageContract.View {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        FloatingActionButton fab =
-                (FloatingActionButton) getActivity().findViewById(R.id.fab_package);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.showAddPackage();
-            }
-        });
+        if (BuildConfig.FLAVOR.equals("admin")) {
+            FloatingActionButton fab =
+                    (FloatingActionButton) getActivity().findViewById(R.id.fab_package);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mPresenter.showAddPackage();
+                }
+            });
+        }
     }
 
     @Override
@@ -125,8 +129,9 @@ public class PackageFragment extends Fragment implements PackageContract.View {
     }
 
     @Override
-    public void showAddPackageUi() {
+    public void showAddPackageUi(String userId) {
         Intent intent = new Intent(getContext(), EditPackageActivity.class);
+        intent.putExtra(EditPackageFragment.ARGUMENT_EDIT_USER_ID, userId);
         startActivityForResult(intent, REQUEST_ADD_PACKAGE);
     }
 
