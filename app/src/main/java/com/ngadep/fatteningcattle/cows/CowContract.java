@@ -10,6 +10,8 @@ public interface CowContract{
         void startCowDetailActivity(String cowId);
 
         void startAddCowUi();
+
+        Long getPricePerKg();
     }
 
     interface View extends BaseView<Presenter>{
@@ -17,8 +19,4 @@ public interface CowContract{
         void getAllPackageCow(Query cows);
     }
 
-    interface Repository {
-
-        Query getPackageCowFromId(String packageId);
-    }
 }
