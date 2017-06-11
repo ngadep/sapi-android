@@ -26,6 +26,7 @@ public class UserRepository extends BaseRepository {
     private FirebaseUser mUser;
 
     private UserRepository() {
+        mDatabase.setPersistenceEnabled(true);
         mRef = getRef().child(USERS_REF);
     }
 
