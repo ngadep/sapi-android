@@ -2,6 +2,7 @@ package com.ngadep.fatteningcattle.cows;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
+import com.ngadep.fatteningcattle.BuildConfig;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.models.Cow;
 
@@ -37,6 +39,23 @@ public class CowFragment extends Fragment implements CowContract.View {
         mRecycler.setHasFixedSize(true);
 
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        FloatingActionButton fab =
+                (FloatingActionButton) getActivity().findViewById(R.id.fab_cow);
+        if (BuildConfig.FLAVOR.equals("user")) {
+            fab.hide();
+        } else {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mPresenter.startAddCowUi();
+                }
+            });
+        }
     }
 
     @Override

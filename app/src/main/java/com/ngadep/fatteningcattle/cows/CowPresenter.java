@@ -17,6 +17,11 @@ public class CowPresenter implements CowContract.Presenter {
     }
 
     public void startCowDetailActivity(String cowId) {
+        /* TODO: show Cow Detail Activity */
+    }
+
+    @Override
+    public void startAddCowUi() {
         /* TODO: Add Cow Detail Activity */
     }
 

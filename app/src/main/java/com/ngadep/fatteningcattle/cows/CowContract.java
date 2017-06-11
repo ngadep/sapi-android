@@ -8,6 +8,8 @@ public interface CowContract{
     interface Presenter extends BasePresenter {
 
         void startCowDetailActivity(String cowId);
+
+        void startAddCowUi();
     }
 
     interface View extends BaseView<Presenter>{
