@@ -28,12 +28,12 @@ public class PackageActivity extends AppCompatActivity {
         String userId = getIntent().getStringExtra(EXTRA_USER_ID);
 
         setTitle(user.getUserName());
-        PackageFragment packageFragment = (PackageFragment) getSupportFragmentManager()
+        PackageFragmentAdmin packageFragment = (PackageFragmentAdmin) getSupportFragmentManager()
                 .findFragmentById(R.id.content_frame);
 
         if (packageFragment == null) {
             // Create the fragment
-            packageFragment = PackageFragment.newInstance();
+            packageFragment = PackageFragmentAdmin.newInstance();
             ActivityUtils.addFragmentToActivity(
                     getSupportFragmentManager(), packageFragment, R.id.content_frame);
         }
