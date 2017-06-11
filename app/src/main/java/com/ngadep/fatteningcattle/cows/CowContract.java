@@ -12,11 +12,15 @@ public interface CowContract{
         void startAddCowUi();
 
         Long getPricePerKg();
+
+        void cleanup();
     }
 
     interface View extends BaseView<Presenter>{
 
         void getAllPackageCow(Query cows);
+
+        void notifyPriceChange();
     }
 
 }
