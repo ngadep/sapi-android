@@ -37,6 +37,7 @@ public class CowPresenter implements CowContract.Presenter {
             @Override
             public void onPriceChange(Long price) {
                 mPricePerKg = price;
+                mView.notifyPriceChange();
             }
         });
     }
@@ -44,5 +45,10 @@ public class CowPresenter implements CowContract.Presenter {
     @Override
     public Long getPricePerKg() {
         return mPricePerKg;
+    }
+
+    @Override
+    public void cleanup() {
+        mRepository.cleanup();
     }
 }

@@ -37,6 +37,7 @@ public class CowFragment extends Fragment implements CowContract.View {
 
         mRecycler = (RecyclerView) rootView.findViewById(R.id.cow_list);
         mRecycler.setHasFixedSize(true);
+        mRecycler.setAdapter(mAdapter);
 
         return rootView;
     }
@@ -70,6 +71,7 @@ public class CowFragment extends Fragment implements CowContract.View {
         if (mAdapter != null) {
             mAdapter.cleanup();
         }
+        mPresenter.cleanup();
     }
 
     @Override
@@ -103,5 +105,10 @@ public class CowFragment extends Fragment implements CowContract.View {
         };
         mRecycler.setAdapter(mAdapter);
 
+    }
+
+    @Override
+    public void notifyPriceChange() {
+        mAdapter.notifyDataSetChanged();
     }
 }

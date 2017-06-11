@@ -10,6 +10,8 @@ import com.ngadep.fatteningcattle.BaseRepository;
 public class CowRepository extends BaseRepository {
     private static CowRepository INSTANCE = null;
     private final DatabaseReference mRef;
+    private DatabaseReference priceRef;
+    private ValueEventListener priceValueEventListener;
 
     private CowRepository() {
         super();
@@ -29,8 +31,8 @@ public class CowRepository extends BaseRepository {
     }
 
     public void getPricePerKg(final PriceListener callback) {
-        DatabaseReference priceRef = getRef().child("settings").child("price");
-        priceRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        priceRef = getRef().child("settings").child("price");
+        priceValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 callback.onPriceChange((Long) dataSnapshot.getValue());
@@ -40,7 +42,13 @@ public class CowRepository extends BaseRepository {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        };
+
+        priceRef.addValueEventListener(priceValueEventListener);
+    }
+
+    public void cleanup() {
+        priceRef.removeEventListener(priceValueEventListener);
     }
 
     interface PriceListener {
