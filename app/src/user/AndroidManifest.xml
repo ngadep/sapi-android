@@ -6,13 +6,5 @@
     <application
         android:allowBackup="false"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity
-            android:name=".cows.CowActivity"
-            android:parentActivityName=".main.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity" />
-        </activity>
     </application>
 </manifest>
