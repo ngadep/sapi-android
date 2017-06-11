@@ -5,7 +5,7 @@ import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Package;
 
-class PackageRepository extends BaseRepository {
+public class PackageRepository extends BaseRepository {
 
     private static PackageRepository INSTANCE = null;
     private final DatabaseReference mRef;
