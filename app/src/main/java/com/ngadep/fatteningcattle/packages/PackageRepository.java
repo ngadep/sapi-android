@@ -1,9 +1,15 @@
 package com.ngadep.fatteningcattle.packages;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Package;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class PackageRepository extends BaseRepository {
 
@@ -27,11 +33,23 @@ public class PackageRepository extends BaseRepository {
         return mRef.child(uid);
     }
 
-    public void addNewPackage(Package pkg) {
-        // TODO : add new package
+    public void savePackage(@Nullable String packageId, @NonNull Package pkg) {
+        if (packageId == null) {
+            packageId = mRef.push().getKey();
+        }
+
+        Map<String, Object> packageValues = pkg.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/packages/" + packageId, packageValues);
+        childUpdates.put("/user-packages/" + pkg.getUid() + "/" + packageId, packageValues);
+
+        getRef().updateChildren(childUpdates);
+
     }
 
-    public void updatePackage(String packageId, Package pkg) {
-        // TODO: update Package From Package Id
+    public void savePackage(@NonNull Package pkg) {
+        this.savePackage(null, pkg);
     }
+
 }
