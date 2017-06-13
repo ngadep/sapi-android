@@ -96,5 +96,4 @@ public class UserFragment extends Fragment implements UserView {
         intent.putExtra(PackageActivity.EXTRA_USER_MODEL, user);
         startActivity(intent);
     }
-
 }

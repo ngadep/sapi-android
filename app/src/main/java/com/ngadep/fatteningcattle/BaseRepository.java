@@ -25,6 +25,4 @@ public class BaseRepository {
         }
         return result;
     }
-
-
 }

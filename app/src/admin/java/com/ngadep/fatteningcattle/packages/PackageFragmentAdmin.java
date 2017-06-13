@@ -69,5 +69,4 @@ public class PackageFragmentAdmin extends PackageFragment {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
