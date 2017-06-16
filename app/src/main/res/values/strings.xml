@@ -17,4 +17,6 @@
     <string name="cow_hint_ear_tag">Ear Tag</string>
     <string name="cow_hint_weight">Weight</string>
     <string name="cow_hint_date">Date</string>
+    <string name="cow_add">New Cow</string>
+    <string name="cow_edit">Edit Cow</string>
 </resources>
