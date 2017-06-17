@@ -8,7 +8,7 @@ import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
-public class CowActivity extends AppCompatActivity {
+public class BaseCowActivity extends AppCompatActivity {
 
     public static final String EXTRA_PACKAGE_ID = "PACKAGE_ID";
     public static final String EXTRA_PACKAGE_MODEL = "PACKAGE_MODEL";
