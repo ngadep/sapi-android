@@ -16,18 +16,11 @@ import com.ngadep.fatteningcattle.BuildConfig;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.models.Cow;
 
-public class CowFragment extends Fragment implements CowContract.View {
+public class BaseCowFragment extends Fragment implements CowContract.View {
 
     CowContract.Presenter mPresenter;
     private FirebaseRecyclerAdapter<Cow, CowViewHolder> mAdapter;
     private RecyclerView mRecycler;
-
-    public CowFragment() {
-    }
-
-    public static CowFragment newInstance() {
-        return new CowFragment();
-    }
 
     @Nullable
     @Override
