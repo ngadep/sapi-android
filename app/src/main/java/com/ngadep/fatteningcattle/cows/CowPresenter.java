@@ -23,7 +23,7 @@ public class CowPresenter implements CowContract.Presenter {
 
     @Override
     public void startAddCowUi() {
-        /* TODO: Add Cow Detail Activity */
+        mView.startEditCow();
     }
 
     @Override

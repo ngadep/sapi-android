@@ -21,6 +21,8 @@ public interface CowContract{
         void getAllPackageCow(Query cows);
 
         void notifyPriceChange();
+
+        void startEditCow();
     }
 
 }
