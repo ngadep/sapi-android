@@ -16,7 +16,7 @@ import com.ngadep.fatteningcattle.BuildConfig;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.models.Cow;
 
-public class BaseCowFragment extends Fragment implements CowContract.View {
+public abstract class BaseCowFragment extends Fragment implements CowContract.View {
 
     CowContract.Presenter mPresenter;
     private FirebaseRecyclerAdapter<Cow, CowViewHolder> mAdapter;
