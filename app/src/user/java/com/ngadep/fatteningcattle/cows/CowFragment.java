@@ -8,4 +8,9 @@ public class CowFragment extends BaseCowFragment {
     public static CowFragment newInstance() {
         return new CowFragment();
     }
+
+    @Override
+    public void startEditCow() {
+        // do nothing
+    }
 }
