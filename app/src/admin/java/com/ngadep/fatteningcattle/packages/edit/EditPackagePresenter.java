@@ -56,6 +56,6 @@ public class EditPackagePresenter implements EditPackageContract.Presenter {
 
     @Override
     public boolean isNewPackage() {
-        return mPackageId != null;
+        return mPackageId == null;
     }
 }
