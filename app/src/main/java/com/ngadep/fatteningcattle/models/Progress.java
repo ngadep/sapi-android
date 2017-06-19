@@ -8,6 +8,7 @@ import java.util.Date;
 
 @IgnoreExtraProperties
 public class Progress {
+    private String cow_id;
     private Long date;
     private int weight;
 
@@ -15,7 +16,8 @@ public class Progress {
         // Default constructor required for calls to DataSnapshot.getValue(Progress.class)
     }
 
-    public Progress(Long date, int weight) {
+    public Progress(String cow_id, Long date, int weight) {
+        this.cow_id = cow_id;
         this.date = date;
         this.weight = weight;
     }
@@ -34,6 +36,14 @@ public class Progress {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public String getCow_id() {
+        return cow_id;
+    }
+
+    public void setCow_id(String cow_id) {
+        this.cow_id = cow_id;
     }
 
     @Exclude
