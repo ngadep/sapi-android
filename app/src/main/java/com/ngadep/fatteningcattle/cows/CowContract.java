@@ -22,7 +22,7 @@ public interface CowContract{
 
         void notifyPriceChange();
 
-        void startEditCow();
+        void startEditCow(String packageId);
     }
 
 }
