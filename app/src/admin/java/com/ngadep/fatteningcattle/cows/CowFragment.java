@@ -1,5 +1,6 @@
 package com.ngadep.fatteningcattle.cows;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -30,6 +31,18 @@ public class CowFragment extends BaseCowFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (Activity.RESULT_OK == resultCode) {
+            if (REQUEST_ADD_COW == requestCode) {
+                showMessage(getString(R.string.cow_message_successfully_saved));
+            } else if (REQUEST_EDIT_PACKAGE == requestCode) {
+                getActivity().finish();
+            }
+        }
     }
 
     @Override
