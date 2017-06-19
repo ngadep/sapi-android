@@ -3,6 +3,8 @@ package com.ngadep.fatteningcattle.cows;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BasePresenter;
 import com.ngadep.fatteningcattle.BaseView;
+import com.ngadep.fatteningcattle.models.Package;
+
 public interface CowContract{
 
     interface Presenter extends BasePresenter {
@@ -14,6 +16,8 @@ public interface CowContract{
         Long getPricePerKg();
 
         void cleanup();
+
+        void showEditPackageUi();
     }
 
     interface View extends BaseView<Presenter>{
@@ -23,6 +27,8 @@ public interface CowContract{
         void notifyPriceChange();
 
         void startEditCow(String packageId);
+
+        void showEditPackage(String packageId, Package packageModel);
     }
 
 }
