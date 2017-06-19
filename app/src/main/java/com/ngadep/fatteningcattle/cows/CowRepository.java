@@ -61,7 +61,7 @@ public class CowRepository extends BaseRepository {
             mCowId = mRef.push().getKey();
         }
 
-        mRef.child(mCowId).setValue(cow);
+        mRef.child(cow.getPackage_id()).child(mCowId).setValue(cow);
     }
 
     interface PriceListener {
