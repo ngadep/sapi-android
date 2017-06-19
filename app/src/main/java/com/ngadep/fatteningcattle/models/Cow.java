@@ -97,24 +97,26 @@ public class Cow implements Parcelable{
         this.weight = weight;
     }
 
-    public Double getPrice() {
-        return (double) (price * weight);
-    }
-
     public void setPrice(Long price) {
         this.price = price;
     }
 
-    public String getDate() {
-        return SimpleDateFormat.getDateInstance().format(new Date(date));
-    }
-
-    public Long getLongDate() {
+    public Long getDate() {
         return this.date;
     }
 
     public void setDate(Long date) {
         this.date = date;
+    }
+
+    @Exclude
+    public Double getPrice() {
+        return (double) (price * weight);
+    }
+
+    @Exclude
+    public String getFormatDate() {
+        return SimpleDateFormat.getDateInstance().format(new Date(date));
     }
 
     @Exclude
