@@ -3,6 +3,7 @@ package com.ngadep.fatteningcattle.cows;
 import android.content.Intent;
 
 import com.ngadep.fatteningcattle.cows.edit.EditCowActivity;
+import com.ngadep.fatteningcattle.cows.edit.EditCowFragment;
 
 public class CowFragment extends BaseCowFragment {
 
@@ -16,8 +17,9 @@ public class CowFragment extends BaseCowFragment {
     }
 
     @Override
-    public void startEditCow() {
+    public void startEditCow(String packageId) {
         Intent intent = new Intent(getActivity(), EditCowActivity.class);
+        intent.putExtra(EditCowFragment.ARGUMENT_EDIT_PACKAGE_ID, packageId);
         startActivityForResult(intent, REQUEST_ADD_COW);
     }
 }
