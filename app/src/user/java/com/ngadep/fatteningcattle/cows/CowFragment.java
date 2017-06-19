@@ -10,7 +10,7 @@ public class CowFragment extends BaseCowFragment {
     }
 
     @Override
-    public void startEditCow() {
+    public void startEditCow(String packageId) {
         // do nothing
     }
 }
