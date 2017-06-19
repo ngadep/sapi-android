@@ -24,7 +24,9 @@
             android:label="@string/app_display_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".users.register.RegisterActivity" />
-        <activity android:name=".cows.CowActivity" />
+        <activity
+            android:name=".cows.CowActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

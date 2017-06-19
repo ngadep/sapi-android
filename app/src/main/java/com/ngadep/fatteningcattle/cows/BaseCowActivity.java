@@ -3,6 +3,7 @@ package com.ngadep.fatteningcattle.cows;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.models.Package;
@@ -18,6 +19,9 @@ public class BaseCowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cow_act);
 
+        // Set up the toolbar.
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
@@ -39,7 +43,7 @@ public class BaseCowActivity extends AppCompatActivity {
                     getSupportFragmentManager(), cowFragment, R.id.content_frame);
         }
 
-        new CowPresenter(cowFragment, CowRepository.getInstance(), packageId);
+        new CowPresenter(cowFragment, CowRepository.getInstance(), packageId, pkg);
     }
 
     @Override
