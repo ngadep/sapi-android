@@ -1,35 +1,27 @@
 package com.ngadep.fatteningcattle.models;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@IgnoreExtraProperties
 public class Progress {
-    private int month;
     private Long date;
     private int weight;
-    private Double price;
 
     public Progress() {
         // Default constructor required for calls to DataSnapshot.getValue(Progress.class)
     }
 
-    public Progress(int month, Long date, int weight, Double price) {
-        this.month = month;
+    public Progress(Long date, int weight) {
         this.date = date;
         this.weight = weight;
-        this.price = price;
     }
 
-    public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public String getDate() {
-        return SimpleDateFormat.getDateInstance().format(new Date(date));
+    public Long getDate() {
+        return this.date;
     }
 
     public void setDate(Long date) {
@@ -44,11 +36,9 @@ public class Progress {
         this.weight = weight;
     }
 
-    public Double getPrice() {
-        return price;
+    @Exclude
+    public String getFormatDate() {
+        return SimpleDateFormat.getDateInstance().format(new Date(date));
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
 }
