@@ -6,6 +6,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ngadep.fatteningcattle.BaseRepository;
+import com.ngadep.fatteningcattle.models.Cow;
 
 public class CowRepository extends BaseRepository {
     private static CowRepository INSTANCE = null;
@@ -26,11 +27,11 @@ public class CowRepository extends BaseRepository {
         return INSTANCE;
     }
 
-    public Query getPackageCowFromId(String packageId) {
+    Query getPackageCowFromId(String packageId) {
         return mRef.child(packageId);
     }
 
-    public void getPricePerKg(final PriceListener callback) {
+    void getPricePerKg(final PriceListener callback) {
         priceRef = getRef().child("settings").child("price");
         priceValueEventListener = new ValueEventListener() {
             @Override
@@ -47,8 +48,20 @@ public class CowRepository extends BaseRepository {
         priceRef.addValueEventListener(priceValueEventListener);
     }
 
-    public void cleanup() {
+    void cleanup() {
         priceRef.removeEventListener(priceValueEventListener);
+    }
+
+    public void saveCow(Cow cow) {
+        this.saveCow(null, cow);
+    }
+
+    public void saveCow(String mCowId, Cow cow) {
+        if (mCowId == null) {
+            mCowId = mRef.push().getKey();
+        }
+
+        mRef.child(mCowId).setValue(cow);
     }
 
     interface PriceListener {
