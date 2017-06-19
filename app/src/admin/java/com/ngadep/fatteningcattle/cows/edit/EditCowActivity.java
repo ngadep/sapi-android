@@ -21,6 +21,7 @@ public class EditCowActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        String packageId = getIntent().getStringExtra(EditCowFragment.ARGUMENT_EDIT_PACKAGE_ID);
         String cowId = getIntent().getStringExtra(EditCowFragment.ARGUMENT_EDIT_COW_ID);
         Cow cowModel = getIntent().getParcelableExtra(EditCowFragment.ARGUMENT_EDIT_COW_MODEL);
 
@@ -45,6 +46,7 @@ public class EditCowActivity extends AppCompatActivity {
         }
 
         new EditCowPresenter(
+                packageId,
                 cowId,
                 cowModel,
                 CowRepository.getInstance(),
