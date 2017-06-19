@@ -37,7 +37,7 @@ public class CowViewHolder extends RecyclerView.ViewHolder {
         } else {
             mCowSex.setImageResource(R.drawable.ic_sex_female_24dp);
         }
-        mCowDate.setText(model.getDate());
+        mCowDate.setText(model.getFormatDate());
         mCowWeight.setText(String.format(Locale.ENGLISH,"%d Kg", model.getWeight()));
         mCowPrice.setText(String.format(Locale.ENGLISH, "Rp. %1$,.2f", model.getPrice()));
     }
