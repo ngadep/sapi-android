@@ -48,6 +48,12 @@ public class EditPackageFragment extends Fragment implements EditPackageContract
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.start();
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
@@ -94,7 +100,7 @@ public class EditPackageFragment extends Fragment implements EditPackageContract
 
     @Override
     public void setType(int type) {
-        mType.setText(type);
+        mType.setText(String.valueOf(type));
     }
 
     @Override
