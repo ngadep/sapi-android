@@ -11,6 +11,7 @@
     <string name="package_message_successfully_saved">Package Saved Successfully</string>
     <string name="package_add">New Package</string>
     <string name="package_edit">Edit Package</string>
+    <string name="cow_message_successfully_saved">Cow Saved Successfully</string>
     <string-array name="sex_array">
         <item>Male</item>
         <item>Female</item>
