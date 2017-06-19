@@ -1,5 +1,6 @@
 package com.ngadep.fatteningcattle.cows.edit;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,8 +19,10 @@ import com.ngadep.fatteningcattle.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class EditCowFragment extends Fragment implements EditCowContract.View {
+    public static final String ARGUMENT_EDIT_PACKAGE_ID = "EDIT_PACKAGE_ID";
     public static final String ARGUMENT_EDIT_COW_ID = "EDIT_COW_ID";
     public static final String ARGUMENT_EDIT_COW_MODEL = "EDIT_COW_MODEL";
 
@@ -130,4 +133,40 @@ public class EditCowFragment extends Fragment implements EditCowContract.View {
         mPresenter = presenter;
     }
 
+    @Override
+    public boolean isActive() {
+        return isAdded();
+    }
+
+    @Override
+    public void setEarTag(String earTag) {
+        mEarTag.setText(earTag);
+    }
+
+    @Override
+    public void setSex(String sex) {
+        if ("male".equals(sex)) {
+            mSex.setSelection(0);
+        } else {
+            mSex.setSelection(1);
+        }
+    }
+
+    @Override
+    public void setWeight(int weight) {
+        mWeight.setText(weight);
+    }
+
+    @Override
+    public void setDate(Long date) {
+        Date lDate = new Date(date);
+        SimpleDateFormat.getDateInstance().format(lDate);
+        mCalendar.setTime(lDate);
+    }
+
+    @Override
+    public void showCowList() {
+        getActivity().setResult(Activity.RESULT_OK);
+        getActivity().finish();
+    }
 }
