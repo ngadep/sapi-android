@@ -3,18 +3,18 @@ package com.ngadep.fatteningcattle.cows;
 public class CowPresenter implements CowContract.Presenter {
     private final CowContract.View mView;
     private final CowRepository mRepository;
-    private final String mCowId;
+    private final String mPackageId;
     private Long mPricePerKg = 0L;
 
     public CowPresenter(CowContract.View view, CowRepository repository, String packageId) {
         mView = view;
         mRepository = repository;
-        mCowId = packageId;
+        mPackageId = packageId;
         mView.setPresenter(this);
     }
 
     public void getPackageCows() {
-        mView.getAllPackageCow(mRepository.getPackageCowFromId(mCowId));
+        mView.getAllPackageCow(mRepository.getPackageCowFromId(mPackageId));
     }
 
     public void startCowDetailActivity(String cowId) {
@@ -23,7 +23,7 @@ public class CowPresenter implements CowContract.Presenter {
 
     @Override
     public void startAddCowUi() {
-        mView.startEditCow();
+        mView.startEditCow(mPackageId);
     }
 
     @Override
