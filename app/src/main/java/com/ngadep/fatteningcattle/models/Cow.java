@@ -109,6 +109,10 @@ public class Cow implements Parcelable{
         return SimpleDateFormat.getDateInstance().format(new Date(date));
     }
 
+    public Long getLongDate() {
+        return this.date;
+    }
+
     public void setDate(Long date) {
         this.date = date;
     }
