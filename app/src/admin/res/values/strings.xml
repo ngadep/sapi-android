@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_edit_user">Edit User</string>
+    <string name="action_edit_package">Edit Package</string>
     <string name="app_name">Fattle Admin</string>
     <string name="app_display_name">Fattening Cattle Admin</string>
     <string name="heading_main_user">User</string>
