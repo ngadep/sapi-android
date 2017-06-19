@@ -35,7 +35,7 @@ public class EditCowPresenter implements EditCowContract.Presenter {
             mView.setEarTag(mCowModel.getEar_tag());
             mView.setSex(mCowModel.getSex());
             mView.setWeight(mCowModel.getWeight());
-            mView.setDate(mCowModel.getLongDate());
+            mView.setDate(mCowModel.getDate());
         }
     }
 
