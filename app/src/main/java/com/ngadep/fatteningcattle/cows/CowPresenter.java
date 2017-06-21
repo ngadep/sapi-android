@@ -1,5 +1,6 @@
 package com.ngadep.fatteningcattle.cows;
 
+import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Package;
 
 public class CowPresenter implements CowContract.Presenter {
@@ -37,7 +38,7 @@ public class CowPresenter implements CowContract.Presenter {
     }
 
     public void queryPricePerKg() {
-        mRepository.getPricePerKg(new CowRepository.PriceListener() {
+        mRepository.getPricePerKg(new BaseRepository.PriceListener() {
             @Override
             public void onPriceChange(Long price) {
                 mPricePerKg = price;
