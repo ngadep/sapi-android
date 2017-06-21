@@ -26,7 +26,7 @@ public class CowViewHolder extends RecyclerView.ViewHolder {
         mCowEarTag = (TextView) itemView.findViewById(R.id.cow_ear_tag);
         mCowSex = (ImageView) itemView.findViewById(R.id.cow_sex);
         mCowDate = (TextView) itemView.findViewById(R.id.cow_date);
-        mCowWeight =(TextView) itemView.findViewById(R.id.cow_wight);
+        mCowWeight =(TextView) itemView.findViewById(R.id.cow_weight);
         mCowPrice =(TextView) itemView.findViewById(R.id.cow_price);
     }
     public void bindToCow(Cow model) {
