@@ -27,6 +27,9 @@
         <activity
             android:name=".cows.CowActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".progresses.ProgressActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
