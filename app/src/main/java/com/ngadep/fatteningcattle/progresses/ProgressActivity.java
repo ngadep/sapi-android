@@ -10,7 +10,7 @@ import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
 public class ProgressActivity extends AppCompatActivity {
 
-    public static final String EXTRA_PROGRESS_ID = "PROGRESS_ID";
+    public static final String EXTRA_COW_ID = "PROGRESS_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class ProgressActivity extends AppCompatActivity {
         }
 
         // Get the requested package id
-        String progressId = getIntent().getStringExtra(EXTRA_PROGRESS_ID);
+        String cowId = getIntent().getStringExtra(EXTRA_COW_ID);
 
         ProgressFragment progressFragment = (ProgressFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.content_frame);
@@ -38,7 +38,7 @@ public class ProgressActivity extends AppCompatActivity {
                     getSupportFragmentManager(), progressFragment, R.id.content_frame);
         }
 
-        new ProgressPresenter(progressFragment, ProgressRepository.getInstance(), progressId);
+        new ProgressPresenter(progressFragment, ProgressRepository.getInstance(), cowId);
     }
 
     @Override
