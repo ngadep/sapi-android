@@ -15,6 +15,7 @@ public class ProgressPresenter implements ProgressContract.Presenter {
         this.mView = view;
         this.mRepository = repository;
         this.mCowId = cowId;
+        this.mView.setPresenter(this);
     }
 
     @Override
