@@ -11,6 +11,8 @@ public class Progress {
     private String cow_id;
     private Long date;
     private int weight;
+    @Exclude
+    private Long price;
 
     public Progress() {
         // Default constructor required for calls to DataSnapshot.getValue(Progress.class)
@@ -51,4 +53,12 @@ public class Progress {
         return SimpleDateFormat.getDateInstance().format(new Date(date));
     }
 
+    @Exclude
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+    @Exclude
+    public Double getPrice() {
+        return (double) (price * weight);
+    }
 }
