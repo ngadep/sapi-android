@@ -12,8 +12,6 @@ import com.ngadep.fatteningcattle.models.Progress;
 public class CowRepository extends BaseRepository {
     private static CowRepository INSTANCE = null;
     private final DatabaseReference mRef;
-    private DatabaseReference priceRef;
-    private ValueEventListener priceValueEventListener;
 
     private CowRepository() {
         super();
@@ -30,27 +28,6 @@ public class CowRepository extends BaseRepository {
 
     Query getPackageCowFromId(String packageId) {
         return mRef.child(packageId);
-    }
-
-    void getPricePerKg(final PriceListener callback) {
-        priceRef = getRef().child("settings").child("price");
-        priceValueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                callback.onPriceChange((Long) dataSnapshot.getValue());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-
-        priceRef.addValueEventListener(priceValueEventListener);
-    }
-
-    void cleanup() {
-        priceRef.removeEventListener(priceValueEventListener);
     }
 
     public void saveCow(Cow cow) {
@@ -81,9 +58,5 @@ public class CowRepository extends BaseRepository {
         }
 
         localRef.child(progressId).setValue(progress);
-    }
-
-    interface PriceListener {
-        void onPriceChange(Long price);
     }
 }
