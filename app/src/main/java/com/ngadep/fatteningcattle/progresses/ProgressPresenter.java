@@ -35,10 +35,10 @@ public class ProgressPresenter implements ProgressContract.Presenter {
     }
 
     public void queryPricePerKg() {
-        mRepository.getPricePerKg(new BaseRepository.PriceListener() {
+        mRepository.getSetting("price", new BaseRepository.SettingListener<Long>() {
             @Override
-            public void onPriceChange(Long price) {
-                mPricePerKg = price;
+            public void onValueChange(Long value) {
+                mPricePerKg = value;
                 mView.notifyPriceChange();
             }
         });

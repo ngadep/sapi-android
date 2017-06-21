@@ -7,32 +7,35 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class BaseRepository {
 
     protected final FirebaseDatabase mDatabase;
     protected final FirebaseAuth mAuth;
 
-    private DatabaseReference priceRef;
-    private ValueEventListener priceValueEventListener;
-
     private DatabaseReference modelRef;
     private ValueEventListener modelValueEventListener;
+    
+    private Map<DatabaseReference, ValueEventListener> mSettingQuery;
 
     protected BaseRepository() {
         mDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
+        mSettingQuery = new HashMap<>();
     }
 
     protected DatabaseReference getRef() {
         return mDatabase.getReference();
     }
 
-    public void getPricePerKg(final PriceListener callback) {
-        priceRef = getRef().child("settings").child("price");
-        priceValueEventListener = new ValueEventListener() {
+    public void getSetting(String id, final SettingListener callback) {
+        DatabaseReference settingRef = getRef().child("settings").child(id);
+        ValueEventListener settingValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                callback.onPriceChange((Long) dataSnapshot.getValue());
+                callback.onValueChange(dataSnapshot.getValue());
             }
 
             @Override
@@ -40,8 +43,11 @@ public class BaseRepository {
 
             }
         };
-
-        priceRef.addValueEventListener(priceValueEventListener);
+        
+        if (! mSettingQuery.containsKey(settingRef)) {            
+            settingRef.addValueEventListener(settingValueEventListener);
+            mSettingQuery.put(settingRef, settingValueEventListener);
+        }
     }
 
     protected void getModelFromId(DatabaseReference baseRef, final ModelListener callback) {
@@ -62,8 +68,11 @@ public class BaseRepository {
     }
 
     public void cleanup() {
-        priceRef.removeEventListener(priceValueEventListener);
         modelRef.removeEventListener(modelValueEventListener);
+
+        for (Map.Entry<DatabaseReference, ValueEventListener> entry:mSettingQuery.entrySet() ) {
+            entry.getKey().removeEventListener(entry.getValue());
+        }
     }
 
     public String getUid() {
@@ -74,10 +83,10 @@ public class BaseRepository {
         return result;
     }
 
-    public interface PriceListener {
-        void onPriceChange(Long price);
+    public interface SettingListener<T> {
+        void onValueChange(T value);
     }
-
+    
     public interface ModelListener<T> {
         void onModelChange(T model);
     }
