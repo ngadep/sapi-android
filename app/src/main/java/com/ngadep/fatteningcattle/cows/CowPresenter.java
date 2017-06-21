@@ -22,8 +22,9 @@ public class CowPresenter implements CowContract.Presenter {
         mView.getAllPackageCow(mRepository.getPackageCowFromId(mPackageId));
     }
 
-    public void startCowDetailActivity(String cowId) {
-        /* TODO: show Cow Detail Activity */
+    @Override
+    public void startCowProgress(String cowId) {
+        mView.startCowProgressActivity(cowId);
     }
 
     @Override

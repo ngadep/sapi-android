@@ -1,5 +1,6 @@
 package com.ngadep.fatteningcattle.cows;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,7 @@ import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BuildConfig;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.models.Cow;
+import com.ngadep.fatteningcattle.progresses.ProgressActivity;
 
 public abstract class BaseCowFragment extends Fragment implements CowContract.View {
 
@@ -91,7 +93,7 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mPresenter.startCowDetailActivity(cowId);
+                        mPresenter.startCowProgress(cowId);
                     }
                 });
                 viewHolder.bindToCow(model);
@@ -108,5 +110,12 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
     @Override
     public void notifyPriceChange() {
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void startCowProgressActivity(String cowId) {
+        Intent intent = new Intent(getActivity(), ProgressActivity.class);
+        intent.putExtra(ProgressActivity.EXTRA_COW_ID, cowId);
+        startActivity(intent);
     }
 }

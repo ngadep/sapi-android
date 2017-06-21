@@ -9,7 +9,7 @@ public interface CowContract{
 
     interface Presenter extends BasePresenter {
 
-        void startCowDetailActivity(String cowId);
+        void startCowProgress(String cowId);
 
         void startAddCowUi();
 
@@ -29,6 +29,8 @@ public interface CowContract{
         void startEditCow(String packageId);
 
         void showEditPackage(String packageId, Package packageModel);
+
+        void startCowProgressActivity(String cowId);
     }
 
 }
