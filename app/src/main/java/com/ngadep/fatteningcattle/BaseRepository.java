@@ -44,10 +44,8 @@ public class BaseRepository {
             }
         };
         
-        if (! mSettingQuery.containsKey(settingRef)) {            
-            settingRef.addValueEventListener(settingValueEventListener);
-            mSettingQuery.put(settingRef, settingValueEventListener);
-        }
+        settingRef.addValueEventListener(settingValueEventListener);
+        mSettingQuery.put(settingRef, settingValueEventListener);
     }
 
     protected void getModelFromId(DatabaseReference baseRef, final Class cl, final ModelListener callback) {
