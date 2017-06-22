@@ -11,20 +11,20 @@ import java.util.Locale;
 
 public class ProgressViewHolder extends RecyclerView.ViewHolder {
 
-    private final TextView mCowDate;
-    private final TextView mCowWeight;
-    private final TextView mCowPrice;
+    private final TextView mProgressDate;
+    private final TextView mProgressWeight;
+    private final TextView mProgressPrice;
 
     public ProgressViewHolder(View itemView) {
         super(itemView);
-        mCowDate = (TextView) itemView.findViewById(R.id.progress_date);
-        mCowWeight =(TextView) itemView.findViewById(R.id.progress_weight);
-        mCowPrice =(TextView) itemView.findViewById(R.id.progress_price);
+        mProgressDate = (TextView) itemView.findViewById(R.id.progress_date);
+        mProgressWeight =(TextView) itemView.findViewById(R.id.progress_weight);
+        mProgressPrice =(TextView) itemView.findViewById(R.id.progress_price);
     }
 
     public void bindToProgress(Progress model) {
-        mCowDate.setText(model.getFormatDate());
-        mCowWeight.setText(String.format(Locale.ENGLISH,"%d Kg", model.getWeight()));
-        mCowPrice.setText(String.format(Locale.ENGLISH, "Rp. %1$,.2f", model.getPrice()));
+        mProgressDate.setText(model.getFormatDate());
+        mProgressWeight.setText(String.format(Locale.ENGLISH,"%d Kg", model.getWeight()));
+        mProgressPrice.setText(String.format(Locale.ENGLISH, "Rp. %1$,.2f", model.getPrice()));
     }
 }
