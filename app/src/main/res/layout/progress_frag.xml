@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".progresses.ProgressFragment">
+    tools:context=".progresses.ProgressFragment"
+    android:orientation="vertical">
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart_progress"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="10dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/progress_list"
@@ -13,4 +21,4 @@
         android:scrollbars="vertical"
         tools:listitem="@layout/progress_item" />
 
-</FrameLayout>
+</LinearLayout>
