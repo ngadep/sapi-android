@@ -50,12 +50,12 @@ public class BaseRepository {
         }
     }
 
-    protected void getModelFromId(DatabaseReference baseRef, final ModelListener callback) {
+    protected void getModelFromId(DatabaseReference baseRef, final Class cl, final ModelListener callback) {
         modelRef = baseRef;
         modelValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                callback.onModelChange(dataSnapshot.getValue());
+                callback.onModelChange(dataSnapshot.getValue(cl));
             }
 
             @Override
@@ -68,10 +68,14 @@ public class BaseRepository {
     }
 
     public void cleanup() {
-        modelRef.removeEventListener(modelValueEventListener);
+        if (modelValueEventListener != null) {
+            modelRef.removeEventListener(modelValueEventListener);
+        }
 
         for (Map.Entry<DatabaseReference, ValueEventListener> entry:mSettingQuery.entrySet() ) {
-            entry.getKey().removeEventListener(entry.getValue());
+            if (entry.getValue() != null) {
+                entry.getKey().removeEventListener(entry.getValue());
+            }
         }
     }
 
