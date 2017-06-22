@@ -5,6 +5,8 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @IgnoreExtraProperties
 public class Progress {
@@ -61,4 +63,15 @@ public class Progress {
     public Double getPrice() {
         return (double) (price * weight);
     }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("cow_id", this.cow_id);
+        result.put("date", this.date);
+        result.put("weight", this.weight);
+
+        return result;
+    }
+
 }
