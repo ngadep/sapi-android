@@ -12,17 +12,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BuildConfig;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.models.Cow;
 import com.ngadep.fatteningcattle.models.Progress;
 
+import java.util.ArrayList;
+
 public class BaseProgressFragment extends Fragment implements ProgressContract.View {
 
     protected ProgressContract.Presenter mPresenter;
     private FirebaseRecyclerAdapter<Progress, ProgressViewHolder> mAdapter;
     private RecyclerView mRecycler;
+    private BarChart mChart;
+    ArrayList<BarEntry> chartValue;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,7 +43,47 @@ public class BaseProgressFragment extends Fragment implements ProgressContract.V
         mRecycler.setHasFixedSize(true);
         mRecycler.setAdapter(mAdapter);
 
+        mChart = (BarChart) rootView.findViewById(R.id.chart_progress);
+        chartValue = new ArrayList<>();
+
         return rootView;
+    }
+
+    private void setChartData(int position, float value) {
+        int pos = position + 1;
+        if (pos > chartValue.size()) {
+            for (int i = chartValue.size(); i < pos; i++) {
+                chartValue.add(new BarEntry(i, value));
+            }
+        }
+
+        chartValue.set(position, new BarEntry(pos, value));
+
+        BarDataSet set1;
+
+        if (mChart.getData() != null &&
+                mChart.getData().getDataSetCount() > 0) {
+            set1 = (BarDataSet) mChart.getData().getDataSetByIndex(0);
+            set1.setValues(chartValue);
+            mChart.getData().notifyDataChanged();
+            mChart.notifyDataSetChanged();
+            mChart.invalidate();
+        } else {
+            set1 = new BarDataSet(chartValue, "Progress");
+
+            set1.setDrawIcons(false);
+
+            set1.setColors(ColorTemplate.MATERIAL_COLORS);
+
+            ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
+            dataSets.add(set1);
+
+            BarData data = new BarData(dataSets);
+            data.setValueTextSize(10f);
+            data.setBarWidth(0.9f);
+
+            mChart.setData(data);
+        }
     }
 
     @Override
@@ -92,6 +142,7 @@ public class BaseProgressFragment extends Fragment implements ProgressContract.V
                 R.layout.progress_item, ProgressViewHolder.class, query) {
             @Override
             protected void populateViewHolder(final ProgressViewHolder viewHolder, final Progress model, final int position) {
+                setChartData(position, model.getWeight());
                 model.setPrice(mPresenter.getPricePerKg());
                 final String progressId = getRef(position).getKey();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
