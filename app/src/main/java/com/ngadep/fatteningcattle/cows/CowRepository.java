@@ -9,6 +9,9 @@ import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Cow;
 import com.ngadep.fatteningcattle.models.Progress;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CowRepository extends BaseRepository {
     private static CowRepository INSTANCE = null;
     private final DatabaseReference mRef;
@@ -35,7 +38,7 @@ public class CowRepository extends BaseRepository {
     }
 
     public void saveCow(String cowId, Cow cow) {
-        DatabaseReference localRef = mRef.child(cow.getPackage_id());
+        DatabaseReference localRef = getRef().child("cows");
 
         if (cowId == null) {
             cowId = localRef.push().getKey();
@@ -43,7 +46,13 @@ public class CowRepository extends BaseRepository {
             this.saveCowProgress(lProgress);
         }
 
-        localRef.child(cowId).setValue(cow);
+        Map<String, Object> cowValues = cow.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/cows/" + cowId, cowValues);
+        childUpdates.put("/package-cows/" + cow.getPackage_id() + "/" + cowId, cowValues);
+
+        getRef().updateChildren(childUpdates);
     }
 
     public void saveCowProgress(Progress progress) {
@@ -51,12 +60,18 @@ public class CowRepository extends BaseRepository {
     }
 
     public void saveCowProgress(String progressId, Progress progress) {
-        DatabaseReference localRef = getRef().child("cow-progresses").child(progress.getCow_id());
+        DatabaseReference localRef = getRef().child("progresses");
 
         if (progressId == null) {
             progressId = localRef.push().getKey();
         }
 
-        localRef.child(progressId).setValue(progress);
+        Map<String, Object> cowValues = progress.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/progresses/" + progressId, cowValues);
+        childUpdates.put("/cow-progresses/" + progress.getCow_id() + "/" + progressId, cowValues);
+
+        getRef().updateChildren(childUpdates);
     }
 }
