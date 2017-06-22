@@ -43,8 +43,10 @@ public class BaseProgressFragment extends Fragment implements ProgressContract.V
         mRecycler.setHasFixedSize(true);
         mRecycler.setAdapter(mAdapter);
 
-        mChart = (BarChart) rootView.findViewById(R.id.chart_progress);
         chartValue = new ArrayList<>();
+
+        mChart = (BarChart) rootView.findViewById(R.id.chart_progress);
+        mChart.getDescription().setEnabled(false);
 
         return rootView;
     }
