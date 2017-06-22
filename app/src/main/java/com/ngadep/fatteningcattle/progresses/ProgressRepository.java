@@ -7,7 +7,7 @@ import com.ngadep.fatteningcattle.models.Cow;
 
 class ProgressRepository extends BaseRepository {
     private final String COW_TREE = "cows";
-    private final String COW_PROGRESS_TREE = "cow_progresses";
+    private final String COW_PROGRESS_TREE = "cow-progresses";
 
     private static ProgressRepository INSTANCE = null;
     private final DatabaseReference mCowRef;
@@ -29,10 +29,10 @@ class ProgressRepository extends BaseRepository {
     }
 
     public Query getCowProgressFromId(String cowId) {
-        return mCowRef.child(cowId);
+        return mCowProgressesRef.child(cowId);
     }
 
     public void getCowModelFromId(String cowId, ModelListener<Cow> callback) {
-        getModelFromId(mCowRef.child(cowId), callback);
+        getModelFromId(mCowRef.child(cowId), Cow.class, callback);
     }
 }
