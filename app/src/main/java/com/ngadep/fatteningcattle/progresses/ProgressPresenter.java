@@ -8,7 +8,6 @@ public class ProgressPresenter implements ProgressContract.Presenter {
     private ProgressContract.View mView;
     private ProgressRepository mRepository;
     private String mCowId;
-    private Cow mCowModel;
     private Long mPricePerKg;
 
     public ProgressPresenter(ProgressContract.View view, ProgressRepository repository, String cowId) {
@@ -29,7 +28,6 @@ public class ProgressPresenter implements ProgressContract.Presenter {
         mRepository.getCowModelFromId(mCowId, new BaseRepository.ModelListener<Cow>() {
             @Override
             public void onModelChange(Cow model) {
-                mCowModel = model;
                 mView.notifyCowChange(model);
             }
         });
