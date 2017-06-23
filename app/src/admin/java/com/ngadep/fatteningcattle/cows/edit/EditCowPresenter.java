@@ -40,6 +40,7 @@ public class EditCowPresenter implements EditCowContract.Presenter {
                     mView.setSex(mCow.getSex());
                     mView.setWeight(mCow.getWeight());
                     mView.setDate(mCow.getDate());
+                    mView.hideWeightAndDate();
                 }
             }
         });

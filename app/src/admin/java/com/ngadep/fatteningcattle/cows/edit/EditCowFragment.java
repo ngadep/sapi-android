@@ -181,4 +181,10 @@ public class EditCowFragment extends Fragment implements EditCowContract.View {
         getActivity().setResult(Activity.RESULT_OK);
         getActivity().finish();
     }
+
+    @Override
+    public void hideWeightAndDate() {
+        mWeight.setVisibility(View.GONE);
+        mDate.setVisibility(View.GONE);
+    }
 }

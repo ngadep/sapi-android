@@ -24,5 +24,7 @@ public interface EditCowContract {
         void setDate(Long date);
 
         void showCowList();
+
+        void hideWeightAndDate();
     }
 }
