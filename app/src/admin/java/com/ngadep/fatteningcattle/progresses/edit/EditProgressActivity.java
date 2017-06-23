@@ -57,8 +57,8 @@ public class EditProgressActivity extends AppCompatActivity {
         return true;
     }
 
-    public void setToolBarTitle(@Nullable String packageId) {
-        if(packageId == null) {
+    public void setToolBarTitle(@Nullable String progressId) {
+        if(progressId == null) {
             setTitle(R.string.progress_add);
         } else {
             setTitle(R.string.progress_edit);
