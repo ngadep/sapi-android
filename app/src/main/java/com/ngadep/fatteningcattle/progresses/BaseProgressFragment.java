@@ -26,7 +26,7 @@ import com.ngadep.fatteningcattle.models.Progress;
 
 import java.util.ArrayList;
 
-public class BaseProgressFragment extends Fragment implements ProgressContract.View {
+public abstract class BaseProgressFragment extends Fragment implements ProgressContract.View {
 
     protected ProgressContract.Presenter mPresenter;
     private FirebaseRecyclerAdapter<Progress, ProgressViewHolder> mAdapter;
@@ -99,8 +99,7 @@ public class BaseProgressFragment extends Fragment implements ProgressContract.V
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO: show add progress ui
-                    //mPresenter.startAddProgressUi();
+                    mPresenter.startAddProgressUi();
                 }
             });
         }

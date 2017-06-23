@@ -50,11 +50,16 @@ public class ProgressPresenter implements ProgressContract.Presenter {
 
     @Override
     public void startProgressDetailActivity(String progressId) {
-        //TODO: start ProgressDetailActivity
+        mView.showEditProgressActivity(mCowId, progressId);
     }
 
     @Override
     public void cleanup() {
         mRepository.cleanup();
+    }
+
+    @Override
+    public void startAddProgressUi() {
+        mView.showEditProgressActivity(mCowId, null);
     }
 }
