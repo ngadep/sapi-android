@@ -12,6 +12,11 @@
     <string name="package_add">New Package</string>
     <string name="package_edit">Edit Package</string>
     <string name="cow_message_successfully_saved">Cow Saved Successfully</string>
+    <string name="cow_add">New Cow</string>
+    <string name="cow_edit">Edit Cow</string>
+    <string name="progress_add">New Progress</string>
+    <string name="progress_edit">Edit Progress</string>
+    <string name="progress_message_successfully_saved">Progress Saved Successfully</string>
     <string-array name="sex_array">
         <item>Male</item>
         <item>Female</item>
