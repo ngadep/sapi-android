@@ -11,6 +11,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".packages.edit.EditPackageActivity" />
         <activity android:name=".cows.edit.EditCowActivity" />
+        <activity android:name=".progresses.edit.EditProgressActivity" />
     </application>
 
 </manifest>
