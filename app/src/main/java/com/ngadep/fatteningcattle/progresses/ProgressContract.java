@@ -15,6 +15,8 @@ public interface ProgressContract {
         void cleanup();
 
         void startAddProgressUi();
+
+        void showEditCowUi();
     }
 
     interface View extends BaseView<Presenter> {
@@ -26,5 +28,7 @@ public interface ProgressContract {
         void notifyCowChange(Cow model);
 
         void showEditProgressActivity(String cowId, String progressId);
+
+        void showEditCowActivity(String cowId, String packageId);
     }
 }
