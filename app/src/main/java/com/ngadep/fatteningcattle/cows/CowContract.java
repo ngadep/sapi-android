@@ -31,6 +31,8 @@ public interface CowContract{
         void showEditPackage(String packageId, Package packageModel);
 
         void startCowProgressActivity(String cowId);
+
+        void notifyPackageChange(Package aPackage);
     }
 
 }

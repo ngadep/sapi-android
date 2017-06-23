@@ -17,6 +17,7 @@ import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BuildConfig;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.models.Cow;
+import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.progresses.ProgressActivity;
 
 public abstract class BaseCowFragment extends Fragment implements CowContract.View {
@@ -118,4 +119,10 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
         intent.putExtra(ProgressActivity.EXTRA_COW_ID, cowId);
         startActivity(intent);
     }
+
+    @Override
+    public void notifyPackageChange(Package aPackage) {
+        getActivity().setTitle(aPackage.getName());
+    }
+
 }
