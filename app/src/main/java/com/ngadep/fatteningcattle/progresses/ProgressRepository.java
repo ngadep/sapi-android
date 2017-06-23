@@ -1,5 +1,6 @@
 package com.ngadep.fatteningcattle.progresses;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.firebase.database.DatabaseReference;
@@ -65,5 +66,16 @@ public class ProgressRepository extends BaseRepository {
         childUpdates.put("/cow-progresses/" + progress.getCow_id() + "/" + progressId, progressValues);
 
         getRef().updateChildren(childUpdates);
+    }
+
+    public void updateCow(@NonNull String aCowId, Cow cow) {
+        Map<String, Object> cowValues = cow.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/cows/" + aCowId, cowValues);
+        childUpdates.put("/package-cows/" + cow.getPackage_id() + "/" + aCowId, cowValues);
+
+        getRef().updateChildren(childUpdates);
+
     }
 }

@@ -1,6 +1,7 @@
 package com.ngadep.fatteningcattle.progresses.edit;
 
 import com.ngadep.fatteningcattle.BaseRepository;
+import com.ngadep.fatteningcattle.models.Cow;
 import com.ngadep.fatteningcattle.models.Progress;
 import com.ngadep.fatteningcattle.progresses.ProgressRepository;
 
@@ -10,6 +11,7 @@ public class EditProgressPresenter implements EditProgressContract.Presenter {
     private final String mProgressId;
     private final ProgressRepository mRepository;
     private final EditProgressContract.View mView;
+    private Cow mCow;
 
     public EditProgressPresenter(String cowId, String progressId,
                                  ProgressRepository repository, EditProgressContract.View view) {
@@ -25,6 +27,8 @@ public class EditProgressPresenter implements EditProgressContract.Presenter {
     public void start() {
         if (!isNewProgress()) {
             populateProgress();
+        } else {
+            getCowModel();
         }
     }
 
@@ -45,6 +49,10 @@ public class EditProgressPresenter implements EditProgressContract.Presenter {
         Progress progress = new Progress(mCowId, date, weight);
         if (isNewProgress()) {
             mRepository.saveProgress(progress);
+            Cow cow = mCow;
+            cow.setDate(date);
+            cow.setWeight(weight);
+            mRepository.updateCow(mCowId,cow);
         } else {
             mRepository.saveProgress(mProgressId, progress);
         }
@@ -58,5 +66,14 @@ public class EditProgressPresenter implements EditProgressContract.Presenter {
 
     public boolean isNewProgress() {
         return mProgressId == null;
+    }
+
+    public void getCowModel() {
+        mRepository.getCowModelFromId(mCowId, new BaseRepository.ModelListener<Cow>() {
+            @Override
+            public void onModelChange(Cow model) {
+                mCow = model;
+            }
+        });
     }
 }
