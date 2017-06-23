@@ -62,8 +62,8 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onPause() {
+        super.onPause();
         if (mAdapter != null) {
             mAdapter.cleanup();
         }

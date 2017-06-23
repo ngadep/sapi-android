@@ -51,8 +51,8 @@ public class PackageFragment extends Fragment implements PackageContract.View {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onPause() {
+        super.onPause();
         if (mAdapter != null) {
             mAdapter.cleanup();
         }
