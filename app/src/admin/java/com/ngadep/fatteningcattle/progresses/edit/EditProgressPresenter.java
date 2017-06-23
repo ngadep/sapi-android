@@ -46,7 +46,7 @@ public class EditProgressPresenter implements EditProgressContract.Presenter {
         if (isNewProgress()) {
             mRepository.saveProgress(progress);
         } else {
-            mRepository.saveProgress(mCowId, progress);
+            mRepository.saveProgress(mProgressId, progress);
         }
         mView.showProgressList();
     }
