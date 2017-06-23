@@ -57,6 +57,11 @@ public class EditCowPresenter implements EditCowContract.Presenter {
 
     }
 
+    @Override
+    public void cleanup() {
+        mRepository.cleanup();
+    }
+
     public boolean isNewCow() {
         return mCowId == null;
     }

@@ -7,6 +7,8 @@ public interface EditCowContract {
     interface Presenter extends BasePresenter {
 
         void saveCow(String earTag, String sex, int weight, long date);
+
+        void cleanup();
     }
 
     interface View extends BaseView<Presenter> {
