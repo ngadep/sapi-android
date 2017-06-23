@@ -1,6 +1,7 @@
 package com.ngadep.fatteningcattle.progresses.edit;
 
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -134,5 +135,11 @@ public class EditProgressFragment extends Fragment implements EditProgressContra
         SimpleDateFormat.getDateInstance().format(lDate);
         mCalendar.setTime(lDate);
         mDate.setText(SimpleDateFormat.getDateInstance().format(mCalendar.getTime()));
+    }
+
+    @Override
+    public void showProgressList() {
+        getActivity().setResult(Activity.RESULT_OK);
+        getActivity().finish();
     }
 }

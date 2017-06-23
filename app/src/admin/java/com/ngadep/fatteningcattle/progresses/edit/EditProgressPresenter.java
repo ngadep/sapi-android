@@ -42,7 +42,13 @@ public class EditProgressPresenter implements EditProgressContract.Presenter {
 
     @Override
     public void saveProgress(int weight, long date) {
-
+        Progress progress = new Progress(mCowId, date, weight);
+        if (isNewProgress()) {
+            mRepository.saveProgress(progress);
+        } else {
+            mRepository.saveProgress(mCowId, progress);
+        }
+        mView.showProgressList();
     }
 
     @Override

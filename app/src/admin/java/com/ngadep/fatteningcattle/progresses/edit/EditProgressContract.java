@@ -19,5 +19,7 @@ public interface EditProgressContract {
         void setWeight(int weight);
 
         void setDate(Long date);
+
+        void showProgressList();
     }
 }
