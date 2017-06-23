@@ -56,6 +56,7 @@ public class PackageFragment extends Fragment implements PackageContract.View {
         if (mAdapter != null) {
             mAdapter.cleanup();
         }
+        mPresenter.cleanup();
     }
 
     @Override

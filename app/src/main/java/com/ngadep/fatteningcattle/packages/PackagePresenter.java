@@ -39,6 +39,11 @@ public class PackagePresenter implements PackageContract.Presenter {
     }
 
     @Override
+    public void cleanup() {
+        mRepository.cleanup();
+    }
+
+    @Override
     public void start() {
         getCurrentUserPackages();
     }

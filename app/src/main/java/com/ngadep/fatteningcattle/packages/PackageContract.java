@@ -22,5 +22,7 @@ interface PackageContract {
         void startCowActivity(String packageKey, Package pkg) ;
 
         void showAddPackage();
+
+        void cleanup();
     }
 }
