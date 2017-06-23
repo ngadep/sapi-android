@@ -165,7 +165,7 @@ public class EditCowFragment extends Fragment implements EditCowContract.View {
 
     @Override
     public void setWeight(int weight) {
-        mWeight.setText(weight);
+        mWeight.setText(String.valueOf(weight));
     }
 
     @Override
@@ -173,6 +173,7 @@ public class EditCowFragment extends Fragment implements EditCowContract.View {
         Date lDate = new Date(date);
         SimpleDateFormat.getDateInstance().format(lDate);
         mCalendar.setTime(lDate);
+        mDate.setText(SimpleDateFormat.getDateInstance().format(mCalendar.getTime()));
     }
 
     @Override
