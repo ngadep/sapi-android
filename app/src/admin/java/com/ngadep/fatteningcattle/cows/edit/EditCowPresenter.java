@@ -52,6 +52,6 @@ public class EditCowPresenter implements EditCowContract.Presenter {
     }
 
     public boolean isNewCow() {
-        return mCowId != null;
+        return mCowId == null;
     }
 }
