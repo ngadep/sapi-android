@@ -29,8 +29,8 @@ public class ProgressPresenter implements ProgressContract.Presenter {
         mRepository.getCowModelFromId(mCowId, new BaseRepository.ModelListener<Cow>() {
             @Override
             public void onModelChange(Cow model) {
-                mView.notifyCowChange(model);
                 mCow = model;
+                mView.notifyCowChange(mCow);
             }
         });
     }
