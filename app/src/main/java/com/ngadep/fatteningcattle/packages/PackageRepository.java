@@ -13,12 +13,15 @@ import java.util.Map;
 
 public class PackageRepository extends BaseRepository {
 
+    private static final String PACKAGE_TREE = "packages";
     private static PackageRepository INSTANCE = null;
     private final DatabaseReference mRef;
+    private final DatabaseReference mPackageRef;
 
     private PackageRepository() {
         super();
         mRef = getRef().child("user-packages");
+        mPackageRef = getRef().child(PACKAGE_TREE);
     }
 
     public static PackageRepository getInstance() {
@@ -52,4 +55,7 @@ public class PackageRepository extends BaseRepository {
         this.savePackage(null, pkg);
     }
 
+    public void getPackageFromId(String aPackageId, ModelListener<Package> callback) {
+        getModelFromId(mPackageRef.child(aPackageId), Package.class, callback);
+    }
 }
