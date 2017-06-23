@@ -64,7 +64,7 @@ public class EditProgressFragment extends Fragment implements EditProgressContra
         super.onActivityCreated(savedInstanceState);
 
         FloatingActionButton fab =
-                (FloatingActionButton) getActivity().findViewById(R.id.fab_edit_cow);
+                (FloatingActionButton) getActivity().findViewById(R.id.fab_edit_progress);
         fab.setImageResource(R.drawable.ic_done);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
