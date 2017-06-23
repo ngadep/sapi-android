@@ -5,7 +5,7 @@ import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Cow;
 
-class ProgressRepository extends BaseRepository {
+public class ProgressRepository extends BaseRepository {
     private final String COW_TREE = "cows";
     private final String COW_PROGRESS_TREE = "cow-progresses";
 
