@@ -7,14 +7,13 @@ public class CowPresenter implements CowContract.Presenter {
     private final CowContract.View mView;
     private final CowRepository mRepository;
     private final String mPackageId;
-    private final Package mPackageModel;
+    private Package mPackage;
     private Long mPricePerKg = 0L;
 
-    public CowPresenter(CowContract.View view, CowRepository repository, String packageId, Package pkg) {
+    public CowPresenter(CowContract.View view, CowRepository repository, String packageId) {
         mView = view;
         mRepository = repository;
         mPackageId = packageId;
-        mPackageModel = pkg;
         mView.setPresenter(this);
     }
 
@@ -34,8 +33,19 @@ public class CowPresenter implements CowContract.Presenter {
 
     @Override
     public void start() {
+        queryPackage();
         queryPricePerKg();
         getPackageCows();
+    }
+
+    private void queryPackage() {
+        mRepository.getPackageFromId(mPackageId, new BaseRepository.ModelListener<Package>() {
+            @Override
+            public void onModelChange(Package model) {
+                mPackage = model;
+                mView.notifyPackageChange(mPackage);
+            }
+        });
     }
 
     public void queryPricePerKg() {
@@ -60,6 +70,6 @@ public class CowPresenter implements CowContract.Presenter {
 
     @Override
     public void showEditPackageUi() {
-        mView.showEditPackage(mPackageId, mPackageModel);
+        mView.showEditPackage(mPackageId, mPackage);
     }
 }
