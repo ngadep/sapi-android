@@ -3,22 +3,22 @@ package com.ngadep.fatteningcattle.packages.edit;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.packages.PackageRepository;
 
 public class EditPackagePresenter implements EditPackageContract.Presenter {
 
     private final String mPackageId;
-    private final Package mPackageModel;
+    private Package mPackage;
     private final PackageRepository mRepository;
     private final EditPackageContract.View mView;
     private final String mUserId;
 
     public EditPackagePresenter(@NonNull String userId, @Nullable String packageId,
-                                @Nullable Package packageModel, @NonNull PackageRepository repository,
+                                @NonNull PackageRepository repository,
                                 @NonNull EditPackageContract.View view) {
         mPackageId = packageId;
-        mPackageModel = packageModel;
         mUserId = userId;
         mRepository = repository;
         mView = view;
@@ -35,12 +35,18 @@ public class EditPackagePresenter implements EditPackageContract.Presenter {
 
     @Override
     public void populatePackage() {
-        if (mView.isActive()) {
-            mView.setName(mPackageModel.getName());
-            mView.setLocation(mPackageModel.getLocation());
-            mView.setType(mPackageModel.getType());
-            mView.setActive(mPackageModel.isActive());
-        }
+        mRepository.getPackageFromId(mPackageId, new BaseRepository.ModelListener<Package>() {
+            @Override
+            public void onModelChange(Package model) {
+                mPackage = model;
+                if (mView.isActive()) {
+                    mView.setName(mPackage.getName());
+                    mView.setLocation(mPackage.getLocation());
+                    mView.setType(mPackage.getType());
+                    mView.setActive(mPackage.isActive());
+                }
+            }
+        });
     }
 
     @Override
