@@ -17,6 +17,7 @@ import com.ngadep.fatteningcattle.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class EditProgressFragment extends Fragment implements EditProgressContract.View {
     public static final String ARGUMENT_EDIT_COW_ID = "EDIT_COW_ID";
@@ -58,6 +59,17 @@ public class EditProgressFragment extends Fragment implements EditProgressContra
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.start();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.cleanup();
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -106,4 +118,21 @@ public class EditProgressFragment extends Fragment implements EditProgressContra
         mPresenter = presenter;
     }
 
+    @Override
+    public boolean isActive() {
+        return isAdded();
+    }
+
+    @Override
+    public void setWeight(int weight) {
+        mWeight.setText(String.valueOf(weight));
+    }
+
+    @Override
+    public void setDate(Long date) {
+        Date lDate = new Date(date);
+        SimpleDateFormat.getDateInstance().format(lDate);
+        mCalendar.setTime(lDate);
+        mDate.setText(SimpleDateFormat.getDateInstance().format(mCalendar.getTime()));
+    }
 }
