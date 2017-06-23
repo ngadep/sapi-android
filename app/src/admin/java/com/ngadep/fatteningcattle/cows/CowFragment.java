@@ -40,7 +40,7 @@ public class CowFragment extends BaseCowFragment {
             if (REQUEST_ADD_COW == requestCode) {
                 showMessage(getString(R.string.cow_message_successfully_saved));
             } else if (REQUEST_EDIT_PACKAGE == requestCode) {
-                getActivity().finish();
+                showMessage(getString(R.string.package_message_successfully_saved));
             }
         }
     }
@@ -57,7 +57,6 @@ public class CowFragment extends BaseCowFragment {
         Intent intent = new Intent(getActivity(), EditPackageActivity.class);
         intent.putExtra(EditPackageFragment.ARGUMENT_EDIT_USER_ID, packageModel.getUid());
         intent.putExtra(EditPackageFragment.ARGUMENT_EDIT_PACKAGE_ID, packageId);
-        intent.putExtra(EditPackageFragment.ARGUMENT_EDIT_PACKAGE_MODEL, packageModel);
         startActivityForResult(intent, REQUEST_EDIT_PACKAGE);
     }
 

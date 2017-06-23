@@ -93,7 +93,6 @@ public class PackageFragment extends Fragment implements PackageContract.View {
         // Launch Cow Activity
         Intent intent = new Intent(getActivity(), CowActivity.class);
         intent.putExtra(CowActivity.EXTRA_PACKAGE_ID, packageKey);
-        intent.putExtra(CowActivity.EXTRA_PACKAGE_MODEL, pkg);
         startActivity(intent);
     }
 

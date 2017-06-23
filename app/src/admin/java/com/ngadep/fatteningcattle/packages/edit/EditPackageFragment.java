@@ -16,7 +16,6 @@ import com.ngadep.fatteningcattle.R;
 
 public class EditPackageFragment extends Fragment implements EditPackageContract.View {
     public static final String ARGUMENT_EDIT_PACKAGE_ID = "EDIT_PACKAGE_ID";
-    public static final String ARGUMENT_EDIT_PACKAGE_MODEL = "EDIT_PACKAGE_MODEL";
     public static final String ARGUMENT_EDIT_USER_ID = "EDIT_USER_ID";
 
     private EditPackageContract.Presenter mPresenter;

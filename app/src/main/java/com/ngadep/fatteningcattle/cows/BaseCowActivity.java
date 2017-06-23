@@ -12,7 +12,6 @@ import com.ngadep.fatteningcattle.utils.ActivityUtils;
 public class BaseCowActivity extends AppCompatActivity {
 
     public static final String EXTRA_PACKAGE_ID = "PACKAGE_ID";
-    public static final String EXTRA_PACKAGE_MODEL = "PACKAGE_MODEL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +28,6 @@ public class BaseCowActivity extends AppCompatActivity {
 
         // Get the requested package id
         String packageId = getIntent().getStringExtra(EXTRA_PACKAGE_ID);
-        Package pkg = getIntent().getParcelableExtra(EXTRA_PACKAGE_MODEL);
-
-        setTitle(pkg.getName());
 
         CowFragment cowFragment = (CowFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.content_frame);
@@ -43,7 +39,7 @@ public class BaseCowActivity extends AppCompatActivity {
                     getSupportFragmentManager(), cowFragment, R.id.content_frame);
         }
 
-        new CowPresenter(cowFragment, CowRepository.getInstance(), packageId, pkg);
+        new CowPresenter(cowFragment, CowRepository.getInstance(), packageId);
     }
 
     @Override

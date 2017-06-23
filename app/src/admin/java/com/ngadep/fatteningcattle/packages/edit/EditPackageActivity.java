@@ -23,7 +23,6 @@ public class EditPackageActivity extends AppCompatActivity {
 
         String userId = getIntent().getStringExtra(EditPackageFragment.ARGUMENT_EDIT_USER_ID);
         String packageId = getIntent().getStringExtra(EditPackageFragment.ARGUMENT_EDIT_PACKAGE_ID);
-        Package packageModel = getIntent().getParcelableExtra(EditPackageFragment.ARGUMENT_EDIT_PACKAGE_MODEL);
 
         setToolBarTitle(packageId);
 
@@ -38,7 +37,6 @@ public class EditPackageActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString(EditPackageFragment.ARGUMENT_EDIT_USER_ID, userId);
                 bundle.putString(EditPackageFragment.ARGUMENT_EDIT_PACKAGE_ID, packageId);
-                bundle.putParcelable(EditPackageFragment.ARGUMENT_EDIT_PACKAGE_MODEL, packageModel);
                 editPackageFragment.setArguments(bundle);
             }
 
@@ -49,7 +47,6 @@ public class EditPackageActivity extends AppCompatActivity {
         new EditPackagePresenter(
                 userId,
                 packageId,
-                packageModel,
                 PackageRepository.getInstance(),
                 editPackageFragment
         );
