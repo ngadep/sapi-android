@@ -7,6 +7,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Cow;
+import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.models.Progress;
 
 import java.util.HashMap;
@@ -14,14 +15,19 @@ import java.util.Map;
 
 public class CowRepository extends BaseRepository {
     private static final String COW_TREE = "cows";
+    private static final String PACKAGE_TREE = "packages";
+    private static final String PACKAGE_COWS_TREE = "package-cows";
+
     private static CowRepository INSTANCE = null;
     private final DatabaseReference mRef;
     private final DatabaseReference mCowRef;
+    private final DatabaseReference mPackageRef;
 
     private CowRepository() {
         super();
-        mRef = getRef().child("package-cows");
+        mRef = getRef().child(PACKAGE_COWS_TREE);
         mCowRef = getRef().child(COW_TREE);
+        mPackageRef = getRef().child(PACKAGE_TREE);
     }
 
     public static CowRepository getInstance() {
@@ -79,5 +85,9 @@ public class CowRepository extends BaseRepository {
         childUpdates.put("/cow-progresses/" + progress.getCow_id() + "/" + progressId, cowValues);
 
         getRef().updateChildren(childUpdates);
+    }
+
+    public void getPackageFromId(String aPackageId, ModelListener<Package> callback) {
+        getModelFromId(mPackageRef.child(aPackageId), Package.class, callback);
     }
 }
