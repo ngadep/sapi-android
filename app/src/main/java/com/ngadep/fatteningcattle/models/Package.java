@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @IgnoreExtraProperties
-public class Package implements Parcelable {
+public class Package {
     private String uid;
     private String name;
     private String location;
@@ -28,26 +28,6 @@ public class Package implements Parcelable {
         this.type = type;
         this.active = active;
     }
-
-    protected Package(Parcel in) {
-        uid = in.readString();
-        name = in.readString();
-        location = in.readString();
-        type = in.readInt();
-        active = in.readByte() != 0;
-    }
-
-    public static final Creator<Package> CREATOR = new Creator<Package>() {
-        @Override
-        public Package createFromParcel(Parcel in) {
-            return new Package(in);
-        }
-
-        @Override
-        public Package[] newArray(int size) {
-            return new Package[size];
-        }
-    };
 
     public String getUid() {
         return uid;
@@ -99,19 +79,5 @@ public class Package implements Parcelable {
         result.put("active", this.active);
 
         return result;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(uid);
-        dest.writeString(name);
-        dest.writeString(location);
-        dest.writeInt(type);
-        dest.writeByte((byte) (active ? 1 : 0));
     }
 }
