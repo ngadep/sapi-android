@@ -24,7 +24,6 @@ import java.util.Date;
 public class EditCowFragment extends Fragment implements EditCowContract.View {
     public static final String ARGUMENT_EDIT_PACKAGE_ID = "EDIT_PACKAGE_ID";
     public static final String ARGUMENT_EDIT_COW_ID = "EDIT_COW_ID";
-    public static final String ARGUMENT_EDIT_COW_MODEL = "EDIT_COW_MODEL";
 
     private EditCowContract.Presenter mPresenter;
 

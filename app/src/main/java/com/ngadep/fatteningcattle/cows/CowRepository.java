@@ -13,12 +13,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CowRepository extends BaseRepository {
+    private static final String COW_TREE = "cows";
     private static CowRepository INSTANCE = null;
     private final DatabaseReference mRef;
+    private final DatabaseReference mCowRef;
 
     private CowRepository() {
         super();
         mRef = getRef().child("package-cows");
+        mCowRef = getRef().child(COW_TREE);
     }
 
     public static CowRepository getInstance() {
@@ -53,6 +56,9 @@ public class CowRepository extends BaseRepository {
         childUpdates.put("/package-cows/" + cow.getPackage_id() + "/" + cowId, cowValues);
 
         getRef().updateChildren(childUpdates);
+    }
+    public void getCowFromId(String cowId, ModelListener<Cow> callback) {
+        getModelFromId(mCowRef.child(cowId), Cow.class, callback);
     }
 
     public void saveCowProgress(Progress progress) {

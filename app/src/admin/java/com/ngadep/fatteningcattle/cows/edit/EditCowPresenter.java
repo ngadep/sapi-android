@@ -3,21 +3,21 @@ package com.ngadep.fatteningcattle.cows.edit;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.cows.CowRepository;
 import com.ngadep.fatteningcattle.models.Cow;
 
 public class EditCowPresenter implements EditCowContract.Presenter {
     private final String mPackageId;
     private final String mCowId;
-    private final Cow mCowModel;
+    private Cow mCow;
     private final CowRepository mRepository;
     private final EditCowContract.View mView;
 
-    public EditCowPresenter(@NonNull String packageId, @Nullable String cowId, @Nullable Cow cowModel,
+    public EditCowPresenter(@NonNull String packageId, @Nullable String cowId,
                             @NonNull CowRepository repository, @NonNull EditCowContract.View view) {
         mPackageId = packageId;
         mCowId = cowId;
-        mCowModel = cowModel;
         mRepository = repository;
         mView = view;
         mView.setPresenter(this);
@@ -31,12 +31,18 @@ public class EditCowPresenter implements EditCowContract.Presenter {
     }
 
     private void populateCow() {
-        if (mView.isActive()) {
-            mView.setEarTag(mCowModel.getEar_tag());
-            mView.setSex(mCowModel.getSex());
-            mView.setWeight(mCowModel.getWeight());
-            mView.setDate(mCowModel.getDate());
-        }
+        mRepository.getCowFromId(mCowId, new BaseRepository.ModelListener<Cow>() {
+            @Override
+            public void onModelChange(Cow model) {
+                mCow = model;
+                if (mView.isActive()) {
+                    mView.setEarTag(mCow.getEar_tag());
+                    mView.setSex(mCow.getSex());
+                    mView.setWeight(mCow.getWeight());
+                    mView.setDate(mCow.getDate());
+                }
+            }
+        });
     }
 
     @Override

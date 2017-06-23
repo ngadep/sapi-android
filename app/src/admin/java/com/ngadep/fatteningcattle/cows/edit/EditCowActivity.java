@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.cows.CowRepository;
-import com.ngadep.fatteningcattle.models.Cow;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
 public class EditCowActivity extends AppCompatActivity {
@@ -23,7 +22,6 @@ public class EditCowActivity extends AppCompatActivity {
 
         String packageId = getIntent().getStringExtra(EditCowFragment.ARGUMENT_EDIT_PACKAGE_ID);
         String cowId = getIntent().getStringExtra(EditCowFragment.ARGUMENT_EDIT_COW_ID);
-        Cow cowModel = getIntent().getParcelableExtra(EditCowFragment.ARGUMENT_EDIT_COW_MODEL);
 
         setToolBarTitle(cowId);
 
@@ -36,8 +34,8 @@ public class EditCowActivity extends AppCompatActivity {
 
             if (getIntent().hasExtra(EditCowFragment.ARGUMENT_EDIT_COW_ID)) {
                 Bundle bundle = new Bundle();
+                bundle.putString(EditCowFragment.ARGUMENT_EDIT_PACKAGE_ID, packageId);
                 bundle.putString(EditCowFragment.ARGUMENT_EDIT_COW_ID, cowId);
-                bundle.putParcelable(EditCowFragment.ARGUMENT_EDIT_COW_MODEL, cowModel);
                 editCowFragment.setArguments(bundle);
             }
 
@@ -48,7 +46,6 @@ public class EditCowActivity extends AppCompatActivity {
         new EditCowPresenter(
                 packageId,
                 cowId,
-                cowModel,
                 CowRepository.getInstance(),
                 editCowFragment
         );
@@ -60,8 +57,8 @@ public class EditCowActivity extends AppCompatActivity {
         return true;
     }
 
-    public void setToolBarTitle(@Nullable String packageId) {
-        if(packageId == null) {
+    public void setToolBarTitle(@Nullable String cowId) {
+        if(cowId == null) {
             setTitle(R.string.cow_add);
         } else {
             setTitle(R.string.cow_edit);
