@@ -1,10 +1,15 @@
 package com.ngadep.fatteningcattle.progresses;
 
+import android.support.annotation.Nullable;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Cow;
 import com.ngadep.fatteningcattle.models.Progress;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProgressRepository extends BaseRepository {
     private final String COW_TREE = "cows";
@@ -42,5 +47,23 @@ public class ProgressRepository extends BaseRepository {
 
     public void getProgressFromId(String progressId, ModelListener<Progress> callback) {
         getModelFromId(mProgressRef.child(progressId), Progress.class, callback);
+    }
+
+    public void saveProgress(Progress progress) {
+        this.saveProgress(null, progress);
+    }
+
+    public void saveProgress(@Nullable String progressId, Progress progress) {
+        if (progressId == null) {
+            progressId = mProgressRef.push().getKey();
+        }
+
+        Map<String, Object> progressValues = progress.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/progresses/" + progressId, progressValues);
+        childUpdates.put("/cow-progresses/" + progress.getCow_id() + "/" + progressId, progressValues);
+
+        getRef().updateChildren(childUpdates);
     }
 }
