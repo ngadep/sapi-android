@@ -9,4 +9,9 @@ public class ProgressFragment extends BaseProgressFragment {
     public void showEditProgressActivity(String cowId, String progressId) {
         // do nothing
     }
+
+    @Override
+    public void showEditCowActivity(String cowId, String packageId) {
+        // do nothing
+    }
 }
