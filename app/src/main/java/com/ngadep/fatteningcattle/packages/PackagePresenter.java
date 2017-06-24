@@ -2,7 +2,9 @@ package com.ngadep.fatteningcattle.packages;
 
 import android.support.annotation.Nullable;
 
+import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Package;
+import com.ngadep.fatteningcattle.models.User;
 import com.ngadep.fatteningcattle.packages.PackageContract.View;
 
 public class PackagePresenter implements PackageContract.Presenter {
@@ -11,20 +13,16 @@ public class PackagePresenter implements PackageContract.Presenter {
     private final View mView;
     private final PackageRepository mRepository;
 
-    public PackagePresenter(@Nullable String userId, View view) {
+    public PackagePresenter(@Nullable String userId, View view, PackageRepository repository) {
         mUserId = userId;
         mView = view;
-        mRepository = PackageRepository.getInstance();
+        mRepository = repository;
 
         mView.setPresenter(this);
     }
 
     @Override
     public void getCurrentUserPackages() {
-        if (mUserId == null) {
-            mUserId = mRepository.getUid();
-        }
-
         mView.getPackages(mRepository.getPackagesFromUserId(mUserId));
     }
 
@@ -45,6 +43,21 @@ public class PackagePresenter implements PackageContract.Presenter {
 
     @Override
     public void start() {
+        if (mUserId == null) {
+            mUserId = mRepository.getUid();
+        } else {
+            getUser();
+        }
+
         getCurrentUserPackages();
+    }
+
+    public void getUser() {
+        mRepository.getUserFromId(mUserId, new BaseRepository.ModelListener<User>() {
+            @Override
+            public void onModelChange(User model) {
+                mView.notifyUserChange(model);
+            }
+        });
     }
 }
