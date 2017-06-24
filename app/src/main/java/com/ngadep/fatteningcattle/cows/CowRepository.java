@@ -1,10 +1,8 @@
 package com.ngadep.fatteningcattle.cows;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Cow;
 import com.ngadep.fatteningcattle.models.Package;
@@ -17,6 +15,7 @@ public class CowRepository extends BaseRepository {
     private static final String COW_TREE = "cows";
     private static final String PACKAGE_TREE = "packages";
     private static final String PACKAGE_COWS_TREE = "package-cows";
+    private static final String HEAD_JPG = "head.jpg";
 
     private static CowRepository INSTANCE = null;
     private final DatabaseReference mRef;
@@ -89,5 +88,9 @@ public class CowRepository extends BaseRepository {
 
     public void getPackageFromId(String aPackageId, ModelListener<Package> callback) {
         getModelFromId(mPackageRef.child(aPackageId), Package.class, callback);
+    }
+
+    public StorageReference getCowImageFromId(String cowId) {
+        return getStrorageRef().child(COW_TREE).child(cowId).child(HEAD_JPG);
     }
 }

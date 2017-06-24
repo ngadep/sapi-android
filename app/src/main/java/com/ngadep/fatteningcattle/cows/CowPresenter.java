@@ -1,5 +1,6 @@
 package com.ngadep.fatteningcattle.cows;
 
+import com.google.firebase.storage.StorageReference;
 import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Package;
 
@@ -71,5 +72,10 @@ public class CowPresenter implements CowContract.Presenter {
     @Override
     public void showEditPackageUi() {
         mView.showEditPackage(mPackageId, mPackage);
+    }
+
+    @Override
+    public StorageReference getCowImage(String cowId) {
+        return mRepository.getCowImageFromId(cowId);
     }
 }
