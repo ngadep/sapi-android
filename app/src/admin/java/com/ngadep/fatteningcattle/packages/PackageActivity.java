@@ -6,12 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.models.User;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
 public class PackageActivity extends AppCompatActivity {
 
-    public static final String EXTRA_USER_MODEL = "extra user model";
     public static final String EXTRA_USER_ID = "extra user id";
 
     @Override
@@ -28,10 +26,8 @@ public class PackageActivity extends AppCompatActivity {
         }
 
         // Get the requested user model
-        User user = getIntent().getParcelableExtra(EXTRA_USER_MODEL);
         String userId = getIntent().getStringExtra(EXTRA_USER_ID);
 
-        setTitle(user.getUserName());
         PackageFragmentAdmin packageFragment = (PackageFragmentAdmin) getSupportFragmentManager()
                 .findFragmentById(R.id.content_frame);
 

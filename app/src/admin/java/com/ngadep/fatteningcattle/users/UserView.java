@@ -7,6 +7,6 @@ interface UserView {
 
     void showAllUser(Query users);
 
-    void startPackageActivity(String userId, User user);
+    void startPackageActivity(String userId);
 
 }

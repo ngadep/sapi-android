@@ -78,7 +78,7 @@ public class UserFragment extends Fragment implements UserView {
                     @Override
                     public void onClick(View v) {
                         if (getView() != null) {
-                            mPresenter.startUserPackageActivity(userKey, model);
+                            mPresenter.startUserPackageActivity(userKey);
                         }
                     }
                 });
@@ -90,10 +90,9 @@ public class UserFragment extends Fragment implements UserView {
     }
 
     @Override
-    public void startPackageActivity(String userId, User user) {
+    public void startPackageActivity(String userId) {
         Intent intent = new Intent(getActivity(), PackageActivity.class);
         intent.putExtra(PackageActivity.EXTRA_USER_ID, userId);
-        intent.putExtra(PackageActivity.EXTRA_USER_MODEL, user);
         startActivity(intent);
     }
 }
