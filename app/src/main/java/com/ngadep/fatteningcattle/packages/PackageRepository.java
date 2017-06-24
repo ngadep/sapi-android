@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Package;
+import com.ngadep.fatteningcattle.models.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,14 +15,17 @@ import java.util.Map;
 public class PackageRepository extends BaseRepository {
 
     private static final String PACKAGE_TREE = "packages";
+    private static final String USER_TREE = "users";
     private static PackageRepository INSTANCE = null;
     private final DatabaseReference mRef;
     private final DatabaseReference mPackageRef;
+    private final DatabaseReference mUserRef;
 
     private PackageRepository() {
         super();
         mRef = getRef().child("user-packages");
         mPackageRef = getRef().child(PACKAGE_TREE);
+        mUserRef = getRef().child(USER_TREE);
     }
 
     public static PackageRepository getInstance() {
@@ -57,5 +61,9 @@ public class PackageRepository extends BaseRepository {
 
     public void getPackageFromId(String aPackageId, ModelListener<Package> callback) {
         getModelFromId(mPackageRef.child(aPackageId), Package.class, callback);
+    }
+
+    public void getUserFromId(String userId, ModelListener<User> callback) {
+        getModelFromId(mUserRef.child(userId), User.class, callback);
     }
 }
