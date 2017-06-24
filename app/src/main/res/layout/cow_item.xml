@@ -7,13 +7,12 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/cow_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center_vertical"
         android:background="?android:attr/selectableItemBackground"
         android:contentDescription="@string/image_for_cow"
-        android:src="@drawable/ic_account_circle_black_24dp"
-        app:civ_border_color="@android:color/white"
-        app:civ_border_width="5dp" />
+        android:src="@drawable/ic_account_circle_black_24dp" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,18 +25,18 @@
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:textColor="@android:color/black"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_conversion_absoluteHeight="21dp"
             tools:layout_conversion_absoluteWidth="51dp"
             tools:layout_conversion_absoluteX="0dp"
             tools:layout_conversion_absoluteY="60dp"
-            tools:text="09886" />
+            tools:text="09886"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
         <TextView
             android:id="@+id/cow_date"
@@ -45,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_conversion_absoluteHeight="16dp"
@@ -60,23 +59,23 @@
             android:layout_height="22dp"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="0dp"
             android:contentDescription="@string/image_cow_sex"
             android:src="@drawable/ic_sex_female_24dp"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cow_ear_tag"
             tools:layout_conversion_absoluteHeight="22dp"
             tools:layout_conversion_absoluteWidth="22dp"
             tools:layout_conversion_absoluteX="0dp"
-            tools:layout_conversion_absoluteY="98dp" />
+            tools:layout_conversion_absoluteY="98dp"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
         <TextView
             android:id="@+id/cow_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintLeft_toRightOf="@+id/cow_sex"
             app:layout_constraintTop_toBottomOf="@+id/cow_ear_tag"
             tools:layout_conversion_absoluteHeight="16dp"
@@ -91,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cow_date"
             tools:layout_conversion_absoluteHeight="16dp"
@@ -103,19 +102,17 @@
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_marginBottom="2dp"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:background="@android:color/darker_gray"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cow_sex"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintHorizontal_bias="0.0" />
 
     </android.support.constraint.ConstraintLayout>
 </LinearLayout>
