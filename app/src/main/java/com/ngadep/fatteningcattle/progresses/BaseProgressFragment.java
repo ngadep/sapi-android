@@ -134,8 +134,8 @@ public abstract class BaseProgressFragment extends Fragment implements ProgressC
     public void getAllCowProgress(Query query) {
         // Set up Layout Manager, reverse layout
         LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
-        mManager.setReverseLayout(true);
-        mManager.setStackFromEnd(true);
+        mManager.setReverseLayout(false);
+        mManager.setStackFromEnd(false);
         mRecycler.setLayoutManager(mManager);
 
         // Set up FirebaseRecyclerAdapter with the Query
