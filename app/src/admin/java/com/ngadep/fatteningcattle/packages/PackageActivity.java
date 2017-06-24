@@ -38,7 +38,7 @@ public class PackageActivity extends AppCompatActivity {
                     getSupportFragmentManager(), packageFragment, R.id.content_frame);
         }
 
-        new PackagePresenter(userId, packageFragment);
+        new PackagePresenter(userId, packageFragment, PackageRepository.getInstance());
     }
 
     @Override
