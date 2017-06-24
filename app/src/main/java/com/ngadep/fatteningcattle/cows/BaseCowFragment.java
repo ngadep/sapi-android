@@ -12,8 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.Query;
+import com.google.firebase.storage.StorageReference;
 import com.ngadep.fatteningcattle.BuildConfig;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.models.Cow;
@@ -97,6 +100,22 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
                         mPresenter.startCowProgress(cowId);
                     }
                 });
+
+                StorageReference imageRef = mPresenter.getCowImage(cowId);
+                Glide.with(BaseCowFragment.this.getContext())
+                        .using(new FirebaseImageLoader())
+                        .load(imageRef)
+                        .placeholder(R.drawable.ic_account_circle_black_24dp)
+                        .into(viewHolder.getCowImage());
+
+                viewHolder.getCowImage().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO: Show Large Cow Image
+                        showMessage("Show Cow Image");
+                    }
+                });
+
                 viewHolder.bindToCow(model);
             }
         };

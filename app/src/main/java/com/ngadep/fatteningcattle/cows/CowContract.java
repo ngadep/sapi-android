@@ -1,6 +1,7 @@
 package com.ngadep.fatteningcattle.cows;
 
 import com.google.firebase.database.Query;
+import com.google.firebase.storage.StorageReference;
 import com.ngadep.fatteningcattle.BasePresenter;
 import com.ngadep.fatteningcattle.BaseView;
 import com.ngadep.fatteningcattle.models.Package;
@@ -18,6 +19,8 @@ public interface CowContract{
         void cleanup();
 
         void showEditPackageUi();
+
+        StorageReference getCowImage(String cowId);
     }
 
     interface View extends BaseView<Presenter>{
