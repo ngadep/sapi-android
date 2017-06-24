@@ -16,6 +16,7 @@ import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.cows.CowActivity;
 import com.ngadep.fatteningcattle.models.Package;
+import com.ngadep.fatteningcattle.models.User;
 
 public class PackageFragment extends Fragment implements PackageContract.View {
 
@@ -99,6 +100,11 @@ public class PackageFragment extends Fragment implements PackageContract.View {
     @Override
     public void showAddPackageUi(String userId) {
 
+    }
+
+    @Override
+    public void notifyUserChange(User model) {
+        getActivity().setTitle(model.getUserName());
     }
 
     protected void showMessage(String message) {
