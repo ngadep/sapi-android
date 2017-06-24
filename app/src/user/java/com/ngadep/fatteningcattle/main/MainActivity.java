@@ -8,6 +8,7 @@ import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.news.NewsFragment;
 import com.ngadep.fatteningcattle.packages.PackageFragment;
 import com.ngadep.fatteningcattle.packages.PackagePresenter;
+import com.ngadep.fatteningcattle.packages.PackageRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class MainActivity extends BaseMainActivity {
 
     public PackageFragment getPackageFragment() {
         PackageFragment packageFragment = PackageFragment.newInstance();
-        new PackagePresenter(null, packageFragment);
+        new PackagePresenter(null, packageFragment, PackageRepository.getInstance());
 
         return packageFragment;
     }
