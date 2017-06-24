@@ -6,6 +6,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,21 +15,26 @@ import java.util.Map;
 public class BaseRepository {
 
     protected final FirebaseDatabase mDatabase;
+    protected final FirebaseStorage mStorage;
     protected final FirebaseAuth mAuth;
 
     private DatabaseReference modelRef;
     private ValueEventListener modelValueEventListener;
-    
     private Map<DatabaseReference, ValueEventListener> mSettingQuery;
 
     protected BaseRepository() {
         mDatabase = FirebaseDatabase.getInstance();
+        mStorage = FirebaseStorage.getInstance();
         mAuth = FirebaseAuth.getInstance();
         mSettingQuery = new HashMap<>();
     }
 
     protected DatabaseReference getRef() {
         return mDatabase.getReference();
+    }
+
+    protected StorageReference getStrorageRef() {
+        return mStorage.getReference();
     }
 
     public void getSetting(String id, final SettingListener callback) {
