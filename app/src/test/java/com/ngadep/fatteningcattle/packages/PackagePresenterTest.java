@@ -69,5 +69,19 @@ public class PackagePresenterTest {
         verify(mView).getPackages(mRepository.getPackagesFromUserId(USER_ID));
     }
 
+    @Test
+    public void testShow_CowActivity() {
+        mPresenter = new PackagePresenter(USER_ID, mView, mRepository);
+        String packageKey = "1";
+        mPresenter.showCowActivity(packageKey);
+        verify(mView).startCowActivity(packageKey);
+    }
+
+    @Test
+    public void testShow_EditPackageActivity() {
+        mPresenter = new PackagePresenter(USER_ID, mView, mRepository);
+        mPresenter.showEditPackageActivity();
+        verify(mView).startEditPackageActivity(USER_ID);
+    }
 
 }
