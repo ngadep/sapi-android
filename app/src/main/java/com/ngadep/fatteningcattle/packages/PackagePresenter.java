@@ -26,7 +26,7 @@ public class PackagePresenter implements PackageContract.Presenter {
     }
 
     @Override
-    public void startCowActivity(String packageKey) {
+    public void showCowActivity(String packageKey) {
         mView.startCowActivity(packageKey);
     }
 

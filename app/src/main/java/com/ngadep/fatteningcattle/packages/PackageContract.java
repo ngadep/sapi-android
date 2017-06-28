@@ -21,7 +21,7 @@ interface PackageContract {
 
         void getCurrentUserPackages();
 
-        void startCowActivity(String packageKey) ;
+        void showCowActivity(String packageKey) ;
 
         void showAddPackage();
 
