@@ -98,7 +98,7 @@ public class PackageFragment extends Fragment implements PackageContract.View {
     }
 
     @Override
-    public void showAddPackageUi(String userId) {
+    public void startEditPackageActivity(String userId) {
 
     }
 

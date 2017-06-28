@@ -42,13 +42,13 @@ public class PackageFragmentAdmin extends PackageFragment {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mPresenter.showAddPackage();
+                    mPresenter.showEditPackageActivity();
                 }
             });
     }
 
     @Override
-    public void showAddPackageUi(String userId) {
+    public void startEditPackageActivity(String userId) {
         Intent intent = new Intent(getContext(), EditPackageActivity.class);
         intent.putExtra(EditPackageFragment.ARGUMENT_EDIT_USER_ID, userId);
         startActivityForResult(intent, REQUEST_ADD_PACKAGE);

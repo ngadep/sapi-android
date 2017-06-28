@@ -12,7 +12,7 @@ interface PackageContract {
 
         void startCowActivity(String packageKey);
 
-        void showAddPackageUi(String userId);
+        void startEditPackageActivity(String userId);
 
         void notifyUserChange(User model);
     }
@@ -23,7 +23,7 @@ interface PackageContract {
 
         void showCowActivity(String packageKey) ;
 
-        void showAddPackage();
+        void showEditPackageActivity();
 
         void cleanup();
     }

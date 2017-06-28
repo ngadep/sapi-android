@@ -31,8 +31,8 @@ public class PackagePresenter implements PackageContract.Presenter {
     }
 
     @Override
-    public void showAddPackage() {
-        mView.showAddPackageUi(mUserId);
+    public void showEditPackageActivity() {
+        mView.startEditPackageActivity(mUserId);
     }
 
     @Override
