@@ -12,7 +12,7 @@ public class PackagePresenter implements PackageContract.Presenter {
     private final View mView;
     private final PackageRepository mRepository;
 
-    PackagePresenter(@Nullable String userId, View view, PackageRepository repository) {
+    public PackagePresenter(@Nullable String userId, View view, PackageRepository repository) {
         mUserId = userId;
         mView = view;
         mRepository = repository;
