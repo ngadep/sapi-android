@@ -7,7 +7,7 @@ import com.ngadep.fatteningcattle.BaseView;
 interface UserContract {
     interface Presenter extends BasePresenter {
 
-        void startUserPackageActivity(String userKey);
+        void showPackageActivity(String userKey);
     }
 
     interface View extends BaseView<Presenter> {

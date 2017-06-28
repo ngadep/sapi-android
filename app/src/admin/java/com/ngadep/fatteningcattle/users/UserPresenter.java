@@ -18,7 +18,7 @@ class UserPresenter implements UserContract.Presenter {
     }
 
     @Override
-    public void startUserPackageActivity(String userId) {
+    public void showPackageActivity(String userId) {
         mView.startPackageActivity(userId);
     }
 }

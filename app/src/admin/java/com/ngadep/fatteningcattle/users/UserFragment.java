@@ -78,7 +78,7 @@ public class UserFragment extends Fragment implements UserContract.View {
                     @Override
                     public void onClick(View v) {
                         if (getView() != null) {
-                            mPresenter.startUserPackageActivity(userKey);
+                            mPresenter.showPackageActivity(userKey);
                         }
                     }
                 });
