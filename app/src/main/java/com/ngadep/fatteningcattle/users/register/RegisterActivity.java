@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ngadep.fatteningcattle.R;
+import com.ngadep.fatteningcattle.users.UserRepository;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -31,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
                     getSupportFragmentManager(), registerFragment, R.id.content_frame);
         }
 
-        new RegisterPresenter(registerFragment);
+        new RegisterPresenter(registerFragment, UserRepository.getInstance());
     }
 
     @Override
