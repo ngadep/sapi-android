@@ -3,7 +3,6 @@ package com.ngadep.fatteningcattle.packages;
 import android.support.annotation.Nullable;
 
 import com.ngadep.fatteningcattle.BaseRepository;
-import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.models.User;
 import com.ngadep.fatteningcattle.packages.PackageContract.View;
 
@@ -27,8 +26,8 @@ public class PackagePresenter implements PackageContract.Presenter {
     }
 
     @Override
-    public void startCowActivity(String packageKey, Package pkg) {
-        mView.startCowActivity(packageKey, pkg);
+    public void startCowActivity(String packageKey) {
+        mView.startCowActivity(packageKey);
     }
 
     @Override

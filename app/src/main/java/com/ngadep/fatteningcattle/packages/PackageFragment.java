@@ -79,7 +79,7 @@ public class PackageFragment extends Fragment implements PackageContract.View {
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mPresenter.startCowActivity(packageKey, model);
+                        mPresenter.startCowActivity(packageKey);
                     }
                 });
 
@@ -90,7 +90,7 @@ public class PackageFragment extends Fragment implements PackageContract.View {
     }
 
     @Override
-    public void startCowActivity(String packageKey, Package pkg) {
+    public void startCowActivity(String packageKey) {
         // Launch Cow Activity
         Intent intent = new Intent(getActivity(), CowActivity.class);
         intent.putExtra(CowActivity.EXTRA_PACKAGE_ID, packageKey);

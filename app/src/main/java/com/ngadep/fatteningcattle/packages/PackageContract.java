@@ -3,7 +3,6 @@ package com.ngadep.fatteningcattle.packages;
 import com.google.firebase.database.Query;
 import com.ngadep.fatteningcattle.BasePresenter;
 import com.ngadep.fatteningcattle.BaseView;
-import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.models.User;
 
 interface PackageContract {
@@ -11,7 +10,7 @@ interface PackageContract {
 
         void getPackages(Query packages);
 
-        void startCowActivity(String packageKey, Package pkg);
+        void startCowActivity(String packageKey);
 
         void showAddPackageUi(String userId);
 
@@ -22,7 +21,7 @@ interface PackageContract {
 
         void getCurrentUserPackages();
 
-        void startCowActivity(String packageKey, Package pkg) ;
+        void startCowActivity(String packageKey) ;
 
         void showAddPackage();
 
