@@ -12,7 +12,7 @@ public class PackagePresenter implements PackageContract.Presenter {
     private final View mView;
     private final PackageRepository mRepository;
 
-    public PackagePresenter(@Nullable String userId, View view, PackageRepository repository) {
+    PackagePresenter(@Nullable String userId, View view, PackageRepository repository) {
         mUserId = userId;
         mView = view;
         mRepository = repository;
@@ -51,7 +51,7 @@ public class PackagePresenter implements PackageContract.Presenter {
         getCurrentUserPackages();
     }
 
-    public void getUser() {
+    private void getUser() {
         mRepository.getUserFromId(mUserId, new BaseRepository.ModelListener<User>() {
             @Override
             public void onModelChange(User model) {
