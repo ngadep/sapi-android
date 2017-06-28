@@ -16,17 +16,17 @@ import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.models.User;
 import com.ngadep.fatteningcattle.packages.PackageActivity;
 
-public class UserFragment extends Fragment implements UserView {
+public class UserFragment extends Fragment implements UserContract.View {
 
     private static final String TAG = "UserFragment";
 
-    private UserPresenter mPresenter;
+    private UserContract.Presenter mPresenter;
 
     private FirebaseRecyclerAdapter<User, UserViewHolder> mAdapter;
     private RecyclerView mRecycler;
 
     public UserFragment() {
-        mPresenter = new UserPresenter(this);
+        mPresenter = new UserPresenter(this, UserRepository.getInstance());
     }
 
     public static UserFragment newInstance() {
@@ -94,5 +94,10 @@ public class UserFragment extends Fragment implements UserView {
         Intent intent = new Intent(getActivity(), PackageActivity.class);
         intent.putExtra(PackageActivity.EXTRA_USER_ID, userId);
         startActivity(intent);
+    }
+
+    @Override
+    public void setPresenter(UserContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 }

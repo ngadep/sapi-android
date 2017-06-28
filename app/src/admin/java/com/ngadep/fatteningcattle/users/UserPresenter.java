@@ -1,20 +1,24 @@
 package com.ngadep.fatteningcattle.users;
 
-class UserPresenter {
+class UserPresenter implements UserContract.Presenter {
 
-    private final UserView mView;
+    private final UserContract.View mView;
     private final UserRepository mRepository;
 
-    UserPresenter(UserView view) {
+    UserPresenter(UserContract.View view, UserRepository repository) {
         mView = view;
-        mRepository = UserRepository.getInstance();
+        mRepository = repository;
+
+        mView.setPresenter(this);
     }
 
-    void start() {
+    @Override
+    public void start() {
         mView.showAllUser(mRepository.getUsersQuery());
     }
 
-    void startUserPackageActivity(String userId) {
+    @Override
+    public void startUserPackageActivity(String userId) {
         mView.startPackageActivity(userId);
     }
 }
