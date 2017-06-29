@@ -78,4 +78,8 @@ public class CowPresenter implements CowContract.Presenter {
     public StorageReference getCowImage(String cowId) {
         return mRepository.getCowImageFromId(cowId);
     }
+
+    public Package getPackage() {
+        return mPackage;
+    }
 }
