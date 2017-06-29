@@ -3,7 +3,7 @@ package com.ngadep.fatteningcattle.progresses;
 import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Cow;
 
-public class ProgressPresenter implements ProgressContract.Presenter {
+class ProgressPresenter implements ProgressContract.Presenter {
 
     private ProgressContract.View mView;
     private ProgressRepository mRepository;
@@ -11,7 +11,7 @@ public class ProgressPresenter implements ProgressContract.Presenter {
     private Long mPricePerKg;
     private Cow mCow;
 
-    public ProgressPresenter(ProgressContract.View view, ProgressRepository repository, String cowId) {
+    ProgressPresenter(ProgressContract.View view, ProgressRepository repository, String cowId) {
         this.mView = view;
         this.mRepository = repository;
         this.mCowId = cowId;
@@ -35,7 +35,7 @@ public class ProgressPresenter implements ProgressContract.Presenter {
         });
     }
 
-    public void queryPricePerKg() {
+    private void queryPricePerKg() {
         mRepository.getSetting("price", new BaseRepository.SettingListener<Long>() {
             @Override
             public void onValueChange(Long value) {
@@ -68,5 +68,9 @@ public class ProgressPresenter implements ProgressContract.Presenter {
     @Override
     public void showEditCowUi() {
         mView.showEditCowActivity(mCowId, mCow.getPackage_id());
+    }
+
+    public Cow getCow() {
+        return mCow;
     }
 }
