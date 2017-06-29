@@ -4,21 +4,21 @@ import com.google.firebase.storage.StorageReference;
 import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Package;
 
-public class CowPresenter implements CowContract.Presenter {
+class CowPresenter implements CowContract.Presenter {
     private final CowContract.View mView;
     private final CowRepository mRepository;
     private final String mPackageId;
     private Package mPackage;
     private Long mPricePerKg = 0L;
 
-    public CowPresenter(CowContract.View view, CowRepository repository, String packageId) {
+    CowPresenter(CowContract.View view, CowRepository repository, String packageId) {
         mView = view;
         mRepository = repository;
         mPackageId = packageId;
         mView.setPresenter(this);
     }
 
-    public void getPackageCows() {
+    private void getPackageCows() {
         mView.getAllPackageCow(mRepository.getPackageCowFromId(mPackageId));
     }
 
@@ -49,7 +49,7 @@ public class CowPresenter implements CowContract.Presenter {
         });
     }
 
-    public void queryPricePerKg() {
+    private void queryPricePerKg() {
         mRepository.getSetting("price", new BaseRepository.SettingListener<Long>() {
             @Override
             public void onValueChange(Long value) {
