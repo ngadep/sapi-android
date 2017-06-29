@@ -10,30 +10,30 @@ public interface CowContract{
 
     interface Presenter extends BasePresenter {
 
-        void startCowProgress(String cowId);
+        void showProgressActivity(String cowId);
 
-        void startAddCowUi();
+        void showEditCowActivity();
+
+        void showEditPackageActivity();
 
         Long getPricePerKg();
 
-        void cleanup();
-
-        void showEditPackageUi();
-
         StorageReference getCowImage(String cowId);
+
+        void cleanup();
     }
 
     interface View extends BaseView<Presenter>{
 
+        void startEditCowActivity(String packageId);
+
+        void startEditPackageActivity(String packageId, Package packageModel);
+
+        void startProgressActivity(String cowId);
+
         void getAllPackageCow(Query cows);
 
         void notifyPriceChange();
-
-        void startEditCow(String packageId);
-
-        void showEditPackage(String packageId, Package packageModel);
-
-        void startCowProgressActivity(String cowId);
 
         void notifyPackageChange(Package aPackage);
     }

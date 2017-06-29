@@ -46,14 +46,14 @@ public class CowFragment extends BaseCowFragment {
     }
 
     @Override
-    public void startEditCow(String packageId) {
+    public void startEditCowActivity(String packageId) {
         Intent intent = new Intent(getActivity(), EditCowActivity.class);
         intent.putExtra(EditCowFragment.ARGUMENT_EDIT_PACKAGE_ID, packageId);
         startActivityForResult(intent, REQUEST_ADD_COW);
     }
 
     @Override
-    public void showEditPackage(String packageId, Package packageModel) {
+    public void startEditPackageActivity(String packageId, Package packageModel) {
         Intent intent = new Intent(getActivity(), EditPackageActivity.class);
         intent.putExtra(EditPackageFragment.ARGUMENT_EDIT_USER_ID, packageModel.getUid());
         intent.putExtra(EditPackageFragment.ARGUMENT_EDIT_PACKAGE_ID, packageId);
@@ -69,7 +69,7 @@ public class CowFragment extends BaseCowFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_edit_package:
-                mPresenter.showEditPackageUi();
+                mPresenter.showEditPackageActivity();
                 return true;
         }
         return super.onOptionsItemSelected(item);

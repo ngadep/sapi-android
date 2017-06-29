@@ -53,7 +53,7 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mPresenter.startAddCowUi();
+                    mPresenter.showEditCowActivity();
                 }
             });
         }
@@ -97,7 +97,7 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mPresenter.startCowProgress(cowId);
+                        mPresenter.showProgressActivity(cowId);
                     }
                 });
 
@@ -133,7 +133,7 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
     }
 
     @Override
-    public void startCowProgressActivity(String cowId) {
+    public void startProgressActivity(String cowId) {
         Intent intent = new Intent(getActivity(), ProgressActivity.class);
         intent.putExtra(ProgressActivity.EXTRA_COW_ID, cowId);
         startActivity(intent);

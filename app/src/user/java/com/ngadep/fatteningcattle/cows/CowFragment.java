@@ -12,12 +12,12 @@ public class CowFragment extends BaseCowFragment {
     }
 
     @Override
-    public void startEditCow(String packageId) {
+    public void startEditCowActivity(String packageId) {
         // do nothing
     }
 
     @Override
-    public void showEditPackage(String packageId, Package packageModel) {
+    public void startEditPackageActivity(String packageId, Package packageModel) {
         // do nothing
     }
 }

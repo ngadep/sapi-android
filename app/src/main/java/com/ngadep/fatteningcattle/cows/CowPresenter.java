@@ -23,13 +23,13 @@ public class CowPresenter implements CowContract.Presenter {
     }
 
     @Override
-    public void startCowProgress(String cowId) {
-        mView.startCowProgressActivity(cowId);
+    public void showProgressActivity(String cowId) {
+        mView.startProgressActivity(cowId);
     }
 
     @Override
-    public void startAddCowUi() {
-        mView.startEditCow(mPackageId);
+    public void showEditCowActivity() {
+        mView.startEditCowActivity(mPackageId);
     }
 
     @Override
@@ -70,8 +70,8 @@ public class CowPresenter implements CowContract.Presenter {
     }
 
     @Override
-    public void showEditPackageUi() {
-        mView.showEditPackage(mPackageId, mPackage);
+    public void showEditPackageActivity() {
+        mView.startEditPackageActivity(mPackageId, mPackage);
     }
 
     @Override
