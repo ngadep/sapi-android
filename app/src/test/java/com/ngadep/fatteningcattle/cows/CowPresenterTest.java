@@ -17,7 +17,7 @@ import static org.mockito.Mockito.verify;
 
 public class CowPresenterTest {
     // random package id
-    private static final java.lang.String PACKAGE_ID = "SDFsfs4534Der";
+    private static final java.lang.String PACKAGE_ID = "SDFsTs4534Der";
     private static final String PRICE_KEY = "price";
     private static final Long PRICE_VALUE = 49300L;
 
