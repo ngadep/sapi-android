@@ -27,7 +27,7 @@ public interface CowContract{
 
         void startEditCowActivity(String packageId);
 
-        void startEditPackageActivity(String packageId, Package packageModel);
+        void startEditPackageActivity(String packageId, String userId);
 
         void startProgressActivity(String cowId);
 

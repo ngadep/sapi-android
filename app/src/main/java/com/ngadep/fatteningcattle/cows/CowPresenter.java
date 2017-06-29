@@ -71,7 +71,7 @@ public class CowPresenter implements CowContract.Presenter {
 
     @Override
     public void showEditPackageActivity() {
-        mView.startEditPackageActivity(mPackageId, mPackage);
+        mView.startEditPackageActivity(mPackageId, mPackage.getUid());
     }
 
     @Override

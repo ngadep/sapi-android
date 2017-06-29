@@ -1,7 +1,5 @@
 package com.ngadep.fatteningcattle.cows;
 
-import com.ngadep.fatteningcattle.models.Package;
-
 public class CowFragment extends BaseCowFragment {
 
     public CowFragment() {
@@ -17,7 +15,7 @@ public class CowFragment extends BaseCowFragment {
     }
 
     @Override
-    public void startEditPackageActivity(String packageId, Package packageModel) {
+    public void startEditPackageActivity(String packageId, String userId) {
         // do nothing
     }
 }

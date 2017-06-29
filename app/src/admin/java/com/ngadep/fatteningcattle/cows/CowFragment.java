@@ -53,9 +53,9 @@ public class CowFragment extends BaseCowFragment {
     }
 
     @Override
-    public void startEditPackageActivity(String packageId, Package packageModel) {
+    public void startEditPackageActivity(String packageId, String userId) {
         Intent intent = new Intent(getActivity(), EditPackageActivity.class);
-        intent.putExtra(EditPackageFragment.ARGUMENT_EDIT_USER_ID, packageModel.getUid());
+        intent.putExtra(EditPackageFragment.ARGUMENT_EDIT_USER_ID, userId);
         intent.putExtra(EditPackageFragment.ARGUMENT_EDIT_PACKAGE_ID, packageId);
         startActivityForResult(intent, REQUEST_EDIT_PACKAGE);
     }
