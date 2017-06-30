@@ -19,6 +19,7 @@ public class ProgressPresenterTest {
     private static final String COW_ID = "lkIJrJ97hiHJH";
     private static final String PRICE_KEY = "price";
     private static final Long PRICE_VALUE = 49300L;
+    private Cow cow = new Cow("jLLi67yiu", "8687656", "male", 210, 1496412086216L);
 
     private ProgressPresenter mPresenter;
 
@@ -49,11 +50,7 @@ public class ProgressPresenterTest {
     public void testStartPresenter() {
         mPresenter.start();
 
-        Cow cow = new Cow("jLLi67yiu", "8687656", "male", 210, 1496412086216L);
-        Mockito.verify(mRepository).getCowModelFromId(eq(COW_ID), mModelCowListenerCaptor.capture());
-        mModelCowListenerCaptor.getValue().onModelChange(cow);
-        assertEquals("Cow Not Equals", mPresenter.getCow(), cow);
-        verify(mView).notifyCowChange(cow);
+        getCowModel();
 
         Mockito.verify(mRepository).getSetting(eq(PRICE_KEY), mPriceSettingListenerCaptor.capture());
         mPriceSettingListenerCaptor.getValue().onValueChange(PRICE_VALUE);
@@ -64,4 +61,41 @@ public class ProgressPresenterTest {
         verify(mView).getAllCowProgress(mRepository.getCowProgressFromId(COW_ID));
     }
 
+    @Test
+    public void  testShowActivity_EditProgressActivityNew() {
+        mPresenter.showEditProgressActivity();
+
+        verify(mView).startEditProgressActivity(COW_ID, null);
+    }
+
+    @Test
+    public void  testShowActivity_EditProgressActivityEdit() {
+        // random progress id
+        String progressId = "lrEREsLOOKJlk875";
+        mPresenter.showEditProgressActivity(progressId);
+
+        verify(mView).startEditProgressActivity(COW_ID, progressId);
+    }
+
+    @Test
+    public void  testShowActivity_EditCowActivity() {
+        mPresenter.start();
+        getCowModel();
+        mPresenter.showEditCowActivity();
+
+        verify(mView).startEditCowActivity(COW_ID, cow.getPackage_id());
+    }
+
+    @Test
+    public void testCleanupRepository() {
+        mPresenter.cleanup();
+        verify(mRepository).cleanup();
+    }
+
+    private void getCowModel() {
+        Mockito.verify(mRepository).getCowModelFromId(eq(COW_ID), mModelCowListenerCaptor.capture());
+        mModelCowListenerCaptor.getValue().onModelChange(cow);
+        assertEquals("Cow Not Equals", mPresenter.getCow(), cow);
+        verify(mView).notifyCowChange(cow);
+    }
 }
