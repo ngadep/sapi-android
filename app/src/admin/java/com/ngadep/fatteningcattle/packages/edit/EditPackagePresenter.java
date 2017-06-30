@@ -15,7 +15,7 @@ public class EditPackagePresenter implements EditPackageContract.Presenter {
     private final EditPackageContract.View mView;
     private final String mUserId;
 
-    public EditPackagePresenter(@NonNull String userId, @Nullable String packageId,
+    public EditPackagePresenter(@Nullable String packageId, @NonNull String userId,
                                 @NonNull PackageRepository repository,
                                 @NonNull EditPackageContract.View view) {
         mPackageId = packageId;

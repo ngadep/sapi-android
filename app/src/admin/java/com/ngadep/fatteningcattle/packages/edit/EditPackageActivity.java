@@ -45,8 +45,8 @@ public class EditPackageActivity extends AppCompatActivity {
         }
 
         new EditPackagePresenter(
-                userId,
                 packageId,
+                userId,
                 PackageRepository.getInstance(),
                 editPackageFragment
         );
