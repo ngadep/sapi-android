@@ -10,7 +10,7 @@ import com.ngadep.fatteningcattle.models.Cow;
 class EditCowPresenter implements EditCowContract.Presenter {
     private final String mPackageId;
     private final String mCowId;
-    private Cow mCow;
+    private Cow mCow, mCowEdit;
     private final CowRepository mRepository;
     private final EditCowContract.View mView;
 
@@ -48,11 +48,11 @@ class EditCowPresenter implements EditCowContract.Presenter {
 
     @Override
     public void saveCow(String earTag, String sex, int weight, long date) {
-        Cow cow = new Cow(mPackageId, earTag, sex, weight, date);
+        mCowEdit = new Cow(mPackageId, earTag, sex, weight, date);
         if (isNewCow()) {
-            mRepository.saveCow(cow);
+            mRepository.saveCow(mCowEdit);
         } else {
-            mRepository.saveCow(mCowId, cow);
+            mRepository.saveCow(mCowId, mCowEdit);
         }
         mView.showCowList();
 
@@ -63,7 +63,16 @@ class EditCowPresenter implements EditCowContract.Presenter {
         mRepository.cleanup();
     }
 
-    private boolean isNewCow() {
+    @Override
+    public boolean isNewCow() {
         return mCowId == null;
+    }
+
+    public Cow getCow() {
+        return mCow;
+    }
+
+    public Cow getCowEdit() {
+        return mCowEdit;
     }
 }

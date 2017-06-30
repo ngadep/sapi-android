@@ -8,6 +8,8 @@ public interface EditCowContract {
 
         void saveCow(String earTag, String sex, int weight, long date);
 
+        boolean isNewCow();
+
         void cleanup();
     }
 
