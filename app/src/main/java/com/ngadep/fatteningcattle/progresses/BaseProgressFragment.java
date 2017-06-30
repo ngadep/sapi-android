@@ -99,7 +99,7 @@ public abstract class BaseProgressFragment extends Fragment implements ProgressC
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mPresenter.startAddProgressUi();
+                    mPresenter.showEditProgressActivity();
                 }
             });
         }
@@ -149,7 +149,7 @@ public abstract class BaseProgressFragment extends Fragment implements ProgressC
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mPresenter.startProgressDetailActivity(progressId);
+                        mPresenter.showEditProgressActivity(progressId);
                     }
                 });
                 viewHolder.bindToProgress(model);

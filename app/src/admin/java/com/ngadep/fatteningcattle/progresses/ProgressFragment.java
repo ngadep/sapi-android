@@ -37,7 +37,7 @@ public class ProgressFragment extends BaseProgressFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_edit_cow:
-                mPresenter.showEditCowUi();
+                mPresenter.showEditCowActivity();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -52,7 +52,7 @@ public class ProgressFragment extends BaseProgressFragment {
     }
 
     @Override
-    public void showEditProgressActivity(String cowId, String progressId) {
+    public void startEditProgressActivity(String cowId, String progressId) {
         Intent intent = new Intent(getActivity(), EditProgressActivity.class);
         intent.putExtra(EditProgressFragment.ARGUMENT_EDIT_COW_ID, cowId);
         intent.putExtra(EditProgressFragment.ARGUMENT_EDIT_PROGRESS_ID, progressId);
@@ -60,7 +60,7 @@ public class ProgressFragment extends BaseProgressFragment {
     }
 
     @Override
-    public void showEditCowActivity(String cowId, String packageId) {
+    public void startEditCowActivity(String cowId, String packageId) {
         Intent intent = new Intent(getActivity(), EditCowActivity.class);
         intent.putExtra(EditCowFragment.ARGUMENT_EDIT_COW_ID, cowId);
         intent.putExtra(EditCowFragment.ARGUMENT_EDIT_PACKAGE_ID, packageId);

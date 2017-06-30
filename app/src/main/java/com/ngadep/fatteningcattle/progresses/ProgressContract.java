@@ -10,13 +10,13 @@ public interface ProgressContract {
 
         Long getPricePerKg();
 
-        void startProgressDetailActivity(String progressId);
+        void showEditProgressActivity(String progressId);
 
         void cleanup();
 
-        void startAddProgressUi();
+        void showEditProgressActivity();
 
-        void showEditCowUi();
+        void showEditCowActivity();
     }
 
     interface View extends BaseView<Presenter> {
@@ -27,8 +27,8 @@ public interface ProgressContract {
 
         void notifyCowChange(Cow model);
 
-        void showEditProgressActivity(String cowId, String progressId);
+        void startEditProgressActivity(String cowId, String progressId);
 
-        void showEditCowActivity(String cowId, String packageId);
+        void startEditCowActivity(String cowId, String packageId);
     }
 }

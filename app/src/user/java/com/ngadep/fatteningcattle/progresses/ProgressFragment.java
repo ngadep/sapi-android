@@ -6,12 +6,12 @@ public class ProgressFragment extends BaseProgressFragment {
     }
 
     @Override
-    public void showEditProgressActivity(String cowId, String progressId) {
+    public void startEditProgressActivity(String cowId, String progressId) {
         // do nothing
     }
 
     @Override
-    public void showEditCowActivity(String cowId, String packageId) {
+    public void startEditCowActivity(String cowId, String packageId) {
         // do nothing
     }
 }

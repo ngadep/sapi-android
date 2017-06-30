@@ -51,8 +51,8 @@ class ProgressPresenter implements ProgressContract.Presenter {
     }
 
     @Override
-    public void startProgressDetailActivity(String progressId) {
-        mView.showEditProgressActivity(mCowId, progressId);
+    public void showEditProgressActivity(String progressId) {
+        mView.startEditProgressActivity(mCowId, progressId);
     }
 
     @Override
@@ -61,13 +61,13 @@ class ProgressPresenter implements ProgressContract.Presenter {
     }
 
     @Override
-    public void startAddProgressUi() {
-        mView.showEditProgressActivity(mCowId, null);
+    public void showEditProgressActivity() {
+        mView.startEditProgressActivity(mCowId, null);
     }
 
     @Override
-    public void showEditCowUi() {
-        mView.showEditCowActivity(mCowId, mCow.getPackage_id());
+    public void showEditCowActivity() {
+        mView.startEditCowActivity(mCowId, mCow.getPackage_id());
     }
 
     public Cow getCow() {
