@@ -44,8 +44,8 @@ public class EditCowActivity extends AppCompatActivity {
         }
 
         new EditCowPresenter(
-                packageId,
                 cowId,
+                packageId,
                 CowRepository.getInstance(),
                 editCowFragment
         );

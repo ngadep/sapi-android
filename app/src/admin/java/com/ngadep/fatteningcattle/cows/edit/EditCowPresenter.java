@@ -14,7 +14,7 @@ class EditCowPresenter implements EditCowContract.Presenter {
     private final CowRepository mRepository;
     private final EditCowContract.View mView;
 
-    EditCowPresenter(@NonNull String packageId, @Nullable String cowId,
+    EditCowPresenter(@Nullable String cowId, @NonNull String packageId,
                      @NonNull CowRepository repository, @NonNull EditCowContract.View view) {
         mPackageId = packageId;
         mCowId = cowId;
