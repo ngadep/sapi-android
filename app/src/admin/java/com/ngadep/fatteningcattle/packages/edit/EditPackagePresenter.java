@@ -7,17 +7,17 @@ import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.packages.PackageRepository;
 
-public class EditPackagePresenter implements EditPackageContract.Presenter {
+class EditPackagePresenter implements EditPackageContract.Presenter {
 
     private final String mPackageId;
-    private Package mPackage;
+    private Package mPackage, mEditPackage;
     private final PackageRepository mRepository;
     private final EditPackageContract.View mView;
     private final String mUserId;
 
-    public EditPackagePresenter(@Nullable String packageId, @NonNull String userId,
-                                @NonNull PackageRepository repository,
-                                @NonNull EditPackageContract.View view) {
+    EditPackagePresenter(@Nullable String packageId, @NonNull String userId,
+                         @NonNull PackageRepository repository,
+                         @NonNull EditPackageContract.View view) {
         mPackageId = packageId;
         mUserId = userId;
         mRepository = repository;
@@ -51,11 +51,11 @@ public class EditPackagePresenter implements EditPackageContract.Presenter {
 
     @Override
     public void savePackage(String name, String location, int type, boolean active) {
-        Package pkg = new Package(mUserId, name, location, type, active);
+        mEditPackage = new Package(mUserId, name, location, type, active);
         if (isNewPackage()) {
-            mRepository.savePackage(pkg);
+            mRepository.savePackage(mEditPackage);
         } else {
-            mRepository.savePackage(mPackageId, pkg);
+            mRepository.savePackage(mPackageId, mEditPackage);
         }
         mView.showPackageList();
     }
@@ -63,5 +63,13 @@ public class EditPackagePresenter implements EditPackageContract.Presenter {
     @Override
     public boolean isNewPackage() {
         return mPackageId == null;
+    }
+
+    public Package getPackage() {
+        return mPackage;
+    }
+
+    public Package getEditPackage() {
+        return mEditPackage;
     }
 }
