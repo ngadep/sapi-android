@@ -7,15 +7,15 @@ import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.cows.CowRepository;
 import com.ngadep.fatteningcattle.models.Cow;
 
-public class EditCowPresenter implements EditCowContract.Presenter {
+class EditCowPresenter implements EditCowContract.Presenter {
     private final String mPackageId;
     private final String mCowId;
     private Cow mCow;
     private final CowRepository mRepository;
     private final EditCowContract.View mView;
 
-    public EditCowPresenter(@NonNull String packageId, @Nullable String cowId,
-                            @NonNull CowRepository repository, @NonNull EditCowContract.View view) {
+    EditCowPresenter(@NonNull String packageId, @Nullable String cowId,
+                     @NonNull CowRepository repository, @NonNull EditCowContract.View view) {
         mPackageId = packageId;
         mCowId = cowId;
         mRepository = repository;
@@ -63,7 +63,7 @@ public class EditCowPresenter implements EditCowContract.Presenter {
         mRepository.cleanup();
     }
 
-    public boolean isNewCow() {
+    private boolean isNewCow() {
         return mCowId == null;
     }
 }
