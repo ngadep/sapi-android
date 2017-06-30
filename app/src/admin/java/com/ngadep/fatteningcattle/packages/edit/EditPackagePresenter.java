@@ -61,6 +61,11 @@ class EditPackagePresenter implements EditPackageContract.Presenter {
     }
 
     @Override
+    public void cleanup() {
+        mRepository.cleanup();
+    }
+
+    @Override
     public boolean isNewPackage() {
         return mPackageId == null;
     }

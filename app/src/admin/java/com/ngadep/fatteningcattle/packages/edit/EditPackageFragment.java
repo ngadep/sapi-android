@@ -53,6 +53,12 @@ public class EditPackageFragment extends Fragment implements EditPackageContract
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.cleanup();
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 

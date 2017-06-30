@@ -11,6 +11,8 @@ public interface EditPackageContract {
         void populatePackage();
 
         void savePackage(String name, String location, int type, boolean active);
+
+        void cleanup();
     }
 
     interface View extends BaseView<Presenter>{

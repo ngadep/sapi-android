@@ -121,4 +121,11 @@ public class EditPackagePresenterTest {
         verify(mRepository).savePackage(PACKAGE_ID, mPresenter.getEditPackage());
         verify(mView).showPackageList();
     }
+
+    @Test
+    public void testCleanupRepository() {
+        createPresenter(null);
+        mPresenter.cleanup();
+        verify(mRepository).cleanup();
+    }
 }
