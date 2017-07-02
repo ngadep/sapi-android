@@ -68,11 +68,11 @@ class EditCowPresenter implements EditCowContract.Presenter {
         return mCowId == null;
     }
 
-    public Cow getCow() {
+    Cow getCow() {
         return mCow;
     }
 
-    public Cow getCowEdit() {
+    Cow getCowEdit() {
         return mCowEdit;
     }
 }

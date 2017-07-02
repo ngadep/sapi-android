@@ -69,11 +69,11 @@ class EditProgressPresenter implements EditProgressContract.Presenter {
         mRepository.cleanup();
     }
 
-    public boolean isNewProgress() {
+    boolean isNewProgress() {
         return mProgressId == null;
     }
 
-    public void getCowModel() {
+    private void getCowModel() {
         mRepository.getCowModelFromId(mCowId, new BaseRepository.ModelListener<Cow>() {
             @Override
             public void onModelChange(Cow model) {
@@ -82,19 +82,19 @@ class EditProgressPresenter implements EditProgressContract.Presenter {
         });
     }
 
-    public Progress getProgress() {
+    Progress getProgress() {
         return mProgress;
     }
 
-    public Progress getProgressEdit() {
+    Progress getProgressEdit() {
         return mProgressEdit;
     }
 
-    public Cow getCow() {
+    Cow getCow() {
         return mCow;
     }
 
-    public Cow getCowEdit() {
+    Cow getCowEdit() {
         return mCowEdit;
     }
 }

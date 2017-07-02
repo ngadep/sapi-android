@@ -70,11 +70,11 @@ class EditPackagePresenter implements EditPackageContract.Presenter {
         return mPackageId == null;
     }
 
-    public Package getPackage() {
+    Package getPackage() {
         return mPackage;
     }
 
-    public Package getEditPackage() {
+    Package getEditPackage() {
         return mEditPackage;
     }
 }
