@@ -69,7 +69,7 @@ public class EditCowPresenterTest {
 
         Mockito.verify(mRepository).getCowFromId(eq(COW_ID), mModelCowListenerCaptor.capture());
         mModelCowListenerCaptor.getValue().onModelChange(cow);
-        assertEquals("Package Model Not Equals", mPresenter.getCow(), cow);
+        assertEquals("Cow Model Not Equals", mPresenter.getCow(), cow);
     }
 
     @Test
