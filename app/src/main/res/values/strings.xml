@@ -12,9 +12,4 @@
     <string name="message_register_failed">Register Failed</string>
     <string name="title_register">Register</string>
     <string name="sign_up">Sign Up</string>
-    <string name="switch_active">Active</string>
-    <string name="cow_hint_sex">Sex</string>
-    <string name="cow_hint_ear_tag">Ear Tag</string>
-    <string name="cow_hint_weight">Weight</string>
-    <string name="cow_hint_date">Date</string>
 </resources>
