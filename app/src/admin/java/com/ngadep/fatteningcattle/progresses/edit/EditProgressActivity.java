@@ -44,8 +44,8 @@ public class EditProgressActivity extends AppCompatActivity {
         }
 
         new EditProgressPresenter(
-                cowId,
                 progressId,
+                cowId,
                 ProgressRepository.getInstance(),
                 editProgressFragment
         );

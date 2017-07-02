@@ -1,11 +1,14 @@
 package com.ngadep.fatteningcattle.progresses.edit;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.ngadep.fatteningcattle.BaseRepository;
 import com.ngadep.fatteningcattle.models.Cow;
 import com.ngadep.fatteningcattle.models.Progress;
 import com.ngadep.fatteningcattle.progresses.ProgressRepository;
 
-public class EditProgressPresenter implements EditProgressContract.Presenter {
+class EditProgressPresenter implements EditProgressContract.Presenter {
 
     private final String mCowId;
     private final String mProgressId;
@@ -13,8 +16,8 @@ public class EditProgressPresenter implements EditProgressContract.Presenter {
     private final EditProgressContract.View mView;
     private Cow mCow;
 
-    public EditProgressPresenter(String cowId, String progressId,
-                                 ProgressRepository repository, EditProgressContract.View view) {
+    EditProgressPresenter(@Nullable String progressId, @NonNull String cowId,
+                          @NonNull ProgressRepository repository, @NonNull EditProgressContract.View view) {
         mCowId = cowId;
         mProgressId = progressId;
         mRepository = repository;
