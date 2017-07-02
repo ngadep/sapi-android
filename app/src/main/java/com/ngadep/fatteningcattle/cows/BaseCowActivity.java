@@ -1,14 +1,15 @@
 package com.ngadep.fatteningcattle.cows;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
+@SuppressLint("Registered")
 public class BaseCowActivity extends AppCompatActivity {
 
     public static final String EXTRA_PACKAGE_ID = "PACKAGE_ID";
