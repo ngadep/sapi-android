@@ -14,7 +14,8 @@ class EditProgressPresenter implements EditProgressContract.Presenter {
     private final String mProgressId;
     private final ProgressRepository mRepository;
     private final EditProgressContract.View mView;
-    private Cow mCow;
+    private Progress mProgress, mProgressEdit;
+    private Cow mCow, mCowEdit;
 
     EditProgressPresenter(@Nullable String progressId, @NonNull String cowId,
                           @NonNull ProgressRepository repository, @NonNull EditProgressContract.View view) {
@@ -39,6 +40,7 @@ class EditProgressPresenter implements EditProgressContract.Presenter {
         mRepository.getProgressFromId(mProgressId, new BaseRepository.ModelListener<Progress>() {
             @Override
             public void onModelChange(Progress model) {
+                mProgress = model;
                 if (mView.isActive()) {
                     mView.setWeight(model.getWeight());
                     mView.setDate(model.getDate());
@@ -49,15 +51,15 @@ class EditProgressPresenter implements EditProgressContract.Presenter {
 
     @Override
     public void saveProgress(int weight, long date) {
-        Progress progress = new Progress(mCowId, date, weight);
+        mProgressEdit = new Progress(mCowId, date, weight);
         if (isNewProgress()) {
-            mRepository.saveProgress(progress);
-            Cow cow = mCow;
-            cow.setDate(date);
-            cow.setWeight(weight);
-            mRepository.updateCow(mCowId,cow);
+            mRepository.saveProgress(mProgressEdit);
+            mCowEdit = mCow;
+            mCowEdit.setDate(date);
+            mCowEdit.setWeight(weight);
+            mRepository.updateCow(mCowId, mCowEdit);
         } else {
-            mRepository.saveProgress(mProgressId, progress);
+            mRepository.saveProgress(mProgressId, mProgressEdit);
         }
         mView.showProgressList();
     }
@@ -78,5 +80,21 @@ class EditProgressPresenter implements EditProgressContract.Presenter {
                 mCow = model;
             }
         });
+    }
+
+    public Progress getProgress() {
+        return mProgress;
+    }
+
+    public Progress getProgressEdit() {
+        return mProgressEdit;
+    }
+
+    public Cow getCow() {
+        return mCow;
+    }
+
+    public Cow getCowEdit() {
+        return mCowEdit;
     }
 }
