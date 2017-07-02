@@ -77,7 +77,7 @@ public abstract class BaseProgressFragment extends Fragment implements ProgressC
 
             set1.setColors(ColorTemplate.MATERIAL_COLORS);
 
-            ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
+            ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add(set1);
 
             BarData data = new BarData(dataSets);
