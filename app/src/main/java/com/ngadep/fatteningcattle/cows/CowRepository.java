@@ -66,16 +66,10 @@ public class CowRepository extends BaseRepository {
         getModelFromId(mCowRef.child(cowId), Cow.class, callback);
     }
 
-    public void saveCowProgress(Progress progress) {
-        this.saveCowProgress(null, progress);
-    }
-
-    public void saveCowProgress(String progressId, Progress progress) {
+    private void saveCowProgress(Progress progress) {
         DatabaseReference localRef = getRef().child("progresses");
 
-        if (progressId == null) {
-            progressId = localRef.push().getKey();
-        }
+        String progressId = localRef.push().getKey();
 
         Map<String, Object> cowValues = progress.toMap();
 
@@ -86,11 +80,11 @@ public class CowRepository extends BaseRepository {
         getRef().updateChildren(childUpdates);
     }
 
-    public void getPackageFromId(String aPackageId, ModelListener<Package> callback) {
+    void getPackageFromId(String aPackageId, ModelListener<Package> callback) {
         getModelFromId(mPackageRef.child(aPackageId), Package.class, callback);
     }
 
-    public StorageReference getCowImageFromId(String cowId) {
+    StorageReference getCowImageFromId(String cowId) {
         return getStrorageRef().child(COW_TREE).child(cowId).child(HEAD_JPG);
     }
 }
