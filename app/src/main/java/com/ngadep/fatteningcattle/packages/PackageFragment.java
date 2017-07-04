@@ -31,11 +31,13 @@ public class PackageFragment extends Fragment implements PackageContract.View {
     }
 
     public static PackageFragment newInstance() {
+        Log.i(TAG, "newInstance");
         return new PackageFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.i(TAG, "onCreateView");
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.package_frag, container, false);
 
@@ -47,12 +49,14 @@ public class PackageFragment extends Fragment implements PackageContract.View {
 
     @Override
     public void onResume() {
+        Log.i(TAG, "onResume");
         super.onResume();
         mPresenter.start();
     }
 
     @Override
     public void onPause() {
+        Log.i(TAG, "onPause");
         super.onPause();
         if (mAdapter != null) {
             mAdapter.cleanup();
@@ -91,6 +95,7 @@ public class PackageFragment extends Fragment implements PackageContract.View {
 
     @Override
     public void startCowActivity(String packageKey) {
+        Log.i(TAG, "startCowActivity");
         // Launch Cow Activity
         Intent intent = new Intent(getActivity(), CowActivity.class);
         intent.putExtra(CowActivity.EXTRA_PACKAGE_ID, packageKey);
@@ -104,15 +109,18 @@ public class PackageFragment extends Fragment implements PackageContract.View {
 
     @Override
     public void notifyUserChange(User model) {
+        Log.i(TAG, "notifyUserChange");
         getActivity().setTitle(model.getUserName());
     }
 
     protected void showMessage(String message) {
+        Log.i(TAG, "showMessage: " + message);
         Snackbar.make(mRecycler, message, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void setPresenter(PackageContract.Presenter presenter) {
+        Log.i(TAG, "setPresenter to: " + String.valueOf(presenter.getClass().getSimpleName()));
         mPresenter = presenter;
     }
 }
