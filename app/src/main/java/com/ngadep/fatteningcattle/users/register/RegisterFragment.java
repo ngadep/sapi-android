@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.ngadep.fatteningcattle.models.User;
 
 public class RegisterFragment extends Fragment implements RegisterContract.View{
 
+    private static final String TAG = "RegisterFragment";
     RegisterContract.Presenter mPresenter;
 
     EditText mUserName;
@@ -28,12 +30,14 @@ public class RegisterFragment extends Fragment implements RegisterContract.View{
     }
 
     public static RegisterFragment newInstance() {
+        Log.i(TAG, "newInstance");
         return new RegisterFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.i(TAG, "onCreateView");
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.register_frag, container, false);
         mUserName = (EditText) view.findViewById(R.id.ed_user_name);
@@ -45,6 +49,7 @@ public class RegisterFragment extends Fragment implements RegisterContract.View{
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
         FloatingActionButton fab =
                 (FloatingActionButton) getActivity().findViewById(R.id.fab_edit_user);
@@ -69,23 +74,27 @@ public class RegisterFragment extends Fragment implements RegisterContract.View{
 
     @Override
     public void onResume() {
+        Log.i(TAG, "onResume");
         super.onResume();
         mPresenter.start();
     }
 
     @Override
     public void setPresenter(RegisterContract.Presenter presenter) {
+        Log.i(TAG, "setPresenter to " + String.valueOf(presenter.getClass().getSimpleName()));
         mPresenter = presenter;
     }
 
     @Override
     public void registerSuccess() {
+        Log.i(TAG, "registerSuccess");
         getActivity().setResult(Activity.RESULT_OK);
         getActivity().finish();
     }
 
     @Override
     public void showRegisterFailed() {
+        Log.i(TAG, "showRegisterFailed");
         Snackbar.make(mUserName, getString(R.string.message_register_failed), Snackbar.LENGTH_LONG).show();
     }
 
@@ -112,6 +121,7 @@ public class RegisterFragment extends Fragment implements RegisterContract.View{
             mPassword.setError(null);
         }
 
+        Log.i(TAG, "validateForm, result: " + String.valueOf(result));
         return result;
     }
 
