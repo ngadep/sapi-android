@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
@@ -13,9 +14,11 @@ import com.ngadep.fatteningcattle.utils.ActivityUtils;
 public class BaseCowActivity extends AppCompatActivity {
 
     public static final String EXTRA_PACKAGE_ID = "PACKAGE_ID";
+    private static final String TAG = "BaseCowActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cow_act);
 
@@ -45,6 +48,7 @@ public class BaseCowActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        Log.i(TAG, "onSupportNavigateUp");
         onBackPressed();
         return true;
     }
