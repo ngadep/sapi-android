@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
@@ -11,9 +12,11 @@ import com.ngadep.fatteningcattle.utils.ActivityUtils;
 public class ProgressActivity extends AppCompatActivity {
 
     public static final String EXTRA_COW_ID = "PROGRESS_ID";
+    private static final String TAG = "ProgressActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.progress_act);
 
@@ -43,6 +46,7 @@ public class ProgressActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        Log.i(TAG, "onSupportNavigateUp");
         onBackPressed();
         return true;
     }}
