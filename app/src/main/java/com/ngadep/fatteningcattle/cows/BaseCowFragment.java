@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import com.ngadep.fatteningcattle.progresses.ProgressActivity;
 
 public abstract class BaseCowFragment extends Fragment implements CowContract.View {
 
+    private static final String TAG = "BaseCowFragment";
     CowContract.Presenter mPresenter;
     private FirebaseRecyclerAdapter<Cow, CowViewHolder> mAdapter;
     private RecyclerView mRecycler;
@@ -32,6 +34,7 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onCreateView");
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.cow_frag, container, false);
 
@@ -44,6 +47,7 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
         FloatingActionButton fab =
                 (FloatingActionButton) getActivity().findViewById(R.id.fab_cow);
@@ -61,12 +65,14 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
 
     @Override
     public void onResume() {
+        Log.i(TAG, "onResume");
         super.onResume();
         mPresenter.start();
     }
 
     @Override
     public void onPause() {
+        Log.i(TAG, "onPause");
         super.onPause();
         if (mAdapter != null) {
             mAdapter.cleanup();
@@ -76,18 +82,20 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
 
     @Override
     public void setPresenter(CowContract.Presenter presenter) {
+        Log.i(TAG, "setPresenter to" + String.valueOf(presenter.getClass().getSimpleName()) );
         mPresenter = presenter;
     }
 
     @Override
     public void getAllPackageCow(Query cows) {
+        Log.i(TAG, "getAllPackageCow");
         // Set up Layout Manager, reverse layout
         LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
 
-        // Set up FirebaseRecyclerAdapter with the Query
+        // Set up Recycler Adapter with the Query
         mAdapter = new FirebaseRecyclerAdapter<Cow, CowViewHolder>(Cow.class,
                 R.layout.cow_item, CowViewHolder.class, cows) {
             @Override
@@ -124,16 +132,19 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
     }
 
     protected void showMessage(String message) {
+        Log.i(TAG, "showMessage :" + message);
         Snackbar.make(mRecycler, message, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void notifyPriceChange() {
+        Log.i(TAG, "notifyPriceChange");
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void startProgressActivity(String cowId) {
+        Log.i(TAG, "startProgressActivity");
         Intent intent = new Intent(getActivity(), ProgressActivity.class);
         intent.putExtra(ProgressActivity.EXTRA_COW_ID, cowId);
         startActivity(intent);
@@ -141,6 +152,7 @@ public abstract class BaseCowFragment extends Fragment implements CowContract.Vi
 
     @Override
     public void notifyPackageChange(Package aPackage) {
+        Log.i(TAG, "notifyPackageChange");
         getActivity().setTitle(aPackage.getName());
     }
 
