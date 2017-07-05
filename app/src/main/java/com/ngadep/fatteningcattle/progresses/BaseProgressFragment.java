@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 
 public abstract class BaseProgressFragment extends Fragment implements ProgressContract.View {
 
+    private static final String TAG = "BaseProgressFragment";
     protected ProgressContract.Presenter mPresenter;
     private FirebaseRecyclerAdapter<Progress, ProgressViewHolder> mAdapter;
     private RecyclerView mRecycler;
@@ -36,6 +38,7 @@ public abstract class BaseProgressFragment extends Fragment implements ProgressC
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onCreateView");
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.progress_frag, container, false);
 
@@ -52,6 +55,8 @@ public abstract class BaseProgressFragment extends Fragment implements ProgressC
     }
 
     private void setChartData(int position, float value) {
+        Log.i(TAG, "setChartData, position: " + String.valueOf(position) + " , value : "
+                + String.valueOf(value));
         int pos = position + 1;
         if (pos > chartValue.size()) {
             for (int i = chartValue.size(); i < pos; i++) {
@@ -90,6 +95,7 @@ public abstract class BaseProgressFragment extends Fragment implements ProgressC
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
         FloatingActionButton fab =
                 (FloatingActionButton) getActivity().findViewById(R.id.fab_progress);
@@ -108,12 +114,14 @@ public abstract class BaseProgressFragment extends Fragment implements ProgressC
 
     @Override
     public void onResume() {
+        Log.i(TAG, "onResume");
         super.onResume();
         mPresenter.start();
     }
 
     @Override
     public void onPause() {
+        Log.i(TAG, "onPause");
         super.onPause();
         if (mAdapter != null) {
             mAdapter.cleanup();
@@ -123,22 +131,25 @@ public abstract class BaseProgressFragment extends Fragment implements ProgressC
 
     @Override
     public void setPresenter(ProgressContract.Presenter presenter) {
+        Log.i(TAG, "setPresenter to " + String.valueOf(presenter.getClass().getSimpleName()));
         mPresenter = presenter;
     }
 
     protected void showMessage(String message) {
+        Log.i(TAG, "showMessage: " + message);
         Snackbar.make(mRecycler, message, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void getAllCowProgress(Query query) {
+        Log.i(TAG, "getAllCowProgress");
         // Set up Layout Manager, reverse layout
         LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
         mManager.setReverseLayout(false);
         mManager.setStackFromEnd(false);
         mRecycler.setLayoutManager(mManager);
 
-        // Set up FirebaseRecyclerAdapter with the Query
+        // Set up Recycler Adapter with the Query
         mAdapter = new FirebaseRecyclerAdapter<Progress, ProgressViewHolder>(Progress.class,
                 R.layout.progress_item, ProgressViewHolder.class, query) {
             @Override
@@ -160,11 +171,13 @@ public abstract class BaseProgressFragment extends Fragment implements ProgressC
 
     @Override
     public void notifyPriceChange() {
+        Log.i(TAG, "notifyPriceChange");
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void notifyCowChange(Cow model) {
+        Log.i(TAG, "notifyCowChange");
         getActivity().setTitle(model.getEar_tag());
     }
 }
