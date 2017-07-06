@@ -30,11 +30,13 @@ public class UserFragment extends Fragment implements UserContract.View {
     }
 
     public static UserFragment newInstance() {
+        Log.i(TAG, "newInstance");
         return new UserFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.i(TAG, "onCreateView");
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.user_frag, container, false);
 
@@ -46,13 +48,15 @@ public class UserFragment extends Fragment implements UserContract.View {
 
     @Override
     public void onResume() {
+        Log.i(TAG, "onResume");
         super.onResume();
         mPresenter.start();
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onPause() {
+        Log.i(TAG, "onPause");
+        super.onPause();
         if (mAdapter != null) {
             mAdapter.cleanup();
         }
@@ -67,7 +71,7 @@ public class UserFragment extends Fragment implements UserContract.View {
         mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
 
-        // Set up FirebaseRecyclerAdapter with the Query
+        // Set up RecyclerAdapter with the Query
         mAdapter = new FirebaseRecyclerAdapter<User, UserViewHolder>(User.class,
                 R.layout.user_item, UserViewHolder.class, users) {
             @Override
@@ -91,6 +95,7 @@ public class UserFragment extends Fragment implements UserContract.View {
 
     @Override
     public void startPackageActivity(String userId) {
+        Log.i(TAG, "startPackageActivity");
         Intent intent = new Intent(getActivity(), PackageActivity.class);
         intent.putExtra(PackageActivity.EXTRA_USER_ID, userId);
         startActivity(intent);
@@ -98,6 +103,7 @@ public class UserFragment extends Fragment implements UserContract.View {
 
     @Override
     public void setPresenter(UserContract.Presenter presenter) {
+        Log.i(TAG, "setPresenter to: " + presenter.getClass().getSimpleName());
         mPresenter = presenter;
     }
 }
