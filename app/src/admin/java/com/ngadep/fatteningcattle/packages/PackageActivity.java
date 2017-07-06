@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
@@ -11,9 +12,11 @@ import com.ngadep.fatteningcattle.utils.ActivityUtils;
 public class PackageActivity extends AppCompatActivity {
 
     public static final String EXTRA_USER_ID = "extra user id";
+    private static final String TAG = "PackageActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.package_act);
 
@@ -43,6 +46,7 @@ public class PackageActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        Log.i(TAG, "onSupportNavigateUp");
         onBackPressed();
         return true;
     }
