@@ -4,16 +4,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.ngadep.fatteningcattle.R;
-import com.ngadep.fatteningcattle.models.Package;
 import com.ngadep.fatteningcattle.packages.PackageRepository;
 import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
 public class EditPackageActivity extends AppCompatActivity {
 
+    private static final String TAG = "EditPackageActivity";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_package_act);
         ActionBar ab = getSupportActionBar();
@@ -54,11 +57,13 @@ public class EditPackageActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        Log.i(TAG, "onSupportNavigateUp");
         onBackPressed();
         return true;
     }
 
     public void setToolBarTitle(@Nullable String packageId) {
+        Log.i(TAG, "setToolBarTitle");
         if(packageId == null) {
             setTitle(R.string.package_add);
         } else {
