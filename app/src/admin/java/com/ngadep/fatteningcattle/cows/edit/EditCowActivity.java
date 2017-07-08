@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.ngadep.fatteningcattle.R;
 import com.ngadep.fatteningcattle.cows.CowRepository;
@@ -11,8 +12,11 @@ import com.ngadep.fatteningcattle.utils.ActivityUtils;
 
 public class EditCowActivity extends AppCompatActivity {
 
+    private static final String TAG = "EditCowActivity";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_cow_act);
         ActionBar ab = getSupportActionBar();
@@ -53,11 +57,13 @@ public class EditCowActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        Log.i(TAG, "onSupportNavigateUp");
         onBackPressed();
         return true;
     }
 
     public void setToolBarTitle(@Nullable String cowId) {
+        Log.i(TAG, "setToolBarTitle");
         if(cowId == null) {
             setTitle(R.string.cow_add);
         } else {
