@@ -36,6 +36,7 @@ public class EditCowFragment extends Fragment implements EditCowContract.View {
     final Calendar mCalendar = Calendar.getInstance();
 
     public static EditCowFragment newInstance() {
+        Log.i(TAG, "newInstance");
         return new EditCowFragment();
     }
 
