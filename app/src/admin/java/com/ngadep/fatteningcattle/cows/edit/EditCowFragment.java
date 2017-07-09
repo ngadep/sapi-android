@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import java.util.Date;
 public class EditCowFragment extends Fragment implements EditCowContract.View {
     public static final String ARGUMENT_EDIT_PACKAGE_ID = "EDIT_PACKAGE_ID";
     public static final String ARGUMENT_EDIT_COW_ID = "EDIT_COW_ID";
+    private static final String TAG = "EditCowFragment";
 
     private EditCowContract.Presenter mPresenter;
 
@@ -39,6 +41,7 @@ public class EditCowFragment extends Fragment implements EditCowContract.View {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.i(TAG, "onCreateView");
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.edit_cow_frag, container, false);
 
@@ -71,18 +74,21 @@ public class EditCowFragment extends Fragment implements EditCowContract.View {
 
     @Override
     public void onResume() {
+        Log.i(TAG, "onResume");
         super.onResume();
         mPresenter.start();
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onPause() {
+        Log.i(TAG, "onPause");
+        super.onPause();
         mPresenter.cleanup();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
 
         FloatingActionButton fab =
@@ -136,26 +142,31 @@ public class EditCowFragment extends Fragment implements EditCowContract.View {
             mDate.setError(null);
         }
 
+        Log.i(TAG, "validateForm, Result: " + String.valueOf(result));
         return result;
     }
 
     @Override
     public void setPresenter(EditCowContract.Presenter presenter) {
+        Log.i(TAG, "setPresenter to: " + presenter.getClass().getSimpleName());
         mPresenter = presenter;
     }
 
     @Override
     public boolean isActive() {
+        Log.i(TAG, "isActive, value: " + String.valueOf(isAdded()));
         return isAdded();
     }
 
     @Override
     public void setEarTag(String earTag) {
+        Log.i(TAG, "setEarTag, to: " + earTag);
         mEarTag.setText(earTag);
     }
 
     @Override
     public void setSex(String sex) {
+        Log.i(TAG, "setSex, to: " + sex);
         if ("male".equals(sex)) {
             mSex.setSelection(0);
         } else {
@@ -165,25 +176,29 @@ public class EditCowFragment extends Fragment implements EditCowContract.View {
 
     @Override
     public void setWeight(int weight) {
+        Log.i(TAG, "setWeight, to: " + String.valueOf(weight));
         mWeight.setText(String.valueOf(weight));
     }
 
     @Override
     public void setDate(Long date) {
         Date lDate = new Date(date);
-        SimpleDateFormat.getDateInstance().format(lDate);
         mCalendar.setTime(lDate);
-        mDate.setText(SimpleDateFormat.getDateInstance().format(mCalendar.getTime()));
+        String formattedDate = SimpleDateFormat.getDateInstance().format(mCalendar.getTime());
+        mDate.setText(formattedDate);
+        Log.i(TAG, "setDate, to: " + formattedDate);
     }
 
     @Override
     public void showCowList() {
+        Log.i(TAG, "showCowList");
         getActivity().setResult(Activity.RESULT_OK);
         getActivity().finish();
     }
 
     @Override
     public void hideWeightAndDate() {
+        Log.i(TAG, "hideWeightAndDate");
         mWeight.setVisibility(View.GONE);
         mDate.setVisibility(View.GONE);
     }
