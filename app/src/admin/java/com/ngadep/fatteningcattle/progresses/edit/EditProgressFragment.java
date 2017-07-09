@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import java.util.Date;
 public class EditProgressFragment extends Fragment implements EditProgressContract.View {
     public static final String ARGUMENT_EDIT_COW_ID = "EDIT_COW_ID";
     public static final String ARGUMENT_EDIT_PROGRESS_ID = "EDIT_PROGRESS_ID";
+    private static final String TAG = "EditProgressFragment";
     private EditProgressContract.Presenter mPresenter;
 
     EditText mWeight;
@@ -30,12 +32,14 @@ public class EditProgressFragment extends Fragment implements EditProgressContra
     final Calendar mCalendar = Calendar.getInstance();
 
     public static EditProgressFragment newInstance() {
+        Log.i(TAG, "newInstance");
         return new EditProgressFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onCreateView");
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.edit_progress_frag, container, false);
 
@@ -62,18 +66,21 @@ public class EditProgressFragment extends Fragment implements EditProgressContra
 
     @Override
     public void onResume() {
+        Log.i(TAG, "onResume");
         super.onResume();
         mPresenter.start();
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onPause() {
+        Log.i(TAG, "onPause");
+        super.onPause();
         mPresenter.cleanup();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
 
         FloatingActionButton fab =
@@ -111,34 +118,40 @@ public class EditProgressFragment extends Fragment implements EditProgressContra
             mDate.setError(null);
         }
 
+        Log.i(TAG, "validateForm, Result: " + String.valueOf(result));
         return result;
     }
 
     @Override
     public void setPresenter(EditProgressContract.Presenter presenter) {
+        Log.i(TAG, "setPresenter to: " + presenter.getClass().getSimpleName());
         mPresenter = presenter;
     }
 
     @Override
     public boolean isActive() {
+        Log.i(TAG, "isActive, value: " + String.valueOf(isAdded()));
         return isAdded();
     }
 
     @Override
     public void setWeight(int weight) {
+        Log.i(TAG, "setWeight, to: " + String.valueOf(weight));
         mWeight.setText(String.valueOf(weight));
     }
 
     @Override
     public void setDate(Long date) {
         Date lDate = new Date(date);
-        SimpleDateFormat.getDateInstance().format(lDate);
         mCalendar.setTime(lDate);
-        mDate.setText(SimpleDateFormat.getDateInstance().format(mCalendar.getTime()));
+        String formattedDate = SimpleDateFormat.getDateInstance().format(mCalendar.getTime());
+        mDate.setText(formattedDate);
+        Log.i(TAG, "setDate, to: " + formattedDate);
     }
 
     @Override
     public void showProgressList() {
+        Log.i(TAG, "showProgressList");
         getActivity().setResult(Activity.RESULT_OK);
         getActivity().finish();
     }
