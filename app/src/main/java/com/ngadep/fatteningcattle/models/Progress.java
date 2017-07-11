@@ -46,10 +46,6 @@ public class Progress {
         return cow_id;
     }
 
-    public void setCow_id(String cow_id) {
-        this.cow_id = cow_id;
-    }
-
     @Exclude
     public String getFormatDate() {
         return SimpleDateFormat.getDateInstance().format(new Date(date));
