@@ -1,8 +1,5 @@
 package com.ngadep.fatteningcattle.models;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
@@ -33,10 +30,6 @@ public class Package {
         return uid;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
     public String getName() {
         return name;
     }
@@ -49,10 +42,6 @@ public class Package {
         return location;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public int getType() {
         return type;
     }
@@ -63,10 +52,6 @@ public class Package {
 
     public boolean isActive() {
         return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     @Exclude
