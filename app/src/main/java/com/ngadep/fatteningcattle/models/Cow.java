@@ -38,20 +38,8 @@ public class Cow {
         return package_id;
     }
 
-    public void setPackage_id(String package_id) {
-        this.package_id = package_id;
-    }
-
-    public void setEar_tag(String ear_tag) {
-        this.ear_tag = ear_tag;
-    }
-
     public String getSex() {
         return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
     }
 
     public int getWeight() {
