@@ -112,6 +112,7 @@ public class UserRepository extends BaseRepository {
         mUserInfo.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //noinspection ConstantConditions
                 callback.onLoginIsAdmin(dataSnapshot.getValue(User.class).isAdmin());
             }
 
