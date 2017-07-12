@@ -5,6 +5,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.ngadep.fatteningcattle.users.login.LoginActivity;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,9 +20,11 @@ public class LoginInstrumentedTest {
     @Before
     public void initTest() {
         String mEmail = "saya@gmail.com";
+        Assert.assertEquals("saya@gmail.com", mEmail);
     }
+
     @Test
     public void tryLogin() throws Exception {
-
+        Assert.assertTrue(true);
     }
 }
