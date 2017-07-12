@@ -21,6 +21,6 @@ public class NewsFragment extends Fragment {
         View view = inflater.inflate(R.layout.news_frag, container, false);
 
         Log.i(TAG, "inflate fragment news");
-        return inflater.inflate(R.layout.news_frag, container, false);
+        return view;
     }
 }
