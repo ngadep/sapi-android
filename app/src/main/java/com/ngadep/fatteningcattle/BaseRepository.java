@@ -42,6 +42,7 @@ public class BaseRepository {
         ValueEventListener settingValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //noinspection unchecked
                 callback.onValueChange(dataSnapshot.getValue());
             }
 
@@ -60,6 +61,7 @@ public class BaseRepository {
         modelValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //noinspection unchecked
                 callback.onModelChange(dataSnapshot.getValue(cl));
             }
 
