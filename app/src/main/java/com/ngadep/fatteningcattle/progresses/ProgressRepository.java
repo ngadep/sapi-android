@@ -13,9 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProgressRepository extends BaseRepository {
-    private final String COW_TREE = "cows";
-    private final String COW_PROGRESS_TREE = "cow-progresses";
-    private final String PROGRESS_TREE = "progresses";
 
     private static ProgressRepository INSTANCE = null;
     private final DatabaseReference mCowRef;
@@ -25,8 +22,11 @@ public class ProgressRepository extends BaseRepository {
 
     private ProgressRepository() {
         super();
+        String COW_TREE = "cows";
         mCowRef = getRef().child(COW_TREE);
+        String COW_PROGRESS_TREE = "cow-progresses";
         mCowProgressesRef = getRef().child(COW_PROGRESS_TREE);
+        String PROGRESS_TREE = "progresses";
         mProgressRef = getRef().child(PROGRESS_TREE);
     }
 
@@ -38,7 +38,7 @@ public class ProgressRepository extends BaseRepository {
         return INSTANCE;
     }
 
-    public Query getCowProgressFromId(String cowId) {
+    Query getCowProgressFromId(String cowId) {
         return mCowProgressesRef.child(cowId);
     }
 
