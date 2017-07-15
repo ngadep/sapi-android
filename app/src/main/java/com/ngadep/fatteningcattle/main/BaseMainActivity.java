@@ -93,8 +93,8 @@ public abstract class BaseMainActivity extends AppCompatActivity {
     }
 
     class MainFragment {
-        int resourceText;
-        Fragment fragment;
+        final int resourceText;
+        final Fragment fragment;
 
         MainFragment(int resourceText, Fragment fragment) {
             this.resourceText = resourceText;
@@ -112,7 +112,7 @@ public abstract class BaseMainActivity extends AppCompatActivity {
 
     private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        List<MainFragment> mFragments;
+        final List<MainFragment> mFragments;
 
         SectionsPagerAdapter(FragmentManager fm, List<MainFragment> fragment) {
             super(fm);

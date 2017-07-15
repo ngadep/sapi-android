@@ -5,9 +5,9 @@ import com.ngadep.fatteningcattle.models.Cow;
 
 class ProgressPresenter implements ProgressContract.Presenter {
 
-    private ProgressContract.View mView;
-    private ProgressRepository mRepository;
-    private String mCowId;
+    private final ProgressContract.View mView;
+    private final ProgressRepository mRepository;
+    private final String mCowId;
     private Long mPricePerKg;
     private Cow mCow;
 

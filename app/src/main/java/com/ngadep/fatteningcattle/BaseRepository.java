@@ -15,12 +15,12 @@ import java.util.Map;
 public class BaseRepository {
 
     protected final FirebaseDatabase mDatabase;
-    protected final FirebaseStorage mStorage;
+    private final FirebaseStorage mStorage;
     protected final FirebaseAuth mAuth;
 
     private DatabaseReference modelRef;
     private ValueEventListener modelValueEventListener;
-    private Map<DatabaseReference, ValueEventListener> mSettingQuery;
+    private final Map<DatabaseReference, ValueEventListener> mSettingQuery;
 
     protected BaseRepository() {
         mDatabase = FirebaseDatabase.getInstance();
