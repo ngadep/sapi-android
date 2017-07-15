@@ -89,7 +89,7 @@ public class EditProgressFragment extends Fragment implements EditProgressContra
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validateForm()) {
+                if (FormNotValid()) {
                     return;
                 }
 
@@ -102,7 +102,7 @@ public class EditProgressFragment extends Fragment implements EditProgressContra
 
     }
 
-    private boolean validateForm() {
+    private boolean FormNotValid() {
         boolean result = true;
         if (TextUtils.isEmpty(mWeight.getText().toString())) {
             mWeight.setError("Required");
@@ -118,8 +118,8 @@ public class EditProgressFragment extends Fragment implements EditProgressContra
             mDate.setError(null);
         }
 
-        Log.i(TAG, "validateForm, Result: " + String.valueOf(result));
-        return result;
+        Log.i(TAG, "FormNotValid, Result: " + String.valueOf(result));
+        return !result;
     }
 
     @Override
