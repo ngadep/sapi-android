@@ -57,7 +57,7 @@ public class RegisterFragment extends Fragment implements RegisterContract.View{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validateForm()) {
+                if (FormNotValid()) {
                     return;
                 }
 
@@ -98,7 +98,7 @@ public class RegisterFragment extends Fragment implements RegisterContract.View{
         Snackbar.make(mUserName, getString(R.string.message_register_failed), Snackbar.LENGTH_LONG).show();
     }
 
-    private boolean validateForm() {
+    private boolean FormNotValid() {
         boolean result = true;
         if (TextUtils.isEmpty(mUserName.getText().toString())) {
             mUserName.setError("Required");
@@ -121,8 +121,8 @@ public class RegisterFragment extends Fragment implements RegisterContract.View{
             mPassword.setError(null);
         }
 
-        Log.i(TAG, "validateForm, result: " + String.valueOf(result));
-        return result;
+        Log.i(TAG, "FormNotValid, result: " + String.valueOf(result));
+        return !result;
     }
 
 }
