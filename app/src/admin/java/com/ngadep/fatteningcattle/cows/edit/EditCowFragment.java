@@ -98,7 +98,7 @@ public class EditCowFragment extends Fragment implements EditCowContract.View {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validateForm()) {
+                if (FormNotValid()) {
                     return;
                 }
 
@@ -120,7 +120,7 @@ public class EditCowFragment extends Fragment implements EditCowContract.View {
 
     }
 
-    private boolean validateForm() {
+    private boolean FormNotValid() {
         boolean result = true;
         if (TextUtils.isEmpty(mEarTag.getText().toString())) {
             mEarTag.setError("Required");
@@ -143,8 +143,8 @@ public class EditCowFragment extends Fragment implements EditCowContract.View {
             mDate.setError(null);
         }
 
-        Log.i(TAG, "validateForm, Result: " + String.valueOf(result));
-        return result;
+        Log.i(TAG, "FormNotValid, Result: " + String.valueOf(result));
+        return !result;
     }
 
     @Override
