@@ -75,7 +75,7 @@ public class EditPackageFragment extends Fragment implements EditPackageContract
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validateForm()) {
+                if (FormNotValid()) {
                     return;
                 }
 
@@ -133,7 +133,7 @@ public class EditPackageFragment extends Fragment implements EditPackageContract
         getActivity().finish();
     }
 
-    private boolean validateForm() {
+    private boolean FormNotValid() {
         boolean result = true;
         if (TextUtils.isEmpty(mName.getText().toString())) {
             mName.setError("Required");
@@ -156,8 +156,8 @@ public class EditPackageFragment extends Fragment implements EditPackageContract
             mType.setError(null);
         }
 
-        Log.i(TAG, "validateForm, result: " + String.valueOf(result));
+        Log.i(TAG, "FormNotValid, result: " + String.valueOf(result));
 
-        return result;
+        return !result;
     }
 }
